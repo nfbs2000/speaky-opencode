@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>3장: 에이전트, 모드, 위임 구조 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link active" href="ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part2/index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="../part2/ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="../part2/ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="../part2/ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="../part2/ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="../part2/ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="../part4/index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="../part4/ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="../part4/ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="../part4/ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="../part4/ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="../part4/ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part5/index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="../part5/ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="../part5/ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="../part5/ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="../part5/ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="../part5/ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="../part6/index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="../part6/ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="../part6/ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="../part6/ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="../part6/ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="../part6/ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제1부: 어디에 시스템 경계를 두는가</p>
+    <h1>3장: 에이전트, 모드, 위임 구조</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 OpenCode의 agent를 프롬프트 프리셋이 아니라 model, permission, mode, hidden/system role을 포함한 실행 단위로 읽는다. 대상 독자: 다중 역할 assistant 구성을 설계하거나, OpenCode를 하니스 관점에서 읽고 싶은 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>OpenCode의 agent는 단순 캐릭터 설정이 아니다. 각 agent는 설명, 모드, 모델, 프롬프트, 권한 집합, 숨김 여부를 함께 가진다. 즉 agent는 personality보다 operating envelope에 가깝다. 이걸 놓치면 build, plan, general, explore, compaction, title, summary가 왜 서로 다른지 정확히 읽을 수 없다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts"><code>packages/opencode/src/agent/agent.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/generate.txt"><code>packages/opencode/src/agent/generate.txt</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/prompt/explore.txt"><code>packages/opencode/src/agent/prompt/explore.txt</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/agents.mdx"><code>packages/web/src/content/docs/agents.mdx</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/permissions.mdx"><code>packages/web/src/content/docs/permissions.mdx</code></a></li></ul>
+<h2 id="핵심-코드">핵심 코드</h2>
+<p>agent가 프롬프트 이름이 아니라 실행 envelope라는 점은 <code>Info</code> 타입에서 바로 드러난다. <code>permission</code>, <code>model</code>, <code>mode</code>, <code>hidden</code>, <code>options</code>가 같은 객체에 들어간다.</p>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/agent/agent.ts
+export const Info = z
+  .object({
+    name: z.string(),
+    description: z.string().optional(),
+    mode: z.enum([&quot;subagent&quot;, &quot;primary&quot;, &quot;all&quot;]),
+    native: z.boolean().optional(),
+    hidden: z.boolean().optional(),
+    topP: z.number().optional(),
+    temperature: z.number().optional(),
+    color: z.string().optional(),
+    permission: Permission.Ruleset.zod,
+    model: z
+      .object({
+        modelID: ModelID.zod,
+        providerID: ProviderID.zod,
+      })
+      .optional(),
+    variant: z.string().optional(),
+    prompt: z.string().optional(),
+    options: z.record(z.string(), z.any()),
+    steps: z.number().int().positive().optional(),
+  })
+  .meta({
+    ref: &quot;Agent&quot;,
+  })</code></pre>
+<p><code>build</code>와 <code>plan</code>의 차이도 결국 permission merge에서 만들어진다. 이 코드를 읽어야 &quot;모드&quot;가 프롬프트가 아니라 실행 범위라는 점이 보인다.</p>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/agent/agent.ts
+build: {
+  name: &quot;build&quot;,
+  description: &quot;The default agent. Executes tools based on configured permissions.&quot;,
+  options: {},
+  permission: Permission.merge(
+    defaults,
+    Permission.fromConfig({
+      question: &quot;allow&quot;,
+      plan_enter: &quot;allow&quot;,
+    }),
+    user,
+  ),
+  mode: &quot;primary&quot;,
+  native: true,
+},
+plan: {
+  name: &quot;plan&quot;,
+  description: &quot;Plan mode. Disallows all edit tools.&quot;,
+  options: {},
+  permission: Permission.merge(
+    defaults,
+    Permission.fromConfig({
+      question: &quot;allow&quot;,
+      plan_exit: &quot;allow&quot;,
+      external_directory: {
+        [path.join(Global.Path.data, &quot;plans&quot;, &quot;*&quot;)]: &quot;allow&quot;,
+      },
+      edit: {
+        &quot;*&quot;: &quot;deny&quot;,
+        [path.join(&quot;.opencode&quot;, &quot;plans&quot;, &quot;*.md&quot;)]: &quot;allow&quot;,
+        [path.relative(Instance.worktree, path.join(Global.Path.data, path.join(&quot;plans&quot;, &quot;*.md&quot;)))]: &quot;allow&quot;,
+      },
+    }),
+    user,
+  ),
+  mode: &quot;primary&quot;,
+  native: true,
+},</code></pre>
+<h2 id="에이전트-관계도">에이전트 관계도</h2>
+<div class="diagram"><pre class="mermaid">graph LR
+    BUILD[&quot;build&lt;br/&gt;primary&quot;]
+    PLAN[&quot;plan&lt;br/&gt;primary&quot;]
+    GENERAL[&quot;general&lt;br/&gt;subagent&quot;]
+    EXPLORE[&quot;explore&lt;br/&gt;subagent&quot;]
+    COMPACTION[&quot;compaction&lt;br/&gt;hidden&quot;]
+    TITLE[&quot;title&lt;br/&gt;hidden&quot;]
+    SUMMARY[&quot;summary&lt;br/&gt;hidden&quot;]
+
+    BUILD --&gt; GENERAL
+    BUILD --&gt; EXPLORE
+    PLAN --&gt; GENERAL
+    PLAN --&gt; EXPLORE
+    BUILD --&gt; COMPACTION
+    BUILD --&gt; TITLE
+    BUILD --&gt; SUMMARY</pre></div>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="built-in-agent는-코드-안에서-직접-조립된다">built-in agent는 코드 안에서 직접 조립된다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/agent.ts"><code>agent.ts</code></a>를 보면 <code>build</code>, <code>plan</code>, <code>general</code>, <code>explore</code>, <code>compaction</code>, <code>title</code>, <code>summary</code>가 모두 코드로 정의된다. 이때 중요한 것은 단순 이름 목록이 아니라, 각 항목이 <code>mode</code>, <code>permission</code>, <code>model</code>, <code>description</code>, <code>hidden</code> 같은 필드를 가진다는 점이다.</p>
+<p>즉 OpenCode는 agent를 &quot;프롬프트 문자열 한 덩어리&quot;로 두지 않고, 구성 가능한 운영 객체로 둔다.</p>
+<h3 id="차이는-프롬프트보다-permission-envelope에서-더-선명하다">차이는 프롬프트보다 permission envelope에서 더 선명하다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/agent.ts"><code>agent.ts</code></a>의 핵심은 <code>Permission.merge(...)</code>다. 기본 규칙, 사용자 설정, built-in agent 전용 규칙이 합쳐져 각 agent의 실제 행동 범위를 만든다. 그래서 <code>plan</code>이 읽기/계획용처럼 보이는 이유도 결국 edit 계열과 bash 계열 권한이 조정되기 때문이다.</p>
+<p>이 지점이 중요하다. 에이전트 역할을 프롬프트 하나에만 맡기면 금방 무너진다. OpenCode는 역할을 permission envelope로도 고정한다.</p>
+<h3 id="primary와-subagent는-ui-분류이면서-orchestration-분류다">primary와 subagent는 UI 분류이면서 orchestration 분류다</h3>
+<p>문서 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/agents.mdx"><code>agents.mdx</code></a>는 primary agent와 subagent를 UI 관점에서 설명하지만, 구현을 보면 이 구분은 orchestration에도 직접 연결된다. primary agent는 사용자가 직접 탭으로 전환하는 대상이고, subagent는 task/tool 위임 대상이다. 즉 이 분류는 단순 화면 분류가 아니라 실행 흐름 분류다.</p>
+<h3 id="hidden-agent는-유지-기능을-담당한다">hidden agent는 유지 기능을 담당한다</h3>
+<p><code>compaction</code>, <code>title</code>, <code>summary</code>가 <code>hidden: true</code>인 이유는 분명하다. 이 agent들은 사용자가 직접 선택하지 않지만, 세션 품질 유지에 매우 중요하다. OpenCode가 이런 보조 작업을 helper 함수로 두지 않고 agent abstraction 안에 넣은 것은 매우 좋은 설계다. model 선택, prompt, retry, logging 같은 공통 실행 규칙을 그대로 재사용할 수 있기 때문이다.</p>
+<h3 id="사용자-정의-agent도-같은-모델에-합류한다">사용자 정의 agent도 같은 모델에 합류한다</h3>
+<p><code>cfg.agent</code> 병합 경로를 보면 사용자 정의 agent는 built-in과 완전히 별개 시스템이 아니다. 기존 agent를 override하거나 새 agent를 추가해도 최종적으로는 같은 <code>Info</code> 구조로 수렴한다. 이 점이 중요하다. built-in과 user-defined가 서로 다른 타입이면 시스템이 빠르게 복잡해진다.</p>
+<h3 id="external-directory-규칙도-자동으로-보강된다">external directory 규칙도 자동으로 보강된다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/agent.ts"><code>agent.ts</code></a> 뒤쪽을 보면 외부 디렉터리 관련 permission이 명시적으로 없는 agent에 대해 공통 규칙을 보강한다. 이건 작은 디테일 같지만 중요하다. 일부 안전 경계는 agent 개별 취향이 아니라 시스템 전체의 기본 seam으로 유지해야 하기 때문이다.</p>
+<h3 id="default-agent-선택도-별도-정책이다">default agent 선택도 별도 정책이다</h3>
+<p><code>cfg.default_agent</code>가 있으면 그 agent를 기본으로 삼되, subagent이거나 hidden이면 오류를 낸다. 설정이 없으면 visible primary agent 중 첫 후보를 택한다. 즉 OpenCode는 &quot;기본 에이전트&quot;도 단순 하드코딩 값이 아니라, 유효성 검사와 선택 정책을 가진 기능으로 다룬다.</p>
+<h2 id="문서와-구현의-차이">문서와 구현의 차이</h2>
+<p>문서 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/agents.mdx"><code>agents.mdx</code></a>는 build, plan, general, explore를 사용자 시점에서 설명한다. 하지만 구현에서는 더 많은 사실이 보인다.</p>
+<ul><li>hidden system agent가 존재한다.</li><li>permission merge가 핵심이다.</li><li>사용자 정의 agent가 built-in과 같은 타입으로 합류한다.</li><li>기본 agent 선택도 검증이 필요하다.</li></ul>
+<p>즉 문서가 역할 설명이라면, 구현은 operating envelope 설명이다.</p>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>agent는 &quot;성격&quot;보다 &quot;권한과 문맥 묶음&quot;으로 설계하는 편이 낫다.</li><li>primary/subagent/hidden 같은 실행 역할을 타입 차원에서 분리하는 것이 좋다.</li><li>built-in agent와 user-defined agent가 같은 구조로 수렴하면 시스템이 훨씬 단순해진다.</li><li>유지 기능은 hidden system agent로 분리하는 편이 메인 assistant를 덜 오염시킨다.</li></ul>
+<p>다음 장에서는 agent가 실제로 쓰는 도구 표면이 어떤 계약과 실행 파이프라인 위에 올라가는지 본다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>Claude의 subagent 관점을 가져오되 OpenCode에서는 agent를 prompt 이름으로 보지 말아야 한다. OpenCode의 agent는 mode, permission, model override, prompt, options를 포함하는 실행 envelope다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;built-in agent 정의&quot;]
+  N2[&quot;config agent merge&quot;]
+  N1 --&gt; N2
+  N3[&quot;permission envelope 생성&quot;]
+  N2 --&gt; N3
+  N4[&quot;ToolRegistry dynamic description&quot;]
+  N3 --&gt; N4
+  N5[&quot;SessionPrompt agent 선택&quot;]
+  N4 --&gt; N5
+  N6[&quot;TaskTool subagent 실행&quot;]
+  N5 --&gt; N6</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts"><code>packages/opencode/src/agent/agent.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/task.ts"><code>packages/opencode/src/tool/task.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts"><code>packages/opencode/src/session/prompt.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/index.ts"><code>packages/opencode/src/permission/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/config/agent.ts"><code>packages/opencode/src/config/agent.ts</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>build, plan, general, explore, compaction, title, summary는 모두 Agent.Info로 조립된다.</li><li>plan과 build의 차이는 prompt보다 permission envelope에서 더 선명하다. plan은 edit 계열을 막고 plan file만 제한적으로 허용한다.</li><li>hidden agent도 같은 provider/model/prompt 경로를 쓰므로 title, summary, compaction이 예외적인 helper가 되지 않는다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>agent를 프롬프트 텍스트로만 보면 권한과 tool exposure 차이를 놓친다.</li><li>subagent를 병렬성 기능으로만 보면 parent/child session과 permission 병합을 놓친다.</li><li>hidden agent를 관측하지 않으면 보조 LLM 비용과 실패가 보이지 않는다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>agent 타입에 prompt와 permission을 함께 넣었는가?</li><li>primary/subagent/hidden mode를 분리했는가?</li><li>사용자 정의 agent가 built-in agent와 같은 모델에 합류하는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>agent.ts</code></td><td><code>packages/core/src/agent.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/agent.ts">Latest</a></td></tr><tr><td><code>agents.mdx</code></td><td><code>packages/web/src/content/docs/agents.mdx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/agents.mdx">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/core/src/agent.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/agent.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/agent.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/agent/agent.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/agent/agent.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/agent/generate.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/generate.txt">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/agent/generate.txt">Edition</a></td></tr><tr><td><code>packages/opencode/src/agent/prompt/explore.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/prompt/explore.txt">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/agent/prompt/explore.txt">Edition</a></td></tr><tr><td><code>packages/opencode/src/config/agent.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/config/agent.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/config/agent.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/permission/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/permission/index.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/prompt.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/prompt.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/task.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/task.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/task.ts">Edition</a></td></tr><tr><td><code>packages/web/src/content/docs/agents.mdx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/agents.mdx">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/web/src/content/docs/agents.mdx">Edition</a></td></tr><tr><td><code>packages/web/src/content/docs/permissions.mdx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/permissions.mdx">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/web/src/content/docs/permissions.mdx">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="ch02.html"><span>이전</span><strong>2장: CLI 엔트리포인트와 인스턴스 부트스트랩</strong></a><a class="nav-card" href="ch04.html"><span>다음</span><strong>4장: 도구 레지스트리와 실행 파이프라인</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

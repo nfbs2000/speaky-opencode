@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>12장: 웹, 앱, 데스크톱의 공유 코어 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part2/index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="../part2/ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="../part2/ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="../part2/ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="../part2/ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="../part2/ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link active" href="ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="../part4/index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="../part4/ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="../part4/ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="../part4/ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="../part4/ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="../part4/ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part5/index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="../part5/ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="../part5/ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="../part5/ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="../part5/ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="../part5/ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="../part6/index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="../part6/ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="../part6/ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="../part6/ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="../part6/ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="../part6/ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</p>
+    <h1>12장: 웹, 앱, 데스크톱의 공유 코어</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 OpenCode가 여러 제품 표면을 가지면서도 코어와 UI를 어떻게 재사용하는지, 그리고 어디서부터는 다시 표면별 운영 책임이 두꺼워지는지를 해부한다. 대상 독자: 하나의 코어를 웹 앱, 데스크톱 앱, 문서 사이트로 나누어 내보내려는 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>대부분의 에이전트 프로젝트는 여기서 둘 중 하나를 택한다. CLI 중심으로 남거나, 웹 앱을 만들면서 코어를 다시 구현한다. OpenCode는 상대적으로 드문 세 번째 길을 택한다. 코어 런타임은 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/opencode"><code>packages/opencode</code></a>에 남겨 두고, 브라우저 앱은 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/app"><code>packages/app</code></a>, 문서 사이트는 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/web"><code>packages/web</code></a>, 데스크톱 표면은 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/desktop"><code>packages/desktop</code></a>과 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/desktop"><code>packages/desktop-electron</code></a>으로 갈라 낸다. 중요한 점은 이 표면들이 같은 저장소 안에 있다고 해서 같은 책임을 지지 않는다는 것이다.</p>
+<p>이 장을 읽어야 하는 이유는 간단하다. 제품 표면이 늘어날수록 어려운 것은 &quot;화면을 더 만드는 것&quot;이 아니라 &quot;무엇을 공유하고 무엇을 갈라야 하는지&quot;를 끝까지 지키는 일이다. OpenCode는 완벽하지는 않지만, 이 문제를 꽤 일관된 방식으로 다룬다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/app/package.json"><code>packages/app/package.json</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/app/src/index.ts"><code>packages/app/src/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/package.json"><code>packages/desktop/package.json</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/renderer/index.tsx"><code>packages/desktop/src/index.tsx</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/renderer/index.tsx"><code>packages/desktop/src/entry.tsx</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/package.json"><code>packages/desktop-electron/package.json</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/renderer/index.tsx"><code>packages/desktop-electron/src/renderer/index.tsx</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/main/index.ts"><code>packages/desktop-electron/src/main/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/main/server.ts"><code>packages/desktop-electron/src/main/server.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/astro.config.mjs"><code>packages/web/astro.config.mjs</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/infra/app.ts"><code>infra/app.ts</code></a></li></ul>
+<h2 id="표면-지형도">표면 지형도</h2>
+<div class="diagram"><pre class="mermaid">graph TD
+    CORE[&quot;packages/opencode&lt;br/&gt;runtime kernel&quot;]
+    SDK[&quot;packages/sdk/js&lt;br/&gt;API contract&quot;]
+    APP[&quot;packages/app&lt;br/&gt;shared product UI&quot;]
+    TAURI[&quot;packages/desktop&lt;br/&gt;Tauri shell&quot;]
+    ELECTRON_RENDER[&quot;desktop-electron renderer&lt;br/&gt;shared app UI&quot;]
+    ELECTRON_MAIN[&quot;desktop-electron main&lt;br/&gt;local sidecar + OS integration&quot;]
+    DOCS[&quot;packages/web&lt;br/&gt;concept surface&quot;]
+    DEPLOY[&quot;infra/app.ts&lt;br/&gt;deployment split&quot;]
+
+    CORE --&gt; SDK
+    SDK --&gt; APP
+    APP --&gt; TAURI
+    APP --&gt; ELECTRON_RENDER
+    ELECTRON_MAIN --&gt; CORE
+    DOCS --&gt; CORE
+    DEPLOY --&gt; DOCS
+    DEPLOY --&gt; APP</pre></div>
+<p>이 그림에서 중요한 것은 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/app"><code>packages/app</code></a>가 최종 제품이 아니라 공유 UI 계층이라는 점이다. 그리고 문서 사이트와 데스크톱 메인 프로세스는 이 공유 UI와 전혀 다른 종류의 책임을 가진다.</p>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="packages-app은-웹-앱-이-아니라-공유-제품-ui다"><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/app"><code>packages/app</code></a>은 &quot;웹 앱&quot;이 아니라 공유 제품 UI다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/app/package.json"><code>packages/app/package.json</code></a>을 보면 의존성 중심이 분명하다. <code>@opencode-ai/sdk</code>, <code>@opencode-ai/ui</code>, <code>@opencode-ai/shared</code>가 중심이고, Vite/Solid 기반 브라우저 UI가 그 위에 올라간다. 더 중요한 근거는 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/app/src/index.ts"><code>packages/app/src/index.ts</code></a>다. 이 파일은 화면 구현 전체를 노출하지 않고 <code>AppBaseProviders</code>, <code>AppInterface</code>, <code>PlatformProvider</code>, <code>ServerConnection</code>, <code>useCommand</code> 같은 상위 조립 단위를 export한다.</p>
+<p>이 말은 곧 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/app"><code>packages/app</code></a>이 독립 제품이라기보다 &quot;브라우저 기반 제품 표면을 조립하는 공유 인터페이스 계층&quot;이라는 뜻이다. 데스크톱이 이 계층을 그대로 끌어다 쓰는 이유도 여기에 있다.</p>
+<h3 id="tauri-표면은-공유-ui-위에-플랫폼-어댑터를-얹는다">Tauri 표면은 공유 UI 위에 플랫폼 어댑터를 얹는다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/renderer/index.tsx"><code>packages/desktop/src/index.tsx</code></a>를 보면 Tauri 표면의 성격이 선명하다. 이 파일은 <code>@opencode-ai/app</code>에서 <code>AppBaseProviders</code>, <code>AppInterface</code>, <code>PlatformProvider</code>, <code>ServerConnection</code>을 가져온 뒤, Tauri 전용 플러그인들을 이용해 <code>Platform</code> 객체를 채운다.</p>
+<ul><li><code>@tauri-apps/plugin-dialog</code>로 파일 선택기 연결</li><li><code>@tauri-apps/plugin-deep-link</code>로 딥링크 연결</li><li><code>@tauri-apps/plugin-http</code>로 HTTP fetch 대체</li><li><code>@tauri-apps/plugin-store</code>로 로컬 저장소 연결</li><li><code>commands.*</code> 바인딩으로 WSL 경로 변환, 경로 열기, 메뉴 등 네이티브 기능 연결</li></ul>
+<p>즉 Tauri 표면은 UI를 거의 새로 쓰지 않는다. 대신 &quot;브라우저 앱이 기대하는 platform contract&quot;를 Tauri 플러그인으로 채워 넣는다. 이것이 코어와 UI를 재사용하면서도 운영체제 통합을 제공하는 방식이다.</p>
+<h3 id="electron은-같은-ui를-쓰되-메인-프로세스-책임이-훨씬-두꺼워진다">Electron은 같은 UI를 쓰되, 메인 프로세스 책임이 훨씬 두꺼워진다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/renderer/index.tsx"><code>packages/desktop-electron/src/renderer/index.tsx</code></a>도 마찬가지로 <code>@opencode-ai/app</code>를 중심으로 조립된다. 하지만 Electron 표면은 Tauri와 결정적인 차이가 있다. <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/main/index.ts"><code>packages/desktop-electron/src/main/index.ts</code></a>가 별도의 운영 커널처럼 두꺼워진다는 점이다.</p>
+<p>이 메인 프로세스는 단순 창 관리자에 그치지 않는다.</p>
+<ul><li>단일 인스턴스 락과 딥링크 처리</li><li>로컬 sidecar 서버 부팅</li><li>SQLite 마이그레이션 오버레이</li><li>auto updater</li><li>메뉴와 IPC</li><li>앱 userData 경로와 프로토콜 설정</li></ul>
+<p>특히 <code>process.env.OPENCODE_DISABLE_EMBEDDED_WEB_UI = &quot;true&quot;</code> 설정과, <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/main/server.ts"><code>packages/desktop-electron/src/main/server.ts</code></a>의 <code>spawnLocalServer(...)</code>는 이 표면의 정체를 잘 보여 준다. Electron은 웹 UI를 감싸는 것만이 아니라, 같은 머신 안에서 <code>virtual:opencode-server</code>를 띄워 로컬 제어면까지 책임진다.</p>
+<p>즉 Electron 표면은 &quot;렌더러는 공유 UI, 메인은 운영 어댑터&quot;라는 이중 구조를 가진다.</p>
+<h3 id="데스크톱-표면에서-진짜로-달라지는-것은-ui가-아니라-운영-책임이다">데스크톱 표면에서 진짜로 달라지는 것은 UI가 아니라 운영 책임이다</h3>
+<p>Tauri와 Electron을 비교하면 겉으로는 둘 다 데스크톱 앱이다. 하지만 코드에서는 전혀 다르게 무거워진다.</p>
+<div class="table-wrap"><table><thead><tr><th>표면</th><th>공유하는 것</th><th>새로 책임지는 것</th></tr></thead><tbody><tr><td><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/desktop"><code>packages/desktop</code></a></td><td><code>@opencode-ai/app</code> 기반 UI, command/context 구조</td><td>Tauri plugin 연결, 네이티브 대화상자, 업데이트, WSL 경로 적응</td></tr><tr><td><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/desktop"><code>packages/desktop-electron</code></a> renderer</td><td><code>@opencode-ai/app</code> 기반 UI, platform contract</td><td>preload/IPC를 통한 데스크톱 브리지</td></tr><tr><td><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/desktop"><code>packages/desktop-electron</code></a> main</td><td>거의 공유하지 않음</td><td>sidecar 서버, 윈도우/메뉴, deep link, shell env, local state</td></tr></tbody></table></div>
+<p>이 표는 좋은 교훈을 준다. 여러 표면이 같은 UI를 공유할 수는 있어도, 배포와 프로세스 모델과 OS 통합 책임까지 같아지지는 않는다.</p>
+<h3 id="문서-사이트는-별도-제품-표면이면서도-개념-모델의-본진이다">문서 사이트는 별도 제품 표면이면서도 개념 모델의 본진이다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/astro.config.mjs"><code>packages/web/astro.config.mjs</code></a>는 문서가 단순 보조 산출물이 아니라는 점을 보여 준다. Astro/Starlight 기반 설정에는 다국어 locale, sidebar 구조, edit link, Cloudflare adapter, <code>/docs</code> base path가 모두 들어 있다. 이 사이트는 앱 UI를 재사용하지 않지만, OpenCode의 공식 개념 모델을 제공한다는 점에서 동일한 제품군의 표면이다.</p>
+<p>책 작업에 이것이 중요한 이유는, 문서 사이트가 이미 &quot;사용자에게 보여 주는 OpenCode의 개념 모델&quot;을 가지고 있기 때문이다. 따라서 책은 이 문서와 경쟁하는 것이 아니라, 문서가 설명하는 개념을 코어 구현과 대조해 주는 역할을 해야 한다.</p>
+<h3 id="저장소-분리는-실제-배포-분리로-이어진다">저장소 분리는 실제 배포 분리로 이어진다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/infra/app.ts"><code>infra/app.ts</code></a>를 보면 폴더 경계가 곧 운영 경계라는 점이 더 분명해진다.</p>
+<ul><li><code>docs.&lt;domain&gt;</code>은 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/web"><code>packages/web</code></a></li><li><code>app.&lt;domain&gt;</code>은 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/app"><code>packages/app</code></a></li><li><code>api.&lt;domain&gt;</code>은 Cloudflare worker API</li></ul>
+<p>즉 OpenCode는 &quot;같은 repo 안에 폴더를 나눠 두는 미학&quot;에 머무르지 않는다. 문서, 앱, API를 실제 다른 배포 표면으로 나눠 둔다. 제품 표면 분리가 저장소 안에서만 성립하면 시간이 지날수록 무너진다. OpenCode는 적어도 이 점에서 일관적이다.</p>
+<h2 id="이-장에서-진짜-봐야-하는-것">이 장에서 진짜 봐야 하는 것</h2>
+<p>OpenCode의 표면 전략은 &quot;웹, 데스크톱, 문서가 모두 있다&quot;가 아니다. 더 중요한 논지는 아래 세 가지다.</p>
+<ol><li>코어는 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/opencode"><code>packages/opencode</code></a>에 남는다.</li><li>브라우저 기반 제품 UI는 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/app"><code>packages/app</code></a>라는 공유 계층으로 모은다.</li><li>데스크톱과 문서는 각자의 운영 책임 때문에 다시 갈라진다.</li></ol>
+<p>이 순서가 깨지면 표면 수가 늘수록 코어 로직이 여기저기 복제되기 쉽다. OpenCode는 그 복제를 SDK와 공유 UI, 그리고 표면별 어댑터 계층으로 늦춘다.</p>
+<h2 id="트레이드오프">트레이드오프</h2>
+<ul><li>장점: 앱, 데스크톱, 문서가 커져도 코어 런타임이 직접 UI 패키지에 새지 않는다.</li><li>장점: 데스크톱 표면도 공유 UI를 재사용하므로 제품 감각을 맞추기 쉽다.</li><li>단점: 저장소 패키지 수, 빌드 체인, 배포 경로가 빠르게 복잡해진다.</li><li>단점: 공유 UI와 플랫폼 어댑터의 경계가 흐려지면 한 번에 여러 표면이 깨질 수 있다.</li><li>장점: 문서 사이트도 별도 표면으로 유지되어 개념 모델을 독립적으로 운영할 수 있다.</li></ul>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>여러 표면을 지원하고 싶다면 먼저 공유할 대상이 UI인지, SDK인지, 코어인지부터 분명히 해야 한다.</li><li>데스크톱 앱의 복잡성은 화면보다 메인 프로세스와 OS 통합에서 더 빨리 커진다.</li><li>문서 사이트는 부속물이 아니라 제품의 개념 모델을 담당하는 표면으로 취급하는 편이 낫다.</li><li>저장소 분리는 배포 분리까지 이어져야 오래 유지된다.</li></ul>
+<p>다음 장에서는 이 여러 표면이 공통으로 기대는 가장 노골적인 계약층, 즉 JS SDK와 자동화 진입점을 본다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>OpenCode는 표면이 넓지만 core가 여러 벌인 것은 아니다. Claude 하니스의 핵심처럼 모델 루프는 하나의 계약으로 남고 UI는 그 상태를 다른 방식으로 보여 준다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;core server&quot;]
+  N2[&quot;SDK client&quot;]
+  N1 --&gt; N2
+  N3[&quot;sync context&quot;]
+  N2 --&gt; N3
+  N4[&quot;app/session page&quot;]
+  N3 --&gt; N4
+  N5[&quot;desktop sidecar&quot;]
+  N4 --&gt; N5
+  N6[&quot;shared UI&quot;]
+  N5 --&gt; N6</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/app/src/context/sdk.tsx"><code>packages/app/src/context/sdk.tsx</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/app/src/context/sync.tsx"><code>packages/app/src/context/sync.tsx</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/app/src/pages/session.tsx"><code>packages/app/src/pages/session.tsx</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/main/sidecar.ts"><code>packages/desktop-electron-live/electron/services/opencode-sidecar.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/main/server.ts"><code>packages/desktop-electron-live/electron/services/opencode-bridge.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/ui"><code>packages/ui</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>packages/app은 prompt input과 session UI를 갖지만 tool execution과 provider call은 core에 맡긴다.</li><li>desktop 계층은 sidecar process, shell env, bridge, data location을 운영한다.</li><li>packages/ui는 표현 공유 계층이지 permission이나 tool semantics의 소유자가 아니다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>desktop에서 core 의미론을 재구현하면 CLI/TUI/app과 다른 permission 결과가 나온다.</li><li>UI store가 server truth를 대체하면 stale 상태가 생긴다.</li><li>표면별 문서가 소스 근거를 잃으면 오래 유지되지 않는다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>제품 표면이 core API와 event stream을 소비하는가?</li><li>desktop process 운영 책임이 별도 service로 격리되어 있는가?</li><li>공유 UI와 공유 runtime을 혼동하지 않는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>packages/desktop-electron</code></td><td><code>packages/desktop</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/desktop">Latest</a></td></tr><tr><td><code>packages/desktop-electron-live/electron/services/opencode-bridge.ts</code></td><td><code>packages/desktop/src/main/server.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/main/server.ts">Latest</a></td></tr><tr><td><code>packages/desktop-electron-live/electron/services/opencode-sidecar.ts</code></td><td><code>packages/desktop/src/main/sidecar.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/main/sidecar.ts">Latest</a></td></tr><tr><td><code>packages/desktop-electron/package.json</code></td><td><code>packages/desktop/package.json</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/package.json">Latest</a></td></tr><tr><td><code>packages/desktop-electron/src/main/index.ts</code></td><td><code>packages/desktop/src/main/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/main/index.ts">Latest</a></td></tr><tr><td><code>packages/desktop-electron/src/main/server.ts</code></td><td><code>packages/desktop/src/main/server.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/main/server.ts">Latest</a></td></tr><tr><td><code>packages/desktop-electron/src/renderer/index.tsx</code></td><td><code>packages/desktop/src/renderer/index.tsx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/renderer/index.tsx">Latest</a></td></tr><tr><td><code>packages/desktop/src/entry.tsx</code></td><td><code>packages/desktop/src/renderer/index.tsx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/renderer/index.tsx">Latest</a></td></tr><tr><td><code>packages/desktop/src/index.tsx</code></td><td><code>packages/desktop/src/renderer/index.tsx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/renderer/index.tsx">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>infra/app.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/infra/app.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/infra/app.ts">Edition</a></td></tr><tr><td><code>packages/app</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/app">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/app">Edition</a></td></tr><tr><td><code>packages/app/package.json</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/app/package.json">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/app/package.json">Edition</a></td></tr><tr><td><code>packages/app/src/context/sdk.tsx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/app/src/context/sdk.tsx">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/app/src/context/sdk.tsx">Edition</a></td></tr><tr><td><code>packages/app/src/context/sync.tsx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/app/src/context/sync.tsx">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/app/src/context/sync.tsx">Edition</a></td></tr><tr><td><code>packages/app/src/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/app/src/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/app/src/index.ts">Edition</a></td></tr><tr><td><code>packages/app/src/pages/session.tsx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/app/src/pages/session.tsx">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/app/src/pages/session.tsx">Edition</a></td></tr><tr><td><code>packages/desktop</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/desktop">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/desktop">Edition</a></td></tr><tr><td><code>packages/desktop/package.json</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/package.json">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/desktop/package.json">Edition</a></td></tr><tr><td><code>packages/desktop/src/main/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/main/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/desktop/src/main/index.ts">Edition</a></td></tr><tr><td><code>packages/desktop/src/main/server.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/main/server.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/desktop/src/main/server.ts">Edition</a></td></tr><tr><td><code>packages/desktop/src/main/sidecar.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/main/sidecar.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/desktop/src/main/sidecar.ts">Edition</a></td></tr><tr><td><code>packages/desktop/src/renderer/index.tsx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/desktop/src/renderer/index.tsx">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/desktop/src/renderer/index.tsx">Edition</a></td></tr><tr><td><code>packages/opencode</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/opencode">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode">Edition</a></td></tr><tr><td><code>packages/ui</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/ui">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/ui">Edition</a></td></tr><tr><td><code>packages/web</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/web">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/web">Edition</a></td></tr><tr><td><code>packages/web/astro.config.mjs</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/astro.config.mjs">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/web/astro.config.mjs">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<details class="unresolved-refs">
+  <summary>현재 fork에서 찾지 못한 참조 1개</summary>
+  <p>이 경로들은 원고에 있지만 현재 <code>nfbs2000/speaky-opencode</code> snapshot에는 없어서 404 링크를 만들지 않았습니다.</p>
+  <ul><li><code>commands.*</code></li></ul>
+</details>
+
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="ch11.html"><span>이전</span><strong>11장: 서버 라우트와 로컬 제어면</strong></a><a class="nav-card" href="ch13.html"><span>다음</span><strong>13장: SDK와 자동화 진입점</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

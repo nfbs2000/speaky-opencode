@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>27장: Snapshot과 재현 가능한 상태 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part2/index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="../part2/ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="../part2/ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="../part2/ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="../part2/ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="../part2/ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="../part4/index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="../part4/ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="../part4/ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="../part4/ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="../part4/ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="../part4/ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part5/index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="../part5/ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="../part5/ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="../part5/ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="../part5/ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="../part5/ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link active" href="ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제6부: 복잡한 서브시스템을 어디에 가두는가</p>
+    <h1>27장: Snapshot과 재현 가능한 상태</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 OpenCode snapshot 서비스가 원본 저장소 바깥에 별도 gitdir를 만들고, 그 위에서 track, patch, diff, revert, restore를 제공하는 방식을 해부한다. 대상 독자: 에이전트가 바꾼 파일 상태를 재현 가능하게 저장하고, 되돌리고, 제품 기능으로 재사용하려는 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>에이전트가 파일을 수정하기 시작하면 사용자는 세 가지를 원한다. 무엇이 바뀌었는지 알고 싶고, 필요하면 되돌리고 싶고, 그 변경을 공유하거나 요약에 재사용하고 싶다. 이 요구를 단순한 patch 문자열만으로 오래 감당하기는 어렵다. 변경 전후 상태를 일관되게 저장하는 별도 계층이 필요하다.</p>
+<p>OpenCode는 이 문제를 자체 데이터베이스나 custom diff 포맷으로 풀지 않는다. 대신 git를 상태 엔진으로 재배치한다. 원본 저장소와는 분리된 별도 <code>gitdir</code>를 만들어 현재 worktree를 추적하고, 그 위에 <code>track</code>, <code>patch</code>, <code>restore</code>, <code>revert</code>, <code>diffFull</code>을 쌓는다. 이 선택이 좋은 이유는 git의 강점을 가져오면서도 원본 저장소의 history를 더럽히지 않기 때문이다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/snapshot/index.ts"><code>packages/opencode/src/snapshot/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/revert.ts"><code>packages/opencode/src/session/revert.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/summary.ts"><code>packages/opencode/src/session/summary.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/session.ts"><code>packages/opencode/src/server/routes/instance/session.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/share/session.ts"><code>packages/opencode/src/share/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/global.ts"><code>packages/opencode/src/global/index.ts</code></a></li></ul>
+<h2 id="상태-보존-흐름">상태 보존 흐름</h2>
+<div class="diagram"><pre class="mermaid">graph TD
+    WORKTREE[&quot;current worktree&quot;]
+    SNAP[&quot;snapshot gitdir&lt;br/&gt;Global.Path.data/snapshot/...&quot;]
+    TRACK[&quot;track() / write-tree&quot;]
+    PATCH[&quot;patch() / diff() / diffFull()&quot;]
+    REVERT[&quot;revert() / restore()&quot;]
+    PRODUCT[&quot;revert UI · summary · share&quot;]
+
+    WORKTREE --&gt; SNAP
+    SNAP --&gt; TRACK
+    TRACK --&gt; PATCH
+    TRACK --&gt; REVERT
+    PATCH --&gt; PRODUCT
+    REVERT --&gt; PRODUCT</pre></div>
+<p>중요한 점은 snapshot이 보조 캐시가 아니라는 것이다. revert와 diff와 summary가 모두 이 계층 위에 선다.</p>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="snapshot은-원본-저장소와-분리된-gitdir를-가진다">snapshot은 원본 저장소와 분리된 gitdir를 가진다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/snapshot/index.ts"><code>packages/opencode/src/snapshot/index.ts</code></a>의 <code>InstanceState.make(...)</code>를 보면 상태는 대략 이렇게 구성된다.</p>
+<ul><li><code>directory</code>: 현재 작업 디렉터리</li><li><code>worktree</code>: 실제 프로젝트 worktree</li><li><code>gitdir</code>: <code>Global.Path.data/snapshot/&lt;project.id&gt;/&lt;Hash.fast(worktree)&gt;</code></li><li><code>vcs</code>: 프로젝트의 VCS 종류</li></ul>
+<p>그리고 모든 git 명령은 <code>--git-dir &lt;snapshot.gitdir&gt; --work-tree &lt;state.worktree&gt;</code> 조합으로 실행된다.</p>
+<p>이 구조의 장점은 매우 크다.</p>
+<ul><li>원본 저장소의 커밋 그래프를 건드리지 않는다.</li><li>git의 add/diff/checkout/read-tree 능력을 그대로 쓴다.</li><li>project별, worktree별 snapshot 상태를 분리할 수 있다.</li></ul>
+<p>즉 OpenCode는 &quot;별도 상태 저장소를 설계한다&quot;보다 &quot;git를 다른 자리에 심는다&quot;를 택한다.</p>
+<h3 id="동시성-제어가-서비스-안에-내장돼-있다">동시성 제어가 서비스 안에 내장돼 있다</h3>
+<p>코드 초반의 <code>locks: Map&lt;string, Semaphore&gt;</code>와 <code>locked(...)</code>는 snapshot이 보기보다 훨씬 운영적인 기능임을 보여 준다. 같은 worktree에 대해 동시에 <code>track</code>, <code>diff</code>, <code>revert</code>, <code>restore</code>가 겹칠 수 있기 때문이다. 세션 요약, 공유, 되돌리기 UI가 동시에 붙으면 race condition이 생기기 쉽다.</p>
+<p>OpenCode는 이를 기능별 잠금이 아니라 <code>gitdir</code> 단위 잠금으로 해결한다. 상태 저장소가 있으면 결국 serialize해야 하는 순간이 온다. 이 사실을 코드에 드러내는 편이 낫다.</p>
+<h3 id="track-은-그냥-저장이-아니라-snapshot-저장소-초기화와-staged-view-갱신이다"><code>track()</code>은 그냥 저장이 아니라 snapshot 저장소 초기화와 staged view 갱신이다</h3>
+<p><code>track()</code>은 snapshot 서비스의 중심이다.</p>
+<ol><li>snapshot 기능이 켜져 있는지 확인</li><li><code>gitdir</code>가 없으면 <code>git init</code>으로 별도 저장소 초기화</li><li><code>core.autocrlf</code>, <code>core.longpaths</code>, <code>core.symlinks</code>, <code>core.fsmonitor</code> 같은 git 설정 조정</li><li><code>add()</code>로 현재 worktree 상태를 staged view로 반영</li><li><code>write-tree</code>로 tree hash 생성</li></ol>
+<p>여기서 핵심은 커밋을 만드는 것이 아니라 tree hash를 만드는 점이다. OpenCode가 필요한 것은 사용자 저장소의 또 다른 history가 아니라, 특정 시점의 재현 가능한 파일 상태다.</p>
+<h3 id="add-는-실제로는-ignore-size-limit-exclude-동기화가-얽힌-복합-절차다"><code>add()</code>는 실제로는 ignore, size limit, exclude 동기화가 얽힌 복합 절차다</h3>
+<p>이 장에서 가장 과소평가되기 쉬운 부분이 <code>add()</code>다. 이 함수는 단순히 <code>git add -A</code>를 하지 않는다.</p>
+<ul><li>원본 저장소 기준 tracked/untracked 파일 수집</li><li><code>check-ignore --no-index</code>로 정확한 ignore 판정</li><li>새롭게 ignored된 파일은 snapshot index에서 <code>rm --cached</code></li><li>큰 파일은 제외 집합에 넣고 <code>info/exclude</code> 동기화</li><li>허용된 파일만 stage</li></ul>
+<p>특히 <code>limit = 2 * 1024 * 1024</code>와 <code>sync(...)</code>는 중요한 운영 디테일이다. snapshot 기능은 만들기는 쉬워도, 시간이 지나면 저장공간과 성능 문제로 되돌아온다. OpenCode는 이 문제를 초기에라도 반영해 둔다.</p>
+<h3 id="patch-와-diff-는-사용자에게-보여-줄-변화-를-만든다"><code>patch()</code>와 <code>diff()</code>는 &quot;사용자에게 보여 줄 변화&quot;를 만든다</h3>
+<p><code>patch(hash)</code>는 특정 snapshot 이후 바뀐 파일 목록을 계산하되, ignored file removal 같은 내부 정리는 다시 숨긴다. <code>diff(hash)</code>는 현재 staged 변화의 unified diff를 돌려준다.</p>
+<p>즉 snapshot 계층은 단순 내부 bookkeeping이 아니다. 사용자에게 보여 줄 patch와 diff를 가공하는 표현층이기도 하다. 내부 저장소의 진실과 사용자에게 보여 줄 변경 설명이 완전히 같지 않을 수 있다는 점을 코드가 이미 인정하고 있다.</p>
+<h3 id="restore-는-저장소-전체-복원-revert-는-파일-단위-되감기다"><code>restore()</code>는 저장소 전체 복원, <code>revert()</code>는 파일 단위 되감기다</h3>
+<p>이 둘의 차이를 분리한 점이 좋다.</p>
+<ul><li><code>restore(snapshot)</code>은 <code>read-tree</code>와 <code>checkout-index -a -f</code>로 worktree 전체를 특정 tree 상태로 복원한다.</li><li><code>revert(patches)</code>는 patch 목록에 들어 있던 파일만 골라 되감는다.</li></ul>
+<p><code>revert()</code>의 구현은 특히 실전적이다.</p>
+<ul><li>여러 patch에서 파일 목록을 모으고 중복 제거</li><li>같은 경로/상하위 경로 충돌 여부 검사</li><li>안전한 파일 묶음만 batched checkout</li><li>실패 시 single-file revert로 폴백</li><li>snapshot에 없던 파일이면 삭제</li></ul>
+<p>즉 OpenCode는 revert를 단순 <code>git checkout &lt;hash&gt; -- &lt;file&gt;</code> 반복문으로 끝내지 않는다. 배치 최적화와 경로 충돌 회피와 폴백이 모두 들어 있다.</p>
+<h3 id="difffull-은-사람-친화적-비교-결과를-만들기-위한-별도-공정이다"><code>diffFull()</code>은 사람 친화적 비교 결과를 만들기 위한 별도 공정이다</h3>
+<p><code>diffFull(from, to)</code>는 단순 diff 문자열이 아니라 <code>FileDiff[]</code>를 만든다. 코드에서 보이는 핵심은 다음과 같다.</p>
+<ul><li>변경 행(row)을 먼저 계산</li><li>가능하면 <code>git cat-file --batch</code>로 before/after 내용을 일괄 로드</li><li>실패하면 파일별 <code>git show</code>로 폴백</li><li>이후 patch/additions/deletions/status를 구성</li></ul>
+<p>이 흐름이 중요한 이유는 제품 기능이 종종 &quot;원시 diff 문자열&quot;보다 &quot;파일별 변경 레코드&quot;를 원하기 때문이다. share, session UI, revert 설명은 보통 후자가 더 쓰기 쉽다.</p>
+<h3 id="cleanup-과-prune은-상태-기능이-오래-버티게-하는-최소-장치다"><code>cleanup()</code>과 <code>prune</code>은 상태 기능이 오래 버티게 하는 최소 장치다</h3>
+<p><code>cleanup()</code>은 <code>git gc --prune=7.days</code>를 호출한다. 이 한 줄은 사소해 보이지만 중요하다. 상태 보존 기능을 만들 때 많은 시스템이 저장은 잘하지만 수명 주기를 설계하지 않는다. 그러면 디스크 사용량이 계속 커지고, 어느 순간 기능 자체가 꺼져야 한다.</p>
+<p>OpenCode는 완벽하진 않아도, snapshot을 쌓는 기능이 아니라 관리되는 기능으로 보려 한다.</p>
+<h2 id="제품-기능과의-연결">제품 기능과의 연결</h2>
+<p>이 계층이 진짜 중요한 이유는 여러 상위 기능이 여기에 기대기 때문이다.</p>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/revert.ts"><code>session/revert.ts</code></a>는 snapshot을 undo 엔진처럼 쓴다.</li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/summary.ts"><code>session/summary.ts</code></a>는 변경 설명과 세션 요약을 만들 때 snapshot diff를 활용한다.</li><li>서버 라우트와 공유 계층은 이 변경 레코드를 UI나 동기화 표현으로 다시 쓸 수 있다.</li></ul>
+<p>즉 snapshot은 &quot;있으면 좋은 디버그 기능&quot;이 아니라, 대화형 코드 수정의 가역성과 설명 가능성을 떠받치는 기반이다.</p>
+<h2 id="트레이드오프">트레이드오프</h2>
+<ul><li>장점: 원본 저장소를 더럽히지 않고도 git의 상태 관리 능력을 재사용할 수 있다.</li><li>장점: revert, summary, share 같은 여러 기능이 같은 상태 기반을 재사용한다.</li><li>장점: semaphore, exclude, gc 같은 운영 장치가 포함되어 장기 사용에 더 강하다.</li><li>단점: 별도 gitdir와 staged view를 관리해야 하므로 구현이 복잡해진다.</li><li>단점: 상태 저장소와 사용자 저장소의 차이를 항상 조율해야 한다.</li></ul>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>상태 보존 기능은 원본 저장소와 분리하는 편이 훨씬 안전하다.</li><li>snapshot은 diff 유틸이 아니라 undo와 설명 가능성을 위한 기반 계층으로 보는 편이 맞다.</li><li>대규모 파일, ignore, 동시성, GC를 초기에 고려하지 않으면 snapshot 기능은 오래 가지 못한다.</li><li>전체 복원과 파일 단위 되감기는 의미론이 다르므로 분리하는 편이 낫다.</li></ul>
+<p>다음 장에서는 provider 계층의 마지막 핵심, 즉 모델별 메시지와 옵션 차이를 어디에 가두는지 본다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>Claude 책의 파일 상태 보존 관점은 OpenCode에서 별도 gitdir snapshot으로 구현된다. 사용자 repository history를 더럽히지 않고도 작업 전후를 비교하고 되돌린다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;internal gitdir&quot;]
+  N2[&quot;track write-tree&quot;]
+  N1 --&gt; N2
+  N3[&quot;patch/diff&quot;]
+  N2 --&gt; N3
+  N4[&quot;restore/revert&quot;]
+  N3 --&gt; N4
+  N5[&quot;diffFull&quot;]
+  N4 --&gt; N5
+  N6[&quot;session summary&quot;]
+  N5 --&gt; N6</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/snapshot/index.ts"><code>packages/opencode/src/snapshot/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/summary.ts"><code>packages/opencode/src/session/summary.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/revert.ts"><code>packages/opencode/src/session/revert.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/edit.ts"><code>packages/opencode/src/tool/edit.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/test/snapshot/snapshot.test.ts"><code>packages/opencode/test/snapshot/snapshot.test.ts</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>Global.Path.data 아래 project/worktree별 별도 gitdir를 만들고 worktree를 실제 작업 디렉터리로 둔다.</li><li>Semaphore lock으로 snapshot git 작업을 serialize한다.</li><li>check-ignore와 size limit으로 snapshot에 넣지 않을 파일을 관리한다.</li><li>revert는 snapshot에 없던 파일을 삭제하고 있던 파일은 checkout한다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>원본 git index를 snapshot으로 쓰면 사용자 작업 상태가 오염된다.</li><li>동시 tool call 중 lock이 없으면 diff와 revert 기준이 흔들린다.</li><li>큰 파일을 무조건 snapshot하면 성능과 저장소가 악화된다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>사용자 repo와 분리된 snapshot store가 있는가?</li><li>snapshot 작업이 lock으로 보호되는가?</li><li>ignore와 size limit을 상태 보존 정책에 넣었는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>packages/opencode/src/global/index.ts</code></td><td><code>packages/core/src/global.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/global.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/session.ts</code></td><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/session.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/session.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/share/index.ts</code></td><td><code>packages/opencode/src/share/session.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/share/session.ts">Latest</a></td></tr><tr><td><code>session/revert.ts</code></td><td><code>packages/opencode/src/session/revert.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/revert.ts">Latest</a></td></tr><tr><td><code>session/summary.ts</code></td><td><code>packages/opencode/src/session/summary.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/summary.ts">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/core/src/global.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/global.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/global.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/session.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/session.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/server/routes/instance/httpapi/groups/session.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/revert.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/revert.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/revert.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/summary.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/summary.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/summary.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/share/session.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/share/session.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/share/session.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/snapshot/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/snapshot/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/snapshot/index.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/edit.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/edit.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/edit.ts">Edition</a></td></tr><tr><td><code>packages/opencode/test/snapshot/snapshot.test.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/test/snapshot/snapshot.test.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/test/snapshot/snapshot.test.ts">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="ch26.html"><span>이전</span><strong>26장: Worktree와 프로젝트 격리</strong></a><a class="nav-card" href="ch28.html"><span>다음</span><strong>28장: Provider SDK bridge와 변환 계층</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

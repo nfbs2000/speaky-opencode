@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>18장: 워크스페이스 어댑터와 컨트롤 플레인 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part2/index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="../part2/ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="../part2/ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="../part2/ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="../part2/ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="../part2/ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link active" href="ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part5/index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="../part5/ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="../part5/ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="../part5/ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="../part5/ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="../part5/ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="../part6/index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="../part6/ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="../part6/ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="../part6/ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="../part6/ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="../part6/ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제4부: 확장을 어떻게 계약으로 나누는가</p>
+    <h1>18장: 워크스페이스 어댑터와 컨트롤 플레인</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 OpenCode가 로컬 작업 디렉터리를 넘어, 연결 가능한 워크스페이스와 동기화 루프를 가진 control plane을 어떻게 구성하는지 분석한다. 대상 독자: 세션을 특정 로컬 프로세스가 아니라 이동 가능한 작업 공간에 붙이고 싶은 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>기본적인 코딩 에이전트는 &quot;현재 디렉터리 하나&quot;만 알면 된다. 하지만 제품이 커지면 세션을 다른 워크스페이스에 복원하거나, 원격 공간과 동기화하거나, 연결 상태를 UI에 보여 줘야 한다. 그 순간 작업 디렉터리는 더 이상 충분한 개념이 아니다. OpenCode의 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/workspace.ts"><code>control-plane/workspace.ts</code></a>는 바로 그 지점을 담당한다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/workspace.ts"><code>packages/opencode/src/control-plane/workspace.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/workspace-context.ts"><code>packages/opencode/src/control-plane/workspace-context.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/control-plane/workspace.sql.ts"><code>packages/opencode/src/control-plane/workspace.sql.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/control-plane.ts"><code>packages/opencode/src/server/routes/control/workspace.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/adapters/worktree.ts"><code>packages/opencode/src/control-plane/adaptors/worktree.ts</code></a></li></ul>
+<h2 id="상태-모델">상태 모델</h2>
+<p><code>ConnectionStatus</code>는 워크스페이스 연결을 네 가지 상태로 모델링한다.</p>
+<ul><li><code>connecting</code></li><li><code>connected</code></li><li><code>disconnected</code></li><li><code>error</code></li></ul>
+<p>여기에 더해 이벤트도 별도로 정의되어 있다.</p>
+<ul><li><code>workspace.ready</code></li><li><code>workspace.failed</code></li><li><code>workspace.restore</code></li><li><code>workspace.status</code></li></ul>
+<p>즉 워크스페이스는 단순 DB row가 아니라, 연결 상태와 이벤트를 가진 장수하는 운영 객체다.</p>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="create와-sessionrestore가-서로-다른-책임을-가진다">create와 sessionRestore가 서로 다른 책임을 가진다</h3>
+<p><code>create(...)</code>는 워크스페이스 엔트리를 만들고 연결을 준비하는 책임을 가진다. 반면 <code>sessionRestore(...)</code>는 이미 있는 세션을 특정 워크스페이스로 재생성하는 경로다. 이 둘을 분리한 이유는 명확하다. 워크스페이스의 생애주기와 세션의 생애주기는 같지 않기 때문이다.</p>
+<h3 id="sse-기반-sync-loop가-핵심이다">SSE 기반 sync loop가 핵심이다</h3>
+<p><code>syncWorkspaceLoop(...)</code>를 보면 워크스페이스 동기화는 정적 pull이 아니라 SSE 연결을 중심으로 돌아간다. 연결이 성공하면 <code>connected</code>, 실패하면 <code>disconnected</code> 혹은 <code>error</code>, 그리고 재연결은 backoff를 두고 계속 시도된다.</p>
+<p>즉 control plane은 CRUD API만으로는 설명되지 않는다. 연결 유지와 재접속이 시스템 절반이다.</p>
+<h3 id="세션-복원은-실제로-재생-replay-이다">세션 복원은 실제로 재생(replay)이다</h3>
+<p><code>sessionRestore(...)</code> 주변 로직을 보면 복원은 &quot;sessionID만 바꿔 끼운다&quot;가 아니다. 새 워크스페이스에 세션을 replay해야 하고, 실패하면 HTTP 상태와 body까지 포함해 오류를 남긴다. 이건 세션을 DB row 집합이 아니라 실행 가능한 히스토리로 보기 때문에 가능한 설계다.</p>
+<h3 id="sync-상태를-기다리는-api가-따로-있다">sync 상태를 기다리는 API가 따로 있다</h3>
+<p><code>isSyncing(...)</code>, <code>waitForSync(...)</code>, 내부 <code>aborts</code> 맵 같은 요소는 워크스페이스 sync가 fire-and-forget가 아님을 보여 준다. 상위 UI나 제어면이 &quot;아직 동기화 중인지&quot;를 알고 기다릴 수 있어야 하기 때문이다.</p>
+<h2 id="로컬-worktree와의-관계">로컬 worktree와의 관계</h2>
+<p><code>worktree</code> 계층과 <code>workspace</code> 계층은 이름이 비슷하지만 책임이 다르다.</p>
+<div class="table-wrap"><table><thead><tr><th>계층</th><th>중심 문제</th></tr></thead><tbody><tr><td><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/worktree/index.ts"><code>worktree/index.ts</code></a></td><td>로컬 git worktree 생성, 삭제, 리셋</td></tr><tr><td><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/workspace.ts"><code>control-plane/workspace.ts</code></a></td><td>연결 상태, 복원, 원격 sync, 운영 상태</td></tr></tbody></table></div>
+<p>즉 worktree가 로컬 파일 시스템과 git의 문제라면, workspace는 제품 차원의 세션 이동성과 동기화 문제다.</p>
+<h2 id="트레이드오프">트레이드오프</h2>
+<ul><li>장점: 세션을 더 유연한 작업 공간 개념에 붙일 수 있다.</li><li>단점: 연결 상태와 sync 실패를 다루는 운영 코드가 많이 늘어난다.</li><li>장점: 원격/분산 작업 흐름으로 확장하기 쉽다.</li><li>단점: 단순 로컬 도구보다 디버깅 표면이 넓어진다.</li></ul>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>디렉터리와 워크스페이스를 같은 개념으로 오래 끌고 가면 언젠가 막힌다.</li><li>복원은 데이터 복사보다 실행 히스토리 replay에 가깝다.</li><li>연결형 control plane에는 CRUD 외에 상태 이벤트와 대기 API가 반드시 필요하다.</li></ul>
+<p>다음 부에서는 OpenCode의 안전성과 상태 관리, 즉 permission, 지속성, 이벤트, 공유 시스템을 본다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>Claude 책의 remote/control plane 시야는 OpenCode에서 workspace adaptor와 router로 읽힌다. 여러 workspace를 하나의 server가 다루려면 route handler만으로는 부족하다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;ControlPlaneRoutes&quot;]
+  N2[&quot;WorkspaceContext&quot;]
+  N1 --&gt; N2
+  N3[&quot;registerAdaptor&quot;]
+  N2 --&gt; N3
+  N4[&quot;WorkspaceRouterMiddleware&quot;]
+  N3 --&gt; N4
+  N5[&quot;Instance.reload/dispose&quot;]
+  N4 --&gt; N5
+  N6[&quot;GlobalBus event&quot;]
+  N5 --&gt; N6</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/workspace.ts"><code>packages/opencode/src/control-plane/workspace.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/workspace-context.ts"><code>packages/opencode/src/control-plane/workspace-context.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/adapters/index.ts"><code>packages/opencode/src/control-plane/adaptors.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/control-plane.ts"><code>packages/opencode/src/server/routes/control/workspace.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/workspace.ts"><code>packages/opencode/src/server/workspace.ts</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>control plane은 특정 세션 실행보다 workspace 선택과 lifecycle을 다룬다.</li><li>WorkspaceContext는 비동기 경계를 넘어 현재 workspace id를 보존한다.</li><li>plugin은 experimental_workspace.register로 외부 workspace backend를 adaptor 계약에 붙일 수 있다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>workspace 선택을 UI state로만 두면 server route가 어느 project를 조작하는지 불명확해진다.</li><li>adaptor 없이 plugin이 workspace를 직접 만들면 lifecycle과 auth를 통제하기 어렵다.</li><li>instance reload/dispose event가 없으면 클라이언트가 stale workspace를 잡는다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>작업 실행면과 workspace control plane을 분리했는가?</li><li>workspace id가 async context로 보존되는가?</li><li>외부 workspace backend가 adaptor contract로 들어오는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>control-plane/workspace.ts</code></td><td><code>packages/opencode/src/control-plane/workspace.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/workspace.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/control-plane/adaptors.ts</code></td><td><code>packages/opencode/src/control-plane/adapters/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/adapters/index.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/control-plane/adaptors/worktree.ts</code></td><td><code>packages/opencode/src/control-plane/adapters/worktree.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/adapters/worktree.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/control-plane/workspace.sql.ts</code></td><td><code>packages/core/src/control-plane/workspace.sql.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/control-plane/workspace.sql.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/server/routes/control/workspace.ts</code></td><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/control-plane.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/control-plane.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/server/workspace.ts</code></td><td><code>packages/opencode/src/control-plane/workspace.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/workspace.ts">Latest</a></td></tr><tr><td><code>worktree/index.ts</code></td><td><code>packages/opencode/src/worktree/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/worktree/index.ts">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/core/src/control-plane/workspace.sql.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/control-plane/workspace.sql.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/control-plane/workspace.sql.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/control-plane/adapters/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/adapters/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/control-plane/adapters/index.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/control-plane/adapters/worktree.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/adapters/worktree.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/control-plane/adapters/worktree.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/control-plane/workspace-context.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/workspace-context.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/control-plane/workspace-context.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/control-plane/workspace.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/workspace.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/control-plane/workspace.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/control-plane.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/control-plane.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/server/routes/instance/httpapi/groups/control-plane.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/worktree/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/worktree/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/worktree/index.ts">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="ch17.html"><span>이전</span><strong>17장: MCP 서버 통합과 인증 흐름</strong></a><a class="nav-card" href="../part5/index.html"><span>다음</span><strong>부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

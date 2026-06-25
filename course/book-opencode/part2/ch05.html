@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>5장: 세션 데이터 모델과 메시지 흐름 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link active" href="ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="../part4/index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="../part4/ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="../part4/ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="../part4/ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="../part4/ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="../part4/ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part5/index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="../part5/ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="../part5/ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="../part5/ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="../part5/ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="../part5/ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="../part6/index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="../part6/ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="../part6/ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="../part6/ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="../part6/ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="../part6/ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</p>
+    <h1>5장: 세션 데이터 모델과 메시지 흐름</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 OpenCode 세션을 &quot;대화 로그&quot;가 아니라 part 기반 상태 타임라인으로 읽는 장이다. 대상 독자: 긴 에이전트 대화를 저장하고 재생해야 하는 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>OpenCode의 세션은 user/assistant 문자열 몇 개를 쌓는 구조가 아니다. 실제 중심은 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session/message.ts"><code>message-v2.ts</code></a>의 파트 모델이다. 이 구조가 있어야 tool 실행, reasoning, 파일 첨부, subtask, compaction, patch, retry, step start/finish를 같은 타임라인 위에 놓을 수 있다. 이 설계가 없으면 나중에 요약, 공유, 복구, UI 렌더링, provider 변환이 전부 취약해진다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/session.ts"><code>packages/opencode/src/session/session.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/message-v2.ts"><code>packages/opencode/src/session/message-v2.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/message.ts"><code>packages/opencode/src/session/message.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/schema.ts"><code>packages/opencode/src/session/schema.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/todo.ts"><code>packages/opencode/src/session/todo.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/status.ts"><code>packages/opencode/src/session/status.ts</code></a></li></ul>
+<h2 id="핵심-코드">핵심 코드</h2>
+<p>메시지 모델은 문자열 로그가 아니라 discriminated union이다. 아래 조각에서 tool, snapshot, patch, compaction이 모두 같은 <code>Part</code>로 올라오는 것을 봐야 한다.</p>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/session/message-v2.ts
+const _Part = Schema.Union([
+  TextPart,
+  SubtaskPart,
+  ReasoningPart,
+  FilePart,
+  ToolPart,
+  StepStartPart,
+  StepFinishPart,
+  SnapshotPart,
+  PatchPart,
+  AgentPart,
+  RetryPart,
+  CompactionPart,
+]).annotate({ discriminator: &quot;type&quot;, identifier: &quot;Part&quot; })
+
+export type Part =
+  | TextPart
+  | SubtaskPart
+  | ReasoningPart
+  | FilePart
+  | ToolPart
+  | StepStartPart
+  | StepFinishPart
+  | SnapshotPart
+  | PatchPart
+  | AgentPart
+  | RetryPart
+  | CompactionPart</code></pre>
+<p>도구 상태도 단순 문자열이 아니다. pending, running, completed, error가 명확히 분리되기 때문에 UI streaming과 복구가 같은 모델을 쓴다.</p>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/session/message-v2.ts
+export const ToolStateCompleted = Schema.Struct({
+  status: Schema.Literal(&quot;completed&quot;),
+  input: Schema.Record(Schema.String, Schema.Any),
+  output: Schema.String,
+  title: Schema.String,
+  metadata: Schema.Record(Schema.String, Schema.Any),
+  time: Schema.Struct({
+    start: Schema.Number,
+    end: Schema.Number,
+    compacted: Schema.optional(Schema.Number),
+  }),
+  attachments: Schema.optional(Schema.Array(FilePart)),
+})
+
+export const ToolPart = Schema.Struct({
+  ...partBase,
+  type: Schema.Literal(&quot;tool&quot;),
+  callID: Schema.String,
+  tool: Schema.String,
+  state: _ToolState,
+  metadata: Schema.optional(Schema.Record(Schema.String, Schema.Any)),
+})</code></pre>
+<p>provider 호출 직전에는 이 part 모델을 AI SDK가 이해하는 메시지로 투영한다. 아래는 user part 변환부만 잘라낸 발췌다. 같은 함수 뒤쪽에서 assistant/tool-result 변환이 이어지며, 이 경계를 놓치면 세션 저장 모델과 모델 입력 모델을 혼동하게 된다.</p>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/session/message-v2.ts
+export const toModelMessagesEffect = Effect.fnUntraced(function* (
+  input: WithParts[],
+  model: Provider.Model,
+  options?: { stripMedia?: boolean },
+) {
+  const result: UIMessage[] = []
+  const toolNames = new Set&lt;string&gt;()
+  // Track media from tool results that need to be injected as user messages
+  // for providers that don&#x27;t support media in tool results.
+  const supportsMediaInToolResults = (() =&gt; {
+    if (model.api.npm === &quot;@ai-sdk/anthropic&quot;) return true
+    if (model.api.npm === &quot;@ai-sdk/openai&quot;) return true
+    if (model.api.npm === &quot;@ai-sdk/amazon-bedrock&quot;) return true
+    if (model.api.npm === &quot;@ai-sdk/google-vertex/anthropic&quot;) return true
+    if (model.api.npm === &quot;@ai-sdk/google&quot;) {
+      const id = model.api.id.toLowerCase()
+      return id.includes(&quot;gemini-3&quot;) &amp;&amp; !id.includes(&quot;gemini-2&quot;)
+    }
+    return false
+  })()
+
+  for (const msg of input) {
+    if (msg.parts.length === 0) continue
+
+    if (msg.info.role === &quot;user&quot;) {
+      const userMessage: UIMessage = {
+        id: msg.info.id,
+        role: &quot;user&quot;,
+        parts: [],
+      }
+      result.push(userMessage)
+      for (const part of msg.parts) {
+        if (part.type === &quot;text&quot; &amp;&amp; !part.ignored)
+          userMessage.parts.push({
+            type: &quot;text&quot;,
+            text: part.text,
+          })
+        // text/plain and directory files are converted into text parts, ignore them
+        if (part.type === &quot;file&quot; &amp;&amp; part.mime !== &quot;text/plain&quot; &amp;&amp; part.mime !== &quot;application/x-directory&quot;) {
+          if (options?.stripMedia &amp;&amp; isMedia(part.mime)) {
+            userMessage.parts.push({
+              type: &quot;text&quot;,
+              text: `[Attached ${part.mime}: ${part.filename ?? &quot;file&quot;}]`,
+            })
+          } else {
+            userMessage.parts.push({
+              type: &quot;file&quot;,
+              url: part.url,
+              mediaType: part.mime,
+              filename: part.filename,
+            })
+          }
+        }
+
+        if (part.type === &quot;compaction&quot;) {
+          userMessage.parts.push({
+            type: &quot;text&quot;,
+            text: &quot;What did we do so far?&quot;,
+          })
+        }
+        if (part.type === &quot;subtask&quot;) {
+          userMessage.parts.push({
+            type: &quot;text&quot;,
+            text: &quot;The following tool was executed by the user&quot;,
+          })
+        }
+      }
+    }
+  }
+})</code></pre>
+<h2 id="핵심-타입">핵심 타입</h2>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session/message.ts"><code>message-v2.ts</code></a>에 들어 있는 타입 이름만 봐도 의도가 보인다.</p>
+<ul><li><code>TextPart</code></li><li><code>FilePart</code></li><li><code>ToolPart</code></li><li><code>AgentPart</code></li><li><code>CompactionPart</code></li><li><code>SubtaskPart</code></li><li><code>RetryPart</code></li><li><code>StepStartPart</code></li><li><code>StepFinishPart</code></li><li><code>SnapshotPart</code></li><li><code>PatchPart</code></li></ul>
+<p>도구 상태도 다시 세분화되어 있다.</p>
+<ul><li><code>ToolStatePending</code></li><li><code>ToolStateRunning</code></li><li><code>ToolStateCompleted</code></li><li><code>ToolStateError</code></li></ul>
+<p>즉 OpenCode의 메시지 모델은 &quot;assistant가 tool을 썼다&quot; 정도로 뭉개지지 않는다. 어떤 도구가 어떤 상태로 진행되었는지까지 명시적이다.</p>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="user와-assistant도-같은-withparts로-만난다">user와 assistant도 같은 <code>WithParts</code>로 만난다</h3>
+<p><code>User</code>, <code>Assistant</code>, <code>WithParts</code>, <code>Info</code> 타입을 함께 보면 role은 다르지만 최종 렌더와 저장의 기본 단위는 모두 part 집합이다. 이 구조 덕분에 user 메시지 안에도 <code>subtask</code>나 <code>compaction</code> 파트를 넣을 수 있고, assistant 메시지 안에도 단순 텍스트 외에 파일/도구/추론 파트를 섞을 수 있다.</p>
+<h3 id="이벤트도-message-v2를-중심으로-설계된다">이벤트도 message-v2를 중심으로 설계된다</h3>
+<p><code>MessageV2.Event</code>는 업데이트, 파트 변경, 삭제 같은 흐름을 별도 이벤트로 정의한다. 이 점이 중요하다. 세션 타임라인은 DB row 집합이면서 동시에 이벤트 스트림이다. 공유 계층과 TUI는 이 이벤트를 받아 실시간으로 화면을 업데이트한다.</p>
+<h3 id="tomodelmessages는-세션-모델과-provider-모델의-변환-경계다"><code>toModelMessages</code>는 세션 모델과 provider 모델의 변환 경계다</h3>
+<p><code>toModelMessagesEffect</code>, <code>toModelMessages(...)</code>는 내부 part 모델을 provider SDK가 이해할 메시지 배열로 바꾼다. 이 함수가 복잡한 이유는 단순 role 변환이 아니라, compaction part 처리, 오래된 tool output 제거, 첨부 파일 포함 여부, stripMedia 여부까지 함께 결정해야 하기 때문이다.</p>
+<p>즉 세션 저장 모델은 최종 provider 호출 직전까지 살아 있고, 마지막에야 선형 메시지로 투영된다.</p>
+<h3 id="pagination과-stream도-일급-기능이다">pagination과 stream도 일급 기능이다</h3>
+<p><code>page(...)</code>, <code>stream(sessionID)</code>, <code>parts(message_id)</code>, <code>get(...)</code>을 보면 세션 읽기는 전부 &quot;한 번에 전부 로드&quot;가 아니다. 페이지네이션, 스트림 구독, 메시지 단건 조회, 파트 조회가 따로 있다. 이런 API가 필요한 이유는 세션이 단순 채팅창이 아니라, 제품 전체에서 읽고 갱신하는 데이터셋이기 때문이다.</p>
+<h3 id="compacted-메시지-필터링은-별도-concern이다">compacted 메시지 필터링은 별도 concern이다</h3>
+<p><code>filterCompacted(...)</code>와 <code>filterCompactedEffect(...)</code>가 따로 있는 것도 중요하다. compaction 이후에는 예전 메시지를 그대로 보여 줄 것인지, 요약된 메시지만 보여 줄 것인지 같은 정책이 생긴다. OpenCode는 이 concern을 저장 모델 안으로 끌어들여 처리한다.</p>
+<h2 id="세션이-대화-이상의-상태를-담는-방식">세션이 대화 이상의 상태를 담는 방식</h2>
+<p>OpenCode 세션 주위에는 다음 상태가 함께 돈다.</p>
+<ul><li><code>todo</code></li><li><code>status</code></li><li><code>summary</code></li><li><code>share</code></li><li><code>revert</code></li><li><code>children</code></li></ul>
+<p>이것은 결국 세션을 &quot;대화방&quot;이 아니라 &quot;작업 단위&quot;로 본다는 뜻이다.</p>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>긴 에이전트 대화를 설계할 때는 role/message 모델만으로는 금방 한계가 온다.</li><li>part 기반 메시지 모델을 두면 tool, file, reasoning, compaction을 같은 타임라인에 올릴 수 있다.</li><li>세션은 채팅 로그가 아니라 작업 상태 컨테이너여야 한다.</li></ul>
+<p>다음 장에서는 이 세션 안으로 실제 프롬프트가 어떤 계층을 거쳐 들어오는지 본다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>Claude의 transcript persistence 관점은 OpenCode에서 MessageV2 part 모델로 확장된다. 대화는 문자열 로그가 아니라 tool, file, subtask, compaction, snapshot step을 포함한 구조화 상태다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;Session.Info&quot;]
+  N2[&quot;MessageV2.WithParts&quot;]
+  N1 --&gt; N2
+  N3[&quot;SessionProcessor streaming 갱신&quot;]
+  N2 --&gt; N3
+  N4[&quot;SyncEvent/BusEvent&quot;]
+  N3 --&gt; N4
+  N5[&quot;summary/diff/revert&quot;]
+  N4 --&gt; N5</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/session.ts"><code>packages/opencode/src/session/session.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/message-v2.ts"><code>packages/opencode/src/session/message-v2.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session/sql.ts"><code>packages/opencode/src/session/session.sql.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/processor.ts"><code>packages/opencode/src/session/processor.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/sync/README.md"><code>packages/opencode/src/sync/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/specs/v2/session.md"><code>specs/v2/session.md</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>Session.Info는 projectID, workspaceID, directory, summary, share, permission, revert를 함께 보존한다.</li><li>message part는 UI streaming 상태와 복구 가능한 저장 상태를 같은 구조로 연결한다.</li><li>session.created/updated/deleted는 sync 가능한 이벤트이고 session.diff/error는 즉시 UI 신호에 가깝다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>텍스트 transcript만 저장하면 tool 상태, 파일 diff, revert 경로를 재구성할 수 없다.</li><li>streaming 상태와 DB 상태가 분리되면 UI와 복구 경로가 서로 다른 사실을 말한다.</li><li>세션 permission을 저장하지 않으면 사용자의 세션 중 결정이 다음 tool call에 반영되지 않는다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>메시지를 typed parts로 저장했는가?</li><li>세션 row에 작업 공간과 복구 정보를 같이 둔 이유를 설명할 수 있는가?</li><li>event와 persisted state의 경계를 정했는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>message-v2.ts</code></td><td><code>packages/core/src/session/message.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session/message.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/session/session.sql.ts</code></td><td><code>packages/core/src/session/sql.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session/sql.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/sync/index.ts</code></td><td><code>packages/opencode/src/sync/README.md</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/sync/README.md">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/core/src/session/message.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session/message.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/session/message.ts">Edition</a></td></tr><tr><td><code>packages/core/src/session/sql.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session/sql.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/session/sql.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/message-v2.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/message-v2.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/message-v2.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/message.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/message.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/message.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/processor.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/processor.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/processor.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/schema.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/schema.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/schema.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/session.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/session.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/session.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/status.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/status.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/status.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/todo.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/todo.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/todo.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/sync/README.md</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/sync/README.md">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/sync/README.md">Edition</a></td></tr><tr><td><code>specs/v2/session.md</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/specs/v2/session.md">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/specs/v2/session.md">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="index.html"><span>이전</span><strong>부 도입: 채팅을 런타임 상태로 승격하기</strong></a><a class="nav-card" href="ch06.html"><span>다음</span><strong>6장: 프롬프트 조립과 에이전트별 문맥층</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

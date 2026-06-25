@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>6장: 프롬프트 조립과 에이전트별 문맥층 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link active" href="ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="../part4/index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="../part4/ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="../part4/ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="../part4/ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="../part4/ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="../part4/ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part5/index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="../part5/ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="../part5/ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="../part5/ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="../part5/ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="../part5/ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="../part6/index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="../part6/ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="../part6/ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="../part6/ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="../part6/ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="../part6/ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</p>
+    <h1>6장: 프롬프트 조립과 에이전트별 문맥층</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 OpenCode의 프롬프트 계층을 정적 문자열 템플릿이 아니라, 시스템 프롬프트, instruction 파일, agent 규칙, tool/permission/MCP/LSP 상태를 한데 모으는 런타임 통합층으로 읽는다. 대상 독자: 프롬프트를 단순 prompt engineering이 아니라 시스템 제어면으로 다루고 싶은 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>에이전트 런타임이 얕을 때 프롬프트는 파일 몇 개로 끝난다. 시스템 프롬프트 하나, 모드별 텍스트 몇 개, 문자열 치환 정도면 충분하다. 하지만 OpenCode 정도로 기능이 늘어나면 프롬프트는 더 이상 텍스트 자산만이 아니다. 어떤 instruction 파일을 실어야 하는지, 현재 agent가 무엇을 허용하는지, 어떤 tool이 노출되는지, structured output이 요구되는지, compaction이 필요한지, 세션이 어떤 상태인지까지 반영해야 한다.</p>
+<p>즉 이 장의 핵심은 &quot;좋은 문장을 어떻게 쓰는가&quot;가 아니다. 어떤 상태와 제약을 어떤 순서로 모델 문맥에 싣는가다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts"><code>packages/opencode/src/session/prompt.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/system.ts"><code>packages/opencode/src/session/system.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/instruction.ts"><code>packages/opencode/src/session/instruction.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt/default.txt"><code>packages/opencode/src/session/prompt/default.txt</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt/plan.txt"><code>packages/opencode/src/session/prompt/plan.txt</code></a></li><li><code>packages/opencode/src/session/prompt/max-steps.txt</code></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts"><code>packages/opencode/src/agent/agent.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/opencode/src/command"><code>packages/opencode/src/command/template/*.txt</code></a></li></ul>
+<h2 id="핵심-코드">핵심 코드</h2>
+<p><code>resolvePromptParts(...)</code>를 보면 프롬프트 템플릿은 문자열 include로 끝나지 않는다. <code>{file:...}</code> 참조는 파일 part가 되고, 파일이 없지만 agent 이름이면 agent part가 된다.</p>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/session/prompt.ts
+const resolvePromptParts = Effect.fn(&quot;SessionPrompt.resolvePromptParts&quot;)(function* (template: string) {
+  const ctx = yield* InstanceState.context
+  const parts: PromptInput[&quot;parts&quot;] = [{ type: &quot;text&quot;, text: template }]
+  const files = ConfigMarkdown.files(template)
+  const seen = new Set&lt;string&gt;()
+  yield* Effect.forEach(
+    files,
+    Effect.fnUntraced(function* (match) {
+      const name = match[1]
+      if (seen.has(name)) return
+      seen.add(name)
+      const filepath = name.startsWith(&quot;~/&quot;)
+        ? path.join(os.homedir(), name.slice(2))
+        : path.resolve(ctx.worktree, name)
+
+      const info = yield* fsys.stat(filepath).pipe(Effect.option)
+      if (Option.isNone(info)) {
+        const found = yield* agents.get(name)
+        if (found) parts.push({ type: &quot;agent&quot;, name: found.name })
+        return
+      }
+      const stat = info.value
+      parts.push({
+        type: &quot;file&quot;,
+        url: pathToFileURL(filepath).href,
+        filename: name,
+        mime: stat.type === &quot;Directory&quot; ? &quot;application/x-directory&quot; : &quot;text/plain&quot;,
+      })
+    }),
+    { concurrency: &quot;unbounded&quot;, discard: true },
+  )
+  return parts
+})</code></pre>
+<p>최종 호출 직전에는 skill, environment, instruction, part 변환 결과가 합쳐진다. structured output은 문구만 붙는 것이 아니라 전용 tool까지 강제된다.</p>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/session/prompt.ts
+const [skills, env, instructions, modelMsgs] = yield* Effect.all([
+  sys.skills(agent),
+  Effect.sync(() =&gt; sys.environment(model)),
+  instruction.system().pipe(Effect.orDie),
+  MessageV2.toModelMessagesEffect(msgs, model),
+])
+const system = [...env, ...(skills ? [skills] : []), ...instructions]
+const format = lastUser.format ?? { type: &quot;text&quot; as const }
+if (format.type === &quot;json_schema&quot;) system.push(STRUCTURED_OUTPUT_SYSTEM_PROMPT)
+const result = yield* handle.process({
+  user: lastUser,
+  agent,
+  permission: session.permission,
+  sessionID,
+  parentSessionID: session.parentID,
+  system,
+  messages: [...modelMsgs, ...(isLastStep ? [{ role: &quot;assistant&quot; as const, content: MAX_STEPS }] : [])],
+  tools,
+  model,
+  toolChoice: format.type === &quot;json_schema&quot; ? &quot;required&quot; : undefined,
+})</code></pre>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/session/prompt.ts
+export function createStructuredOutputTool(input: {
+  schema: Record&lt;string, any&gt;
+  onSuccess: (output: unknown) =&gt; void
+}): AITool {
+  const { $schema: _, ...toolSchema } = input.schema
+
+  return tool({
+    description: STRUCTURED_OUTPUT_DESCRIPTION,
+    inputSchema: jsonSchema(toolSchema as JSONSchema7),
+    async execute(args) {
+      input.onSuccess(args)
+      return {
+        output: &quot;Structured output captured successfully.&quot;,
+        title: &quot;Structured Output&quot;,
+        metadata: { valid: true },
+      }
+    },
+    toModelOutput({ output }) {
+      return {
+        type: &quot;text&quot;,
+        value: output.output,
+      }
+    },
+  })
+}</code></pre>
+<h2 id="프롬프트-교차로">프롬프트 교차로</h2>
+<div class="diagram"><pre class="mermaid">graph TD
+    INPUT[&quot;user parts / attachments / subtasks&quot;]
+    SYSTEM[&quot;system prompt by model&quot;]
+    INSTR[&quot;AGENTS.md / CLAUDE.md / remote instructions&quot;]
+    AGENT[&quot;agent prompt + mode reminders&quot;]
+    TOOLS[&quot;tool registry / permission / MCP / LSP&quot;]
+    OUTPUT[&quot;final model messages&quot;]
+
+    INPUT --&gt; OUTPUT
+    SYSTEM --&gt; OUTPUT
+    INSTR --&gt; OUTPUT
+    AGENT --&gt; OUTPUT
+    TOOLS --&gt; OUTPUT</pre></div>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts"><code>session/prompt.ts</code></a>가 거대한 이유는 우연이 아니다. OpenCode는 최종 모델 입력이 시스템의 교차로라는 사실을 숨기지 않는다.</p>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="sessionprompt-service는-프롬프트-생성기가-아니라-orchestrator다"><code>SessionPrompt.Service</code>는 프롬프트 생성기가 아니라 orchestrator다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts"><code>packages/opencode/src/session/prompt.ts</code></a> 상단 import만 봐도 이 파일의 역할이 드러난다. 여기에는 <code>SessionCompaction</code>, <code>SessionSummary</code>, <code>Agent</code>, <code>Provider</code>, <code>Plugin</code>, <code>Command</code>, <code>Permission</code>, <code>ToolRegistry</code>, <code>MCP</code>, <code>LSP</code>, <code>Instruction</code>, <code>SystemPrompt</code>, <code>SessionProcessor</code>, <code>LLM</code>이 모두 들어온다.</p>
+<p>이건 매우 중요한 신호다. OpenCode는 프롬프트 조립을 문자열 함수로 취급하지 않는다. 모델에게 보내는 최종 문맥은 세션, 권한, 도구, instruction, hidden agent 작업이 모두 만나는 통합점이기 때문이다.</p>
+<h3 id="system-prompt는-모델별-base-constitution이다">system prompt는 모델별 base constitution이다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/system.ts"><code>packages/opencode/src/session/system.ts</code></a>를 보면 system prompt는 단일 파일이 아니다.</p>
+<ul><li>GPT 계열은 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt/gpt.txt"><code>gpt.txt</code></a> 혹은 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt/codex.txt"><code>codex.txt</code></a></li><li>Claude 계열은 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt/anthropic.txt"><code>anthropic.txt</code></a></li><li>Gemini는 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt/gemini.txt"><code>gemini.txt</code></a></li><li>Kimi, Trinity, Beast 등은 각기 별도 prompt</li></ul>
+<p>그리고 <code>environment(model)</code>은 다음 환경 정보를 추가한다.</p>
+<ul><li>현재 model id와 provider id</li><li>working directory</li><li>workspace root</li><li>git repo 여부</li><li>platform</li><li>현재 날짜</li></ul>
+<p>즉 system prompt는 철학 문장만이 아니라, 런타임 환경 선언이기도 하다.</p>
+<h3 id="skill-정보도-시스템-프롬프트-층에-실린다">skill 정보도 시스템 프롬프트 층에 실린다</h3>
+<p><code>SystemPrompt.skills(agent)</code>는 해당 agent permission에서 <code>skill</code>이 금지되지 않은 경우, 사용 가능한 skill 목록을 verbose 포맷으로 붙인다. 이건 중요한 설계다. skill은 도구 목록의 일부이기도 하지만, 동시에 &quot;언제 어떤 specialized workflow를 불러와야 하는가&quot;라는 판단 재료이기 때문이다.</p>
+<p>즉 OpenCode는 skill을 별도 문서로만 두지 않고, 시스템 문맥의 일부로 모델에게 반복 주입한다.</p>
+<h3 id="instruction-파일은-문자열-include가-아니라-별도-해결기-resolver-를-가진다">instruction 파일은 문자열 include가 아니라 별도 해결기(resolver)를 가진다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/instruction.ts"><code>packages/opencode/src/session/instruction.ts</code></a>는 이 장의 핵심 파일이다. 이 서비스는 다음을 수행한다.</p>
+<ul><li>project-level <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/AGENTS.md"><code>AGENTS.md</code></a>, <code>CLAUDE.md</code>, <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/CONTEXT.md"><code>CONTEXT.md</code></a> 탐색</li><li>global config 경로와 <code>~/.claude/CLAUDE.md</code> 탐색</li><li><code>config.instructions</code>에 적힌 파일 glob 혹은 원격 URL 로드</li><li>read tool이 이미 읽은 instruction 파일은 중복 부착 방지</li><li>특정 assistant message에 이미 붙인 instruction file claim 추적</li><li>읽는 파일 주변의 상위 instruction 파일을 walk하며 추가</li></ul>
+<p>즉 instruction은 단순 치환 문자열이 아니다. 파일 시스템과 원격 URL과 message lifecycle을 이해하는 별도 서비스다.</p>
+<h3 id="resolvepromptparts-는-include를-구조로-바꾼다"><code>resolvePromptParts()</code>는 include를 구조로 바꾼다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts"><code>session/prompt.ts</code></a>의 <code>resolvePromptParts(template)</code>는 <code>{file:...}</code> 형태의 참조를 문자열 치환으로 끝내지 않는다. 실제 파일이면 <code>file</code> part로, agent 이름이면 <code>agent</code> part로, 일반 문자열이면 <code>text</code> part로 변환한다.</p>
+<p>이 설계는 매우 좋다. 프롬프트 자산도 결국 세션의 part 모델 위에 올려야 이후 LLM 입력과 저장/압축/요약 흐름에서 일관되게 다룰 수 있기 때문이다.</p>
+<h3 id="프롬프트는-base-prompt-위에-상황별-amendment를-덧붙인다">프롬프트는 base prompt 위에 상황별 amendment를 덧붙인다</h3>
+<p>OpenCode의 prompt 층은 &quot;하나의 기본 프롬프트&quot;가 아니다. <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts"><code>session/prompt.ts</code></a>는 필요에 따라 아래 같은 문구를 추가한다.</p>
+<ul><li><code>PROMPT_PLAN</code></li><li><code>BUILD_SWITCH</code></li><li><code>MAX_STEPS</code></li><li>structured output system prompt</li></ul>
+<p>즉 시스템 prompt는 헌법이고, 현재 mode와 작업 조건은 amendment처럼 위에 얹힌다. 이 구조가 중요한 이유는 모든 규칙을 base prompt 하나에 몰아넣지 않기 때문이다.</p>
+<h3 id="structured-output은-문구만이-아니라-전용-tool까지-붙는다">structured output은 문구만이 아니라 전용 tool까지 붙는다</h3>
+<p><code>STRUCTURED_OUTPUT_SYSTEM_PROMPT</code>와 <code>StructuredOutput</code> tool 생성 경로는 이 장의 좋은 예다. OpenCode는 &quot;JSON으로 답하라&quot; 같은 텍스트 지시만으로는 충분하지 않다고 본다. 그래서 강한 시스템 문구와 전용 tool 계약을 함께 제공한다.</p>
+<p>이 판단은 맞다. 모델은 텍스트 지시를 어길 수 있지만, tool call contract까지 주어지면 훨씬 안정적으로 구조화된 출력을 낼 수 있다.</p>
+<h3 id="user-input-자체도-먼저-part-모델로-정규화된다">user input 자체도 먼저 part 모델로 정규화된다</h3>
+<p><code>createUserMessage(...)</code>와 주변 로직을 보면 OpenCode는 사용자 입력을 바로 모델 메시지로 던지지 않는다. attachment, subtask, synthetic reminder, instruction part 등을 포함한 <code>MessageV2</code> 구조로 먼저 저장하고, 그다음 <code>MessageV2.toModelMessagesEffect(...)</code>로 모델 입력 형태로 변환한다.</p>
+<p>이 말은 곧 프롬프트 조립이 &quot;문자열을 붙여서 보내는 마지막 단계&quot;가 아니라, 이미 구조화된 대화 상태를 모델 문맥으로 투영하는 단계라는 뜻이다.</p>
+<h3 id="compaction-summary-title도-prompt-교차로-안에서-연결된다">compaction, summary, title도 prompt 교차로 안에서 연결된다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts"><code>session/prompt.ts</code></a>는 단지 메인 assistant 호출만 담당하지 않는다.</p>
+<ul><li>첫 메시지 시 <code>ensureTitle(...)</code></li><li>overflow 시 <code>compaction.create(...)</code></li><li>compaction part가 있을 때 <code>compaction.process(...)</code></li><li>assistant 완료 후 <code>summary.summarize(...)</code></li></ul>
+<p>즉 프롬프트 루프는 메인 assistant 답변 생성기이면서, hidden agent maintenance loop를 호출하는 orchestration point이기도 하다.</p>
+<h3 id="중요한-제약은-코드와-프롬프트-양쪽에서-표현된다">중요한 제약은 코드와 프롬프트 양쪽에서 표현된다</h3>
+<p>예를 들어 plan mode에서는 permission envelope가 edit를 막지만, 동시에 <code>PROMPT_PLAN</code> 같은 문구로 모델에게도 다시 상기시킨다. 이런 중복은 낭비가 아니라 방어적 설계다.</p>
+<ul><li>코드 제약: 실제 실행을 막는다</li><li>프롬프트 제약: 잘못된 의도를 줄인다</li></ul>
+<p>에이전트 시스템에서는 둘 다 필요하다. 코드만 믿으면 모델이 계속 금지 행동을 시도하고, 프롬프트만 믿으면 실제 안전성이 약해진다.</p>
+<h2 id="이-장의-핵심-논지">이 장의 핵심 논지</h2>
+<p>OpenCode에서 프롬프트 조립은 prompt engineering이 아니라 runtime integration이다. 시스템 프롬프트, instruction 파일, agent 역할, tool registry, structured output, hidden agent maintenance가 모두 이 계층을 거친다.</p>
+<p>그래서 이 층은 텍스트 생성기보다 제어면에 가깝다. 무엇을 모델에게 보여 줄지 결정하는 일은 곧 시스템 경계를 어디서 노출할지 결정하는 일이기 때문이다.</p>
+<h2 id="트레이드오프">트레이드오프</h2>
+<ul><li>장점: 모델 입력이 실제 런타임 상태와 더 밀접하게 연결된다.</li><li>장점: system/instruction/agent/tool 제약을 한 교차로에서 조합할 수 있다.</li><li>장점: hidden agent maintenance와 메인 프롬프트 루프가 같은 인프라를 공유한다.</li><li>단점: <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts"><code>session/prompt.ts</code></a>가 빠르게 두꺼워지고 읽기 어려워진다.</li><li>단점: 프롬프트 변경이 종종 시스템 전반의 상태 흐름을 이해해야 가능한 작업이 된다.</li></ul>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>프롬프트 조립기는 독립 템플릿 모듈이 아니라 시스템 통합 계층이 된다.</li><li>instruction 파일, structured output, mode reminder는 문자열 치환보다 구조화된 resolver 위에 두는 편이 낫다.</li><li>중요한 행동 제약은 코드와 프롬프트 양쪽에서 방어적으로 표현하는 것이 좋다.</li><li>에이전트 시스템이 커질수록 &quot;무엇을 보낼지&quot; 결정하는 계층이 점점 더 중요해진다.</li></ul>
+<p>다음 장에서는 이렇게 조립된 문맥이 실제 provider와 모델 선택 계층 위에서 어떻게 실행되는지 본다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>Claude 책의 시스템 프롬프트 분석을 OpenCode에 적용하면 핵심은 거대한 prompt 하나가 아니라 레이어 조립 시점이다. agent prompt, provider prompt, instruction file, synthetic reminder, tool description, plugin transform이 최종 호출 직전에 합쳐진다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;PromptInput parts&quot;]
+  N2[&quot;resolvePromptParts&quot;]
+  N1 --&gt; N2
+  N3[&quot;insertReminders&quot;]
+  N2 --&gt; N3
+  N4[&quot;resolveTools&quot;]
+  N3 --&gt; N4
+  N5[&quot;LLM.stream&quot;]
+  N4 --&gt; N5
+  N6[&quot;plugin transform&quot;]
+  N5 --&gt; N6</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts"><code>packages/opencode/src/session/prompt.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/system.ts"><code>packages/opencode/src/session/system.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/instruction.ts"><code>packages/opencode/src/session/instruction.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/llm.ts"><code>packages/opencode/src/session/llm.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/config/markdown.ts"><code>packages/opencode/src/config/markdown.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/registry.ts"><code>packages/opencode/src/tool/registry.ts</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>resolvePromptParts는 파일 참조를 문자열 include가 아니라 file/agent part로 바꾼다.</li><li>plan/build 전환 reminder는 코드가 조건부 synthetic part로 삽입하는 정책 문서다.</li><li>llm.ts는 agent prompt가 있으면 provider prompt보다 우선하고 plugin이 system transform에 마지막으로 개입한다.</li><li>structured output은 문구뿐 아니라 전용 tool로 강제된다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>모든 프롬프트를 한 문자열로 합치면 provider 예외와 tool schema 변환을 통제하기 어렵다.</li><li>plan mode를 UI 상태로만 두면 모델이 실행 단계에서 잊을 수 있다.</li><li>plugin transform을 너무 이르게 적용하면 이후 재조립에서 사라질 수 있다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>프롬프트 조립을 마지막 순간까지 구조화된 상태로 유지하는가?</li><li>정책 reminder가 code gate와 연결되어 있는가?</li><li>provider별 system 처리 차이를 한 계층에 가뒀는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>anthropic.txt</code></td><td><code>packages/opencode/src/session/prompt/anthropic.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt/anthropic.txt">Latest</a></td></tr><tr><td><code>codex.txt</code></td><td><code>packages/opencode/src/session/prompt/codex.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt/codex.txt">Latest</a></td></tr><tr><td><code>gemini.txt</code></td><td><code>packages/opencode/src/session/prompt/gemini.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt/gemini.txt">Latest</a></td></tr><tr><td><code>gpt.txt</code></td><td><code>packages/opencode/src/session/prompt/gpt.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt/gpt.txt">Latest</a></td></tr><tr><td><code>session/prompt.ts</code></td><td><code>packages/opencode/src/session/prompt.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>AGENTS.md</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/AGENTS.md">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/AGENTS.md">Edition</a></td></tr><tr><td><code>CONTEXT.md</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/CONTEXT.md">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/CONTEXT.md">Edition</a></td></tr><tr><td><code>packages/opencode/src/agent/agent.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/agent/agent.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/command</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/opencode/src/command">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/command">Edition</a></td></tr><tr><td><code>packages/opencode/src/config/markdown.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/config/markdown.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/config/markdown.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/instruction.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/instruction.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/instruction.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/llm.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/llm.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/llm.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/prompt.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/prompt.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/prompt/anthropic.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt/anthropic.txt">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/prompt/anthropic.txt">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/prompt/codex.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt/codex.txt">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/prompt/codex.txt">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/prompt/default.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt/default.txt">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/prompt/default.txt">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/prompt/gemini.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt/gemini.txt">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/prompt/gemini.txt">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/prompt/gpt.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt/gpt.txt">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/prompt/gpt.txt">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/prompt/plan.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt/plan.txt">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/prompt/plan.txt">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/system.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/system.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/system.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/registry.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/registry.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/registry.ts">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<details class="unresolved-refs">
+  <summary>현재 fork에서 찾지 못한 참조 3개</summary>
+  <p>이 경로들은 원고에 있지만 현재 <code>nfbs2000/speaky-opencode</code> snapshot에는 없어서 404 링크를 만들지 않았습니다.</p>
+  <ul><li><code>CLAUDE.md</code></li><li><code>packages/opencode/src/session/prompt/max-steps.txt</code></li><li><code>~/.claude/CLAUDE.md</code></li></ul>
+</details>
+
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="ch05.html"><span>이전</span><strong>5장: 세션 데이터 모델과 메시지 흐름</strong></a><a class="nav-card" href="ch07.html"><span>다음</span><strong>7장: Provider 추상화와 모델 라우팅</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

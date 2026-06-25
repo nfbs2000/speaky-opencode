@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>16장: 스킬을 지식 계층으로 다루기 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part2/index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="../part2/ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="../part2/ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="../part2/ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="../part2/ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="../part2/ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link active" href="ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part5/index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="../part5/ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="../part5/ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="../part5/ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="../part5/ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="../part5/ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="../part6/index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="../part6/ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="../part6/ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="../part6/ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="../part6/ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="../part6/ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제4부: 확장을 어떻게 계약으로 나누는가</p>
+    <h1>16장: 스킬을 지식 계층으로 다루기</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 OpenCode의 스킬 시스템을 기능 플러그인과 구분되는 지식 자산 레이어로 본다. 대상 독자: 모델에게 실행 코드를 더 주는 대신 읽기 규칙과 도메인 워크플로를 주입하고 싶은 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>플러그인은 시스템 동작을 바꾼다. 스킬은 시스템이 읽는 지식을 바꾼다. 이 둘을 분리하지 않으면, 작은 사용법 문서 하나도 플러그인 배포를 거쳐야 하고, 반대로 런타임 훅 하나도 단순 Markdown 파일처럼 취급하게 된다. OpenCode는 이 둘을 명확히 갈랐다.</p>
+<p>스킬 계층이 중요한 이유는 코딩 에이전트의 실제 품질이 종종 모델 능력보다도 &quot;어떤 로컬 규칙과 작업법을 읽었는가&quot;에 더 크게 좌우되기 때문이다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/skill/index.ts"><code>packages/opencode/src/skill/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/skill.ts"><code>packages/opencode/src/tool/skill.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/skills.mdx"><code>packages/web/src/content/docs/skills.mdx</code></a></li><li><code>.claude/**/SKILL.md</code></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/agents.mdx"><code>.agents/**/SKILL.md</code></a></li></ul>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="스킬은-파일-스캔으로-수집된다">스킬은 파일 스캔으로 수집된다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/skill/index.ts"><code>skill/index.ts</code></a>의 상수만 봐도 의도가 분명하다.</p>
+<ul><li><code>EXTERNAL_DIRS = [&quot;.claude&quot;, &quot;.agents&quot;]</code></li><li><code>EXTERNAL_SKILL_PATTERN = &quot;skills/**/SKILL.md&quot;</code></li><li><code>OPENCODE_SKILL_PATTERN = &quot;{skill,skills}/**/SKILL.md&quot;</code></li></ul>
+<p>즉 OpenCode는 스킬을 레지스트리 데이터베이스에서 가져오는 것이 아니라, 작업 디렉터리와 외부 경로를 스캔해 조립한다. 이 방식은 거칠지만 강력하다. 로컬 저장소에 있는 규칙을 바로 지식 자산으로 끌어올릴 수 있기 때문이다.</p>
+<h3 id="이름과-본문을-느슨하게-두지-않는다">이름과 본문을 느슨하게 두지 않는다</h3>
+<p><code>InvalidError</code>, <code>NameMismatchError</code>, duplicate skill warning이 따로 있는 이유는 명확하다. 스킬은 그냥 Markdown 파일이 아니라, 최소한의 메타데이터와 정합성을 갖춘 런타임 자산이기 때문이다. 이름 중복이나 스펙 파싱 실패를 묵인하면 모델이 어떤 스킬을 읽었다고 가정하는지 불명확해진다.</p>
+<h3 id="config에서-로컬-경로와-url을-함께-받을-수-있다">config에서 로컬 경로와 URL을 함께 받을 수 있다</h3>
+<p><code>cfg.skills?.paths</code>, <code>cfg.skills?.urls</code>를 보면 스킬 시스템은 로컬 디렉터리뿐 아니라 원격 출처까지 수용한다. 하지만 최종적으로는 모두 같은 <code>State.skills</code> 맵에 모인다. 이 말은 곧 스킬의 정체성이 출처가 아니라 <code>name</code>이라는 뜻이다.</p>
+<h3 id="에이전트-권한이-스킬-가시성까지-통제한다">에이전트 권한이 스킬 가시성까지 통제한다</h3>
+<p><code>list(agent)</code> 경로를 보면 스킬은 agent permission을 통과해 필터링된다. <code>Permission.evaluate(&quot;skill&quot;, skill.name, agent.permission)</code>가 <code>deny</code>면 그 스킬은 현재 agent에게 보이지 않는다. 이것은 스킬이 단지 읽기 자산이 아니라, 권한 모델 안에 들어 있는 capability라는 뜻이다.</p>
+<p>즉 OpenCode는 &quot;지식 읽기&quot;조차 런타임 권한 바깥에 두지 않는다.</p>
+<h3 id="출력-포맷도-기계-친화적으로-설계됐다">출력 포맷도 기계 친화적으로 설계됐다</h3>
+<p><code>fmt(...)</code> 함수는 verbose일 때 XML 비슷한 구조를, 일반 모드에서는 bullet 목록을 출력한다. 이 선택은 사소해 보여도 중요하다. 스킬 목록도 결국 모델이 읽는 텍스트이기 때문에, 사람이 보기에 예쁜 형식보다 모델이 안정적으로 파싱하기 쉬운 형식을 우선한 흔적이다.</p>
+<h2 id="플러그인과의-차이">플러그인과의 차이</h2>
+<div class="table-wrap"><table><thead><tr><th>항목</th><th>스킬</th><th>플러그인</th></tr></thead><tbody><tr><td>핵심 자산</td><td><code>SKILL.md</code></td><td>JS/TS 모듈</td></tr><tr><td>목적</td><td>지식/워크플로 주입</td><td>런타임 동작 확장</td></tr><tr><td>로딩 방식</td><td>파일 스캔, config path/url</td><td>로더, install, module import</td></tr><tr><td>권한 모델</td><td><code>skill</code> permission으로 통제</td><td>plugin config/loader 수준 관리</td></tr><tr><td>실패 성격</td><td>파싱 실패, 이름 충돌</td><td>설치/엔트리/훅 실패</td></tr></tbody></table></div>
+<h2 id="트레이드오프">트레이드오프</h2>
+<ul><li>장점: 저장소 규칙을 아주 빠르게 지식 계층으로 올릴 수 있다.</li><li>단점: 파일 기반 규약이 느슨해지면 중복과 품질 저하가 쉽게 생긴다.</li><li>장점: 권한 모델과 연결되어 있어 안전하다.</li><li>단점: 지식 자산도 capability처럼 다뤄야 하므로 관리 지점이 늘어난다.</li></ul>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>지식 확장과 코드 확장을 같은 시스템에 억지로 넣지 않는 편이 낫다.</li><li>스킬은 &quot;문서&quot;가 아니라 런타임이 읽는 자산이므로 이름, 파싱, 권한이 필요하다.</li><li>팀별 작업 규칙을 코드에 하드코딩하지 말고, 별도 지식 레이어로 유지하면 훨씬 유연하다.</li></ul>
+<p>다음 장에서는 외부 도구 생태계를 끌어오는 또 다른 채널, 즉 MCP 서버 통합을 본다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>Claude Skills 관점은 OpenCode에도 잘 맞는다. Skill은 실행 도구라기보다 필요할 때 로드되는 지식 패키지이며, OpenCode는 이를 skill tool과 discovery service로 다룬다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;global/project/config/url discovery&quot;]
+  N2[&quot;SKILL.md parse&quot;]
+  N1 --&gt; N2
+  N3[&quot;Skill.Info map&quot;]
+  N2 --&gt; N3
+  N4[&quot;available(agent)&quot;]
+  N3 --&gt; N4
+  N5[&quot;dynamic skill tool description&quot;]
+  N4 --&gt; N5
+  N6[&quot;skill content injection&quot;]
+  N5 --&gt; N6</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/skill/index.ts"><code>packages/opencode/src/skill/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/skill/discovery.ts"><code>packages/opencode/src/skill/discovery.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/skill.ts"><code>packages/opencode/src/tool/skill.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/skill.txt"><code>packages/opencode/src/tool/skill.txt</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/config/plugin/skill.ts"><code>packages/opencode/src/config/skills.ts</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>홈의 .claude/.agents, 프로젝트 상위 디렉터리, config directories, paths, urls가 모두 discovery 입력이다.</li><li>SKILL.md frontmatter의 name과 description이 최소 계약이다.</li><li>Permission.evaluate(&#x27;skill&#x27;, name, agent.permission)이 현재 agent에게 보일 skill을 결정한다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>모든 skill을 항상 system prompt에 넣으면 context 예산이 낭비된다.</li><li>skill을 permission 밖에 두면 특정 agent에 금지해야 할 지식이 노출된다.</li><li>경로 기반 식별자는 skill 이동과 공유를 어렵게 한다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>Skill을 lazy-loaded knowledge로 설계했는가?</li><li>name/description 최소 계약이 있는가?</li><li>agent permission으로 skill availability를 필터링하는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>agents</code></td><td><code>packages/web/src/content/docs/agents.mdx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/agents.mdx">Latest</a></td></tr><tr><td><code>packages/opencode/src/config/skills.ts</code></td><td><code>packages/core/src/config/plugin/skill.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/config/plugin/skill.ts">Latest</a></td></tr><tr><td><code>skill/index.ts</code></td><td><code>packages/opencode/src/skill/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/skill/index.ts">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/core/src/config/plugin/skill.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/config/plugin/skill.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/config/plugin/skill.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/skill/discovery.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/skill/discovery.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/skill/discovery.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/skill/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/skill/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/skill/index.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/skill.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/skill.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/skill.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/skill.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/skill.txt">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/skill.txt">Edition</a></td></tr><tr><td><code>packages/web/src/content/docs/agents.mdx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/agents.mdx">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/web/src/content/docs/agents.mdx">Edition</a></td></tr><tr><td><code>packages/web/src/content/docs/skills.mdx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/skills.mdx">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/web/src/content/docs/skills.mdx">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<details class="unresolved-refs">
+  <summary>현재 fork에서 찾지 못한 참조 4개</summary>
+  <p>이 경로들은 원고에 있지만 현재 <code>nfbs2000/speaky-opencode</code> snapshot에는 없어서 404 링크를 만들지 않았습니다.</p>
+  <ul><li><code>.claude/**/SKILL.md</code></li><li><code>EXTERNAL_SKILL_PATTERN = &quot;skills/**/SKILL.md&quot;</code></li><li><code>OPENCODE_SKILL_PATTERN = &quot;{skill,skills}/**/SKILL.md&quot;</code></li><li><code>SKILL.md</code></li></ul>
+</details>
+
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="ch15.html"><span>이전</span><strong>15장: TUI 플러그인 시스템</strong></a><a class="nav-card" href="ch17.html"><span>다음</span><strong>17장: MCP 서버 통합과 인증 흐름</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

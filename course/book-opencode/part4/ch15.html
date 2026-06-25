@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>15장: TUI 플러그인 시스템 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part2/index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="../part2/ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="../part2/ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="../part2/ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="../part2/ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="../part2/ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link active" href="ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part5/index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="../part5/ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="../part5/ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="../part5/ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="../part5/ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="../part5/ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="../part6/index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="../part6/ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="../part6/ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="../part6/ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="../part6/ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="../part6/ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제4부: 확장을 어떻게 계약으로 나누는가</p>
+    <h1>15장: TUI 플러그인 시스템</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 OpenCode의 TUI 플러그인을 서버 플러그인의 하위집합이 아니라 독립된 UI 런타임으로 해부한다. 대상 독자: 터미널 앱에 route, command, dialog, sidebar 확장을 안전하게 붙이고 싶은 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>OpenCode는 확장을 한 메커니즘으로 밀어 넣지 않는다. 서버 플러그인과 TUI 플러그인을 나눈 이유는 단순 구현 편의가 아니다. UI 확장은 route 등록, dialog 띄우기, command palette 항목 추가, theme 설치, slot 렌더링 같은 관심사를 가진다. 반면 서버 플러그인은 tool 실행 전후, 세션 이벤트, 설정 변환, 서버 동작 가로채기 같은 문제를 다룬다.</p>
+<p>두 층을 분리하지 않으면 확장 계약이 곧 거대한 만능 인터페이스가 된다. OpenCode는 그 유혹을 피했다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/specs/tui-plugins.md"><code>packages/opencode/specs/tui-plugins.md</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/plugin/runtime.tsx"><code>packages/opencode/src/cli/cmd/tui/plugin/runtime.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/plugin/api.ts"><code>packages/opencode/src/cli/cmd/tui/plugin/api.tsx</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/plugin/slots.tsx"><code>packages/opencode/src/cli/cmd/tui/plugin/slots.tsx</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/feature-plugins/system/plugins.tsx"><code>packages/opencode/src/cli/cmd/tui/feature-plugins/system/plugins.tsx</code></a></li></ul>
+<h2 id="구성-모델">구성 모델</h2>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/specs/tui-package.md"><code>specs/tui-plugins.md</code></a>는 현재 TUI 플러그인 시스템의 가장 압축된 참고 문서다. 여기서 먼저 읽어야 할 사실은 다음 네 가지다.</p>
+<ol><li>설정은 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/plugin/src/tui.ts"><code>tui.json</code></a>에 있다.</li><li>모듈은 <code>default export { id?, tui }</code> 모양을 가져야 한다.</li><li>하나의 모듈은 <code>server</code>와 <code>tui</code>를 동시에 export할 수 없다.</li><li>활성화 상태는 config뿐 아니라 KV에도 저장되어 런타임에서 override될 수 있다.</li></ol>
+<p>즉 TUI 플러그인은 단순 파일 목록이 아니라, 설정 파일, 런타임 KV, 모듈 형식 제약이 합쳐진 서브시스템이다.</p>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="target-exclusive-규칙이-시스템을-단순화한다">target-exclusive 규칙이 시스템을 단순화한다</h3>
+<p>기준서 스타일로 말하면 이 규칙은 아주 중요하다. &quot;하나의 모듈은 <code>server</code> 또는 <code>tui</code> 중 하나만&quot;이라는 제약은 불편해 보이지만, 실제로는 로더와 런타임을 크게 단순화한다. 같은 패키지가 양쪽을 지원하더라도 <code>./server</code>, <code>./tui</code> 같은 별도 엔트리로 쪼개도록 강제하면, 각 런타임은 자기 계약만 생각하면 된다.</p>
+<p>OpenCode가 이 규칙을 명시적으로 적어 둔 것은 우연이 아니다. 확장 시스템은 기능 추가보다 경계 유지가 더 어렵기 때문이다.</p>
+<h3 id="tui-런타임이-주는-api는-작은-앱-플랫폼-에-가깝다">TUI 런타임이 주는 API는 &quot;작은 앱 플랫폼&quot;에 가깝다</h3>
+<p>명세에 따르면 <code>tui(api, options, meta)</code>가 받는 상위 API 그룹은 다음과 같다.</p>
+<ul><li><code>api.command</code></li><li><code>api.route</code></li><li><code>api.ui</code></li><li><code>api.theme</code></li><li><code>api.kv</code></li><li><code>api.event</code></li><li><code>api.plugins</code></li><li><code>api.slots</code></li><li><code>api.lifecycle</code></li></ul>
+<p>이 목록만 봐도 TUI 플러그인이 단순 렌더 함수가 아니라, 앱 구조 안에 안전하게 꽂히는 확장이라는 점이 분명하다. route 등록과 slot 등록이 따로 있고, dialog UI와 toast API가 따로 있으며, theme 설치까지 독립 기능으로 있다.</p>
+<h3 id="theme-only-패키지도-별도-1급-시민이다">theme-only 패키지도 별도 1급 시민이다</h3>
+<p><code>oc-themes</code> 메타데이터를 가진 패키지는 <code>./tui</code> 엔트리가 없어도 테마 패키지로 로드될 수 있다. 이 설계는 사소해 보이지만 중요하다. 확장을 &quot;항상 코드 실행&quot;으로 보지 않고, 자산과 설정도 별도 확장 타깃으로 본다는 뜻이기 때문이다.</p>
+<p>이 덕분에 테마 패키지는 전체 플러그인 모듈을 흉내 내지 않고도 런타임에 참여할 수 있다.</p>
+<h3 id="활성화-상태가-설정-파일과-kv에-이중-저장된다">활성화 상태가 설정 파일과 KV에 이중 저장된다</h3>
+<p>문서에 따르면 <code>plugin_enabled</code>는 config 계층에서 합쳐지고, 런타임 enable/disable 상태는 KV에도 보관된다. 이 말은 곧 &quot;정적 설정&quot;과 &quot;사용자 상호작용으로 바뀌는 상태&quot;를 분리했다는 뜻이다. 플러그인 토글 UI를 구현하려면 이런 분리가 필요하다.</p>
+<h3 id="슬롯-시스템은-route-외의-확장-면을-만든다">슬롯 시스템은 route 외의 확장 면을 만든다</h3>
+<p>route만으로는 앱의 모든 확장을 설명할 수 없다. sidebar, footer, home tips 같은 영역은 &quot;화면 이동&quot;이 아니라 &quot;특정 위치에 UI를 삽입&quot;하는 문제이기 때문이다. <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/plugin/slots.tsx"><code>plugin/slots.tsx</code></a>와 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/tui/src/feature-plugins"><code>feature-plugins/sidebar/*</code></a>를 함께 보면 OpenCode는 route 기반 확장과 slot 기반 확장을 구분한다.</p>
+<p>이 구분이 있어야 TUI가 점점 커져도 &quot;화면&quot;과 &quot;삽입 지점&quot;이 뒤엉키지 않는다.</p>
+<h2 id="서버-플러그인과의-비교">서버 플러그인과의 비교</h2>
+<div class="table-wrap"><table><thead><tr><th>비교 항목</th><th>서버 플러그인</th><th>TUI 플러그인</th></tr></thead><tbody><tr><td>중심 계약</td><td>hook trigger</td><td>route/command/ui/slot API</td></tr><tr><td>주요 관심사</td><td>tool, session, config, server behavior</td><td>화면, command palette, dialog, theme</td></tr><tr><td>설정 위치</td><td>일반 config</td><td><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/plugin/src/tui.ts"><code>tui.json</code></a> + KV</td></tr><tr><td>실패 성격</td><td>로드 실패, 훅 오류</td><td>라우트 누락, UI 등록 실패, id 충돌</td></tr><tr><td>핵심 자산</td><td>loader/install/index</td><td>runtime/api/slots/spec</td></tr></tbody></table></div>
+<h2 id="트레이드오프">트레이드오프</h2>
+<ul><li>장점: UI 확장 계약이 서버 훅과 섞이지 않아 명확하다.</li><li>단점: 플러그인 시스템이 두 개라 학습 비용이 늘어난다.</li><li>장점: theme-only 패키지, slot, route 같은 UI 특화 개념을 자연스럽게 담을 수 있다.</li><li>단점: 설정과 상태 병합이 더 복잡해진다.</li></ul>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>UI 확장은 서버 확장의 작은 버전이 아니다. 별도 계약이 필요하다.</li><li>route, slot, theme를 한 인터페이스에 억지로 넣지 말고 역할별 API 군으로 나누는 편이 좋다.</li><li>확장 토글 상태는 정적 config와 런타임 상태를 분리해야 관리가 쉽다.</li><li>target-exclusive 규칙은 불편하지만, 확장 시스템의 수명을 늘린다.</li></ul>
+<p>다음 장에서는 코드 확장이 아니라 지식 확장에 해당하는 <code>skill</code> 계층을 본다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>OpenCode는 server plugin과 TUI plugin을 분리한다. Claude식 hook 시야를 가져오되 모든 확장을 한 바구니에 넣지 않는 것이 핵심이다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;TUI config&quot;]
+  N2[&quot;plugin entry load&quot;]
+  N1 --&gt; N2
+  N3[&quot;API 제공&quot;]
+  N2 --&gt; N3
+  N4[&quot;slot/keybind/theme 등록&quot;]
+  N3 --&gt; N4
+  N5[&quot;render&quot;]
+  N4 --&gt; N5
+  N6[&quot;lifecycle tests&quot;]
+  N5 --&gt; N6</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/plugin/runtime.tsx"><code>packages/opencode/src/cli/cmd/tui/plugin/runtime.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/plugin/api.ts"><code>packages/opencode/src/cli/cmd/tui/plugin/api.tsx</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/plugin/slots.tsx"><code>packages/opencode/src/cli/cmd/tui/plugin/slots.tsx</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/plugin/adapters.tsx"><code>packages/opencode/src/cli/cmd/tui/plugin/internal.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/test/cli/tui/plugin-lifecycle.test.ts"><code>packages/opencode/test/cli/tui/plugin-lifecycle.test.ts</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>TUI plugin은 provider token이나 tool permission보다 화면 slot, keybind, theme를 다룬다.</li><li>slot은 host가 허용한 UI 위치에만 plugin이 들어오게 하는 계약이다.</li><li>pure mode와 lifecycle test는 UI 확장 문제를 core 문제와 분리하는 회로 차단기다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>server hook과 TUI hook을 합치면 화면 확장이 모델 요청까지 오염시킬 수 있다.</li><li>slot 없이 private component를 monkey patch하면 업데이트에 취약해진다.</li><li>plugin 비활성화 경로가 없으면 디버깅이 어렵다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>UI 확장은 slot/keybind 중심인가?</li><li>server runtime 확장과 표현 확장이 분리되어 있는가?</li><li>pure mode가 있는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>feature-plugins</code></td><td><code>packages/tui/src/feature-plugins</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/tui/src/feature-plugins">Latest</a></td></tr><tr><td><code>packages/opencode/src/cli/cmd/tui/feature-plugins/system/plugins.tsx</code></td><td><code>packages/tui/src/feature-plugins/system/plugins.tsx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/feature-plugins/system/plugins.tsx">Latest</a></td></tr><tr><td><code>packages/opencode/src/cli/cmd/tui/plugin/api.tsx</code></td><td><code>packages/tui/src/plugin/api.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/plugin/api.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/cli/cmd/tui/plugin/internal.ts</code></td><td><code>packages/tui/src/plugin/adapters.tsx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/plugin/adapters.tsx">Latest</a></td></tr><tr><td><code>packages/opencode/src/cli/cmd/tui/plugin/runtime.ts</code></td><td><code>packages/tui/src/plugin/runtime.tsx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/plugin/runtime.tsx">Latest</a></td></tr><tr><td><code>packages/opencode/src/cli/cmd/tui/plugin/slots.tsx</code></td><td><code>packages/tui/src/plugin/slots.tsx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/plugin/slots.tsx">Latest</a></td></tr><tr><td><code>plugin/slots.tsx</code></td><td><code>packages/tui/src/plugin/slots.tsx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/plugin/slots.tsx">Latest</a></td></tr><tr><td><code>specs/tui-plugins.md</code></td><td><code>specs/tui-package.md</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/specs/tui-package.md">Latest</a></td></tr><tr><td><code>tui.json</code></td><td><code>packages/plugin/src/tui.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/plugin/src/tui.ts">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/opencode/specs/tui-plugins.md</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/specs/tui-plugins.md">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/specs/tui-plugins.md">Edition</a></td></tr><tr><td><code>packages/opencode/test/cli/tui/plugin-lifecycle.test.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/test/cli/tui/plugin-lifecycle.test.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/test/cli/tui/plugin-lifecycle.test.ts">Edition</a></td></tr><tr><td><code>packages/plugin/src/tui.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/plugin/src/tui.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/plugin/src/tui.ts">Edition</a></td></tr><tr><td><code>packages/tui/src/feature-plugins</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/tui/src/feature-plugins">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/tui/src/feature-plugins">Edition</a></td></tr><tr><td><code>packages/tui/src/feature-plugins/system/plugins.tsx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/feature-plugins/system/plugins.tsx">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/tui/src/feature-plugins/system/plugins.tsx">Edition</a></td></tr><tr><td><code>packages/tui/src/plugin/adapters.tsx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/plugin/adapters.tsx">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/tui/src/plugin/adapters.tsx">Edition</a></td></tr><tr><td><code>packages/tui/src/plugin/api.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/plugin/api.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/tui/src/plugin/api.ts">Edition</a></td></tr><tr><td><code>packages/tui/src/plugin/runtime.tsx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/plugin/runtime.tsx">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/tui/src/plugin/runtime.tsx">Edition</a></td></tr><tr><td><code>packages/tui/src/plugin/slots.tsx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/plugin/slots.tsx">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/tui/src/plugin/slots.tsx">Edition</a></td></tr><tr><td><code>specs/tui-package.md</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/specs/tui-package.md">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/specs/tui-package.md">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="ch14.html"><span>이전</span><strong>14장: 서버 플러그인 런타임</strong></a><a class="nav-card" href="ch16.html"><span>다음</span><strong>16장: 스킬을 지식 계층으로 다루기</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

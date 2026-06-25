@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>29장: OpenCode가 에이전트 하니스로서 잘하는 것 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part2/index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="../part2/ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="../part2/ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="../part2/ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="../part2/ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="../part2/ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="../part4/index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="../part4/ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="../part4/ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="../part4/ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="../part4/ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="../part4/ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part5/index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="../part5/ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="../part5/ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="../part5/ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="../part5/ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="../part5/ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="../part6/index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="../part6/ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="../part6/ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="../part6/ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="../part6/ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="../part6/ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link active" href="ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</p>
+    <h1>29장: OpenCode가 에이전트 하니스로서 잘하는 것</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 앞선 분석을 요약하는 대신, OpenCode가 반복적으로 보여 준 강한 설계 습관만 추출한다. 대상 독자: 구현 세부보다 재사용 가능한 하니스 패턴을 얻고 싶은 빌더.</p></blockquote>
+<h2 id="왜-요약이-아니라-추출이-필요한가">왜 요약이 아니라 추출이 필요한가</h2>
+<p>좋은 해부의 목적은 파일 경로를 외우는 것이 아니다. 어떤 설계가 여러 계층에서 반복되는지 보는 것이다. OpenCode는 모든 부분이 완벽하지는 않지만, 몇 가지 패턴만큼은 아주 일관되게 잘 구현한다. 그 패턴이야말로 다른 시스템으로 옮길 가치가 있다.</p>
+<h2 id="패턴-1-코어와-표면을-끝까지-분리한다">패턴 1: 코어와 표면을 끝까지 분리한다</h2>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/opencode"><code>packages/opencode</code></a>를 중심에 두고, TUI, 서버 라우트, SDK, 앱, 데스크톱, 문서가 그 위로 올라오는 구조는 이 저장소의 가장 큰 장점이다. 기능을 여러 표면에서 제공하면서도 핵심 로직이 UI 패키지로 새지 않게 막는다.</p>
+<p>이 패턴 덕분에 OpenCode는 CLI 프로젝트이면서도 앱, 데스크톱, SDK를 함께 가질 수 있었다.</p>
+<h2 id="패턴-2-상태를-텍스트보다-풍부하게-만든다">패턴 2: 상태를 텍스트보다 풍부하게 만든다</h2>
+<p><code>message-v2</code>, <code>todo</code>, <code>status</code>, <code>revert</code>, <code>snapshot</code>, <code>share</code>, <code>workspace</code>를 보면 OpenCode는 작업 상태를 문자열 대화 로그에 억지로 우겨 넣지 않는다. 필요한 상태는 대화 밖으로 승격한다.</p>
+<p>이 설계의 결과는 분명하다.</p>
+<ul><li>compaction이 가능해진다</li><li>revert가 가능해진다</li><li>공유가 live sync에 가까워진다</li><li>UI가 현재 상태를 더 잘 보여 줄 수 있다</li></ul>
+<p>즉 좋은 하니스는 &quot;모든 걸 채팅으로 표현&quot;하지 않는다.</p>
+<h2 id="패턴-3-유지-기능을-숨은-시스템-에이전트로-분리한다">패턴 3: 유지 기능을 숨은 시스템 에이전트로 분리한다</h2>
+<p><code>title</code>, <code>summary</code>, <code>compaction</code>은 메인 assistant에 섞인 helper 함수가 아니다. 각각 별도 agent다. 이 결정은 대단히 중요하다. 보조 기능도 같은 실행 인프라를 재사용하고, model/prompt/retry 규칙을 독립적으로 가질 수 있기 때문이다.</p>
+<p>이 패턴은 메인 에이전트를 단순하게 유지하면서도 유지 기능의 품질을 높인다.</p>
+<h2 id="패턴-4-확장-채널을-용도별로-나눈다">패턴 4: 확장 채널을 용도별로 나눈다</h2>
+<p>OpenCode는 확장을 하나의 메커니즘으로 통일하지 않는다.</p>
+<ul><li>서버 플러그인: 런타임 훅</li><li>TUI 플러그인: UI 확장</li><li>스킬: 지식 자산</li><li>MCP: 외부 capability 연결</li><li>SDK: 외부 자동화 진입점</li></ul>
+<p>이 분리가 매우 중요하다. &quot;확장&quot;이라는 추상 명사 하나로 묶어 버리면 계약이 만능 인터페이스가 되기 쉽다.</p>
+<h2 id="패턴-5-안전성을-ux와-함께-설계한다">패턴 5: 안전성을 UX와 함께 설계한다</h2>
+<p>OpenCode permission 계층은 <code>deny</code>만큼이나 <code>ask</code>와 <code>always</code>를 중요하게 본다. 외부 디렉터리, doom_loop, corrected feedback도 마찬가지다. 이 시스템은 보안 정책 엔진이면서 동시에 사용자가 에이전트와 협상하는 인터페이스다.</p>
+<p>좋은 하니스는 안전성을 생산성의 반대말로 두지 않는다. 둘 사이를 조정하는 상태 모델을 만든다.</p>
+<h2 id="패턴-6-예외는-예외-전용-계층에-가둔다">패턴 6: 예외는 예외 전용 계층에 가둔다</h2>
+<p>provider transform, Copilot bridge, plugin loader, patch parser를 보면 OpenCode는 예외가 생길 때 &quot;상위 계층에도 조금, 여기에도 조금&quot; 흩뿌리기보다 한 곳에 최대한 모아 둔다. 완벽하지는 않지만 방향은 분명하다.</p>
+<p>이 습관은 시스템 전체를 단순하게 만들지는 못해도, 복잡성이 새는 범위를 줄인다.</p>
+<h2 id="안티패턴으로-읽으면-더-잘-보이는-것">안티패턴으로 읽으면 더 잘 보이는 것</h2>
+<p>OpenCode가 피한 선택을 뒤집어 보면 장점이 더 선명해진다.</p>
+<ul><li>UI 표면마다 코어 로직을 복제하지 않았다.</li><li>권한 모델을 단순 boolean tool toggle로 끝내지 않았다.</li><li>파일 수정 도구를 하나의 만능 <code>editFile</code>로 뭉개지 않았다.</li><li>외부 확장을 무조건 plugin 한 종류로 통일하지 않았다.</li></ul>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>좋은 하니스는 기능 수보다 경계 품질로 기억된다.</li><li>대화형 에이전트의 상태는 텍스트 밖으로 많이 나가야 한다.</li><li>유지 기능, 확장 기능, 안전 기능을 메인 채팅 루프에 다 섞지 않는 편이 좋다.</li><li>OpenCode의 진짜 강점은 혁신적 한 방보다, 여러 문제를 적당히 분리한 실전 감각에 있다.</li></ul>
+<p>마지막 장에서는 이 패턴을 따라 자기만의 에이전트 시스템을 설계하는 청사진을 정리한다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>이 장은 요약이 아니라 증류다. Claude 하니스와 OpenCode의 구현은 다르지만 프로덕션급 에이전트 시스템이 마주치는 문제는 반복된다. OpenCode의 가치는 그 문제를 경계와 계약으로 나눈 데 있다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;코어와 표면 분리&quot;]
+  N2[&quot;typed state&quot;]
+  N1 --&gt; N2
+  N3[&quot;permission-aware tool&quot;]
+  N2 --&gt; N3
+  N4[&quot;확장 채널 분리&quot;]
+  N3 --&gt; N4
+  N5[&quot;snapshot/diff&quot;]
+  N4 --&gt; N5
+  N6[&quot;lifecycle tests&quot;]
+  N5 --&gt; N6</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts"><code>packages/opencode/src/agent/agent.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts"><code>packages/opencode/src/session/prompt.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/registry.ts"><code>packages/opencode/src/tool/registry.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/index.ts"><code>packages/opencode/src/permission/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/plugin/index.ts"><code>packages/opencode/src/plugin/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/snapshot/index.ts"><code>packages/opencode/src/snapshot/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/opencode/test"><code>packages/opencode/test</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>core와 surface를 분리해 새 UI를 붙여도 tool/permission/provider 의미론을 다시 검증하지 않는다.</li><li>MessageV2 parts와 snapshot diff는 텍스트 이상의 상태를 제품에 제공한다.</li><li>server plugin, TUI plugin, skill, MCP, workspace adaptor를 분리해 신뢰 경계와 lifecycle을 명확히 한다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>하니스 패턴을 UI 컴포넌트 패턴으로 착각하면 중요한 설계가 사라진다.</li><li>OpenCode 결정을 그대로 복사하면 자기 deployment 조건을 놓칠 수 있다.</li><li>테스트 없는 lifecycle 추상화는 plugin/worktree/snapshot 영역에서 금방 깨진다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>자기 시스템에서도 core, state, tool, permission, provider, extension을 분리할 수 있는가?</li><li>상태를 사람이 읽는 텍스트와 기계가 읽는 구조로 모두 남기는가?</li><li>확장 채널별 실패 영향이 제한되는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/opencode</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/opencode">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode">Edition</a></td></tr><tr><td><code>packages/opencode/src/agent/agent.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/agent/agent.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/permission/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/permission/index.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/plugin/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/plugin/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/plugin/index.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/prompt.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/prompt.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/snapshot/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/snapshot/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/snapshot/index.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/registry.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/registry.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/registry.ts">Edition</a></td></tr><tr><td><code>packages/opencode/test</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/opencode/test">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/test">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="index.html"><span>이전</span><strong>부 도입: 저장소 해설을 설계 청사진으로 바꾸기</strong></a><a class="nav-card" href="ch30.html"><span>다음</span><strong>30장: OpenCode 패턴으로 나만의 에이전트 설계하기</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

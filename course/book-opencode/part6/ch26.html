@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>26장: Worktree와 프로젝트 격리 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part2/index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="../part2/ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="../part2/ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="../part2/ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="../part2/ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="../part2/ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="../part4/index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="../part4/ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="../part4/ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="../part4/ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="../part4/ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="../part4/ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part5/index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="../part5/ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="../part5/ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="../part5/ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="../part5/ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="../part5/ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link active" href="ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제6부: 복잡한 서브시스템을 어디에 가두는가</p>
+    <h1>26장: Worktree와 프로젝트 격리</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 OpenCode가 git worktree를 단순 편의 기능이 아니라, 별도 디렉터리, 별도 브랜치, 별도 부트스트랩, 별도 이벤트를 가진 격리 서비스로 다루는 방식을 해부한다. 대상 독자: 하나의 저장소에서 병렬 작업, 실험 분기, 에이전트 격리를 안전하게 제공하려는 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>에이전트가 실전에 들어가면 격리 문제는 빨리 터진다. 같은 저장소에서 여러 작업을 병렬로 수행하면 변경이 충돌하고, 장기 세션은 기준 브랜치에서 멀어지고, 복구와 정리가 귀찮아진다. 브랜치만으로는 충분하지 않을 때가 많다. 실제 파일 시스템 수준의 격리가 필요하다.</p>
+<p>OpenCode는 이 문제를 <code>git worktree</code>로 해결한다. 중요한 점은 worktree를 셸 스크립트 몇 줄로 감싸지 않는다는 것이다. 이름 생성, 브랜치 충돌 회피, 부트스트랩, start command 실행, remove/reset 정리, ready/failed 이벤트까지 전부 하나의 서비스 안에 둔다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/worktree/index.ts"><code>packages/opencode/src/worktree/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/adapters/worktree.ts"><code>packages/opencode/src/control-plane/adaptors/worktree.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/project/bootstrap.ts"><code>packages/opencode/src/project/bootstrap.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/project/instance-runtime.ts"><code>packages/opencode/src/project/instance.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/project/sql.ts"><code>packages/opencode/src/project/project.sql.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/git/index.ts"><code>packages/opencode/src/git/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/component/dialog-workspace-create.tsx"><code>packages/opencode/src/cli/cmd/tui/component/dialog-workspace-create.tsx</code></a></li></ul>
+<h2 id="격리-흐름">격리 흐름</h2>
+<div class="diagram"><pre class="mermaid">graph TD
+    REQUEST[&quot;create/reset/remove request&quot;]
+    INFO[&quot;makeWorktreeInfo()&lt;br/&gt;name + branch + directory&quot;]
+    SETUP[&quot;git worktree add --no-checkout&quot;]
+    BOOT[&quot;reset --hard + InstanceBootstrap&quot;]
+    EVENT[&quot;worktree.ready / worktree.failed&quot;]
+    START[&quot;project start command + extra start command&quot;]
+    RESET[&quot;fetch default branch + clean + submodule sync&quot;]
+
+    REQUEST --&gt; INFO
+    INFO --&gt; SETUP
+    SETUP --&gt; BOOT
+    BOOT --&gt; EVENT
+    BOOT --&gt; START
+    REQUEST --&gt; RESET</pre></div>
+<p>핵심은 create가 단순 디렉터리 생성이 아니라는 점이다. 새 worktree는 생성되자마자 bootstrap과 이벤트 흐름 안으로 들어온다.</p>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="worktree는-util이-아니라-정식-서비스다">worktree는 util이 아니라 정식 서비스다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/worktree/index.ts"><code>packages/opencode/src/worktree/index.ts</code></a>는 <code>makeWorktreeInfo</code>, <code>createFromInfo</code>, <code>create</code>, <code>remove</code>, <code>reset</code>을 한 서비스로 노출한다. 에러 타입도 <code>NotGitError</code>, <code>CreateFailedError</code>, <code>StartCommandFailedError</code>, <code>RemoveFailedError</code>, <code>ResetFailedError</code>처럼 명시적으로 나뉜다. 버스 이벤트도 <code>worktree.ready</code>, <code>worktree.failed</code>가 따로 있다.</p>
+<p>이 구조는 중요하다. 격리는 내부 유틸이 아니라 UI, control plane, 상위 orchestration이 직접 소비하는 제품 기능이기 때문이다.</p>
+<h3 id="이름-생성의-핵심은-디렉터리보다-브랜치-충돌-회피다">이름 생성의 핵심은 디렉터리보다 브랜치 충돌 회피다</h3>
+<p><code>makeWorktreeInfo(...)</code>와 내부 <code>candidate(...)</code> 흐름은 이 기능의 현실을 잘 보여 준다. 이름은 단순 슬러그가 아니다.</p>
+<ul><li><code>slugify(...)</code>로 기본 이름 정규화</li><li><code>Global.Path.data/worktree/&lt;project.id&gt;/...</code> 아래 디렉터리 후보 생성</li><li><code>refs/heads/opencode/&lt;name&gt;</code> 브랜치 존재 여부 검사</li><li>충돌 시 <code>Slug.create()</code>를 붙여 재시도</li><li>최대 <code>MAX_NAME_ATTEMPTS = 26</code></li></ul>
+<p>이 설계에서 중요한 것은 충돌을 디렉터리 수준에서만 보지 않는다는 점이다. worktree는 결국 브랜치와 디렉터리의 결합물이므로 둘 다 충돌 검사해야 한다. 격리 기능의 실제 품질은 이런 지루한 충돌 회피에서 나온다.</p>
+<h3 id="생성-직후-바로-부트스트랩한다">생성 직후 바로 부트스트랩한다</h3>
+<p><code>setup(info)</code>는 <code>git worktree add --no-checkout -b &lt;branch&gt; &lt;directory&gt;</code>로 새 worktree를 만든 뒤, <code>project.addSandbox(...)</code>로 프로젝트의 sandbox 경로에 등록한다. 하지만 진짜 중요한 부분은 <code>boot(info, startCommand?)</code>다.</p>
+<p>이 함수는 다음을 수행한다.</p>
+<ol><li>새 디렉터리에서 <code>git reset --hard</code>로 worktree를 채운다.</li><li><code>Instance.provide(...)</code>와 <code>BootstrapRuntime.runPromise(InstanceBootstrap)</code>로 새 인스턴스를 부트스트랩한다.</li><li>성공하면 <code>worktree.ready</code> 이벤트를 발행한다.</li><li>실패하면 <code>worktree.failed</code> 이벤트를 발행한다.</li><li>마지막으로 프로젝트 start command와 추가 start command를 실행한다.</li></ol>
+<p>즉 worktree는 &quot;git이 디렉터리를 하나 더 만든 상태&quot;가 아니라, OpenCode가 이해하는 새 작업 공간으로 즉시 승격된다.</p>
+<h3 id="start-command까지-포함하는-이유는-worktree를-제품-기능으로-보기-때문이다">start command까지 포함하는 이유는 worktree를 제품 기능으로 보기 때문이다</h3>
+<p><code>CreateInput</code>에 <code>startCommand</code>가 있고, <code>runStartScripts(...)</code>는 DB의 <code>ProjectTable</code>에서 프로젝트의 기본 <code>commands.start</code>를 읽어 추가 명령과 함께 실행한다. 이건 매우 실전적인 설계다. 새 worktree가 생겼다고 끝나는 프로젝트는 많지 않다. 개발 서버, 초기 설치, 코드 생성기 같은 후속 준비가 붙는다.</p>
+<p>OpenCode는 이를 사용자가 따로 기억할 셸 의식으로 남기지 않고, 격리 기능 안에 포함시킨다.</p>
+<h3 id="remove는-파일-삭제보다-stale-state-정리-에-가깝다">remove는 파일 삭제보다 &quot;stale state 정리&quot;에 가깝다</h3>
+<p><code>remove(...)</code>를 보면 일이 훨씬 많다.</p>
+<ul><li><code>git worktree list --porcelain</code> 파싱</li><li>canonical path 비교</li><li><code>fsmonitor--daemon stop</code></li><li><code>git worktree remove --force</code></li><li>남은 stale entry 재확인</li><li>디렉터리 제거</li><li>관련 브랜치 <code>git branch -D</code></li></ul>
+<p><code>failedRemoves(...)</code>나 <code>cleanDirectory(...)</code>가 따로 있는 이유도 여기에 있다. 격리 기능은 생성보다 정리 UX가 더 어렵다. 사용자가 가장 싫어하는 worktree는 &quot;잘 만들어지지만 깨끗하게 지워지지 않는 worktree&quot;다.</p>
+<h3 id="reset은-단순-hard-reset이-아니라-기준-브랜치-재동기화-절차다">reset은 단순 hard reset이 아니라 기준 브랜치 재동기화 절차다</h3>
+<p><code>reset(...)</code>은 더 인상적이다. 이 함수는 단순히 <code>git reset --hard</code> 한 번으로 끝나지 않는다.</p>
+<ul><li>primary workspace는 reset 금지</li><li>현재 project의 default branch 계산</li><li>필요하면 remote/branch fetch</li><li>대상 worktree를 기준 ref로 hard reset</li><li><code>git clean -ffdx</code>와 <code>failedRemoves(...)</code> 기반 재시도</li><li>submodule update/reset/clean</li><li>최종 <code>git status --porcelain=v1</code> 검증</li><li>이후 start scripts를 다시 실행</li></ul>
+<p>이 흐름은 중요한 교훈을 준다. 격리 기능의 핵심은 &quot;새 공간 만들기&quot;보다 &quot;기준 상태로 안전하게 되돌리기&quot;다. 실전에서는 reset이 create만큼 자주 쓰인다.</p>
+<h3 id="이벤트가-있다는-것은-ui와-제어면이-이-기능을-직접-소비한다는-뜻이다">이벤트가 있다는 것은 UI와 제어면이 이 기능을 직접 소비한다는 뜻이다</h3>
+<p><code>GlobalBus.emit(...)</code>로 <code>worktree.ready</code>와 <code>worktree.failed</code>를 보내는 부분은 이 장의 핵심 단서다. worktree는 내부 상태만 바꾸고 끝나지 않는다. 상위 제품 표면이 이를 보고 진행 상황과 실패를 표현할 수 있어야 한다.</p>
+<p>즉 OpenCode의 worktree는 git wrapper가 아니라 운영 이벤트를 가진 제품 서브시스템이다.</p>
+<h2 id="workspace와-worktree는-같은-말이-아니다">workspace와 worktree는 같은 말이 아니다</h2>
+<p>18장에서 본 workspace와 이 장의 worktree는 자주 함께 등장하지만 다른 문제를 푼다.</p>
+<div class="table-wrap"><table><thead><tr><th>개념</th><th>중심 문제</th></tr></thead><tbody><tr><td>worktree</td><td>git 브랜치와 파일 시스템 격리</td></tr><tr><td>workspace</td><td>세션 연결, 제어면, 복구, 제품 차원의 작업 공간 이동</td></tr></tbody></table></div>
+<p>OpenCode가 둘을 분리한 것은 좋은 선택이다. 로컬 격리 전략과 제품 차원의 작업 공간 전략은 진화 속도가 다르기 때문이다.</p>
+<h2 id="트레이드오프">트레이드오프</h2>
+<ul><li>장점: 병렬 작업을 실제 디렉터리 수준에서 안전하게 분리할 수 있다.</li><li>장점: 생성뿐 아니라 bootstrap, ready/failed 이벤트, start command까지 포함해 제품 기능이 된다.</li><li>장점: reset이 기준 브랜치 재동기화 절차로 설계되어 장기 세션 정리에 강하다.</li><li>단점: git 의존성이 강하며, 비-git 프로젝트에는 그대로 확장되지 않는다.</li><li>단점: remove/reset 코드가 길어지고 OS/filesystem 예외를 많이 떠안게 된다.</li></ul>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>병렬 작업 지원을 진지하게 하려면 브랜치보다 강한 격리 단위가 필요하다.</li><li>격리 기능의 품질은 create보다 remove/reset 경로에서 판가름 난다.</li><li>새 작업 공간은 디렉터리 생성만으로 끝나지 않는다. bootstrap과 이벤트와 후속 start task까지 연결해야 제품 기능이 된다.</li><li>git 특화 capability라면 억지로 일반화하지 말고 전제 조건을 드러내는 편이 낫다.</li></ul>
+<p>다음 장에서는 같은 작업 공간 안에서 더 세밀한 상태 보존을 담당하는 snapshot 계층을 본다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>Claude의 멀티 에이전트 격리 관점은 OpenCode에서 git worktree service로 구체화된다. worktree는 편의 기능이 아니라 병렬 작업과 복구 가능한 상태의 기반이다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;makeWorktreeInfo&quot;]
+  N2[&quot;branch/directory candidate&quot;]
+  N1 --&gt; N2
+  N3[&quot;git worktree add&quot;]
+  N2 --&gt; N3
+  N4[&quot;project.addSandbox&quot;]
+  N3 --&gt; N4
+  N5[&quot;InstanceBootstrap&quot;]
+  N4 --&gt; N5
+  N6[&quot;Ready/Failed event&quot;]
+  N5 --&gt; N6
+  N7[&quot;remove/reset&quot;]
+  N6 --&gt; N7</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/worktree/index.ts"><code>packages/opencode/src/worktree/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/project/project.ts"><code>packages/opencode/src/project/project.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/project/vcs.ts"><code>packages/opencode/src/project/vcs.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/git/index.ts"><code>packages/opencode/src/git/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/app/src/utils/worktree.ts"><code>packages/app/src/utils/worktree.ts</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>candidate는 directory 존재와 refs/heads/opencode branch 충돌을 모두 확인한다.</li><li>새 worktree는 reset --hard 후 InstanceBootstrap을 거쳐 core service가 준비된 runtime이 된다.</li><li>reset은 primary workspace를 보호하고 fetch, hard reset, clean, submodule update, status check를 수행한다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>디렉터리 복사로 격리하면 git branch와 submodule 상태를 통제하기 어렵다.</li><li>생성 후 bootstrap하지 않으면 UI가 준비된 workspace를 구분할 수 없다.</li><li>primary workspace reset을 허용하면 사용자 작업이 날아갈 수 있다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>격리를 branch, directory, runtime bootstrap까지 포함해 설계했는가?</li><li>worktree lifecycle event가 UI에 전달되는가?</li><li>reset/remove가 stale state를 정리하는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>packages/opencode/src/cli/cmd/tui/component/dialog-workspace-create.tsx</code></td><td><code>packages/tui/src/component/dialog-workspace-create.tsx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/component/dialog-workspace-create.tsx">Latest</a></td></tr><tr><td><code>packages/opencode/src/control-plane/adaptors/worktree.ts</code></td><td><code>packages/opencode/src/control-plane/adapters/worktree.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/adapters/worktree.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/project/instance.ts</code></td><td><code>packages/opencode/src/project/instance-runtime.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/project/instance-runtime.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/project/project.sql.ts</code></td><td><code>packages/core/src/project/sql.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/project/sql.ts">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/app/src/utils/worktree.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/app/src/utils/worktree.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/app/src/utils/worktree.ts">Edition</a></td></tr><tr><td><code>packages/core/src/project/sql.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/project/sql.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/project/sql.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/control-plane/adapters/worktree.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/adapters/worktree.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/control-plane/adapters/worktree.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/git/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/git/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/git/index.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/project/bootstrap.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/project/bootstrap.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/project/bootstrap.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/project/instance-runtime.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/project/instance-runtime.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/project/instance-runtime.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/project/project.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/project/project.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/project/project.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/project/vcs.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/project/vcs.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/project/vcs.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/worktree/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/worktree/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/worktree/index.ts">Edition</a></td></tr><tr><td><code>packages/tui/src/component/dialog-workspace-create.tsx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/tui/src/component/dialog-workspace-create.tsx">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/tui/src/component/dialog-workspace-create.tsx">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="ch25.html"><span>이전</span><strong>25장: Patch, Edit, Write의 파일 수정 의미론</strong></a><a class="nav-card" href="ch27.html"><span>다음</span><strong>27장: Snapshot과 재현 가능한 상태</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

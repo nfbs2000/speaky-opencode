@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>11장: 서버 라우트와 로컬 제어면 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part2/index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="../part2/ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="../part2/ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="../part2/ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="../part2/ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="../part2/ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link active" href="ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="../part4/index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="../part4/ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="../part4/ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="../part4/ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="../part4/ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="../part4/ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part5/index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="../part5/ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="../part5/ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="../part5/ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="../part5/ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="../part5/ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="../part6/index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="../part6/ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="../part6/ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="../part6/ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="../part6/ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="../part6/ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</p>
+    <h1>11장: 서버 라우트와 로컬 제어면</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/opencode/src/server/routes"><code>packages/opencode/src/server/routes</code></a>를 OpenCode의 로컬 control plane으로 읽는다. 대상 독자: CLI, 앱, SDK, 데스크톱이 공유하는 제어면을 설계하려는 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>OpenCode는 UI가 코어 함수를 직접 두드리는 구조에 머무르지 않는다. 세션, 파일, provider, permission, MCP, PTY, project, workspace, experimental API가 모두 서버 라우트로 노출된다. 이 선택 덕분에 TUI, 브라우저 앱, 데스크톱, SDK가 모두 같은 런타임 계약을 공유할 수 있다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/session.ts"><code>packages/opencode/src/server/routes/instance/session.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/file.ts"><code>packages/opencode/src/server/routes/instance/file.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/provider.ts"><code>packages/opencode/src/server/routes/instance/provider.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/mcp.ts"><code>packages/opencode/src/server/routes/instance/mcp.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/permission.ts"><code>packages/opencode/src/server/routes/instance/permission.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/global.ts"><code>packages/opencode/src/server/routes/global.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/specs/effect/routes.md"><code>packages/opencode/specs/effect/routes.md</code></a></li></ul>
+<h2 id="라우트-그래프">라우트 그래프</h2>
+<div class="diagram"><pre class="mermaid">graph LR
+    SESSION[&quot;session routes&quot;]
+    FILE[&quot;file routes&quot;]
+    PROVIDER[&quot;provider routes&quot;]
+    MCP[&quot;mcp routes&quot;]
+    PERM[&quot;permission routes&quot;]
+    PTY[&quot;pty routes&quot;]
+    CONTROL[&quot;workspace/control routes&quot;]
+    CLIENTS[&quot;TUI / app / desktop / SDK&quot;]
+
+    CLIENTS --&gt; SESSION
+    CLIENTS --&gt; FILE
+    CLIENTS --&gt; PROVIDER
+    CLIENTS --&gt; MCP
+    CLIENTS --&gt; PERM
+    CLIENTS --&gt; PTY
+    CLIENTS --&gt; CONTROL</pre></div>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="session-ts가-가장-넓은-표면이다"><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session.ts"><code>session.ts</code></a>가 가장 넓은 표면이다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/session.ts"><code>server/routes/instance/session.ts</code></a>를 보면 OpenCode 사용자의 핵심 동작 대부분이 여기로 수렴한다.</p>
+<ul><li>세션 목록/조회/자식 조회</li><li>todo 조회</li><li>세션 생성/삭제/업데이트</li><li>init/fork/abort</li><li>share/unshare</li><li>summarize/diff</li><li>message 조회/삭제/수정</li><li>prompt / prompt_async / command / shell</li><li>revert</li></ul>
+<p>즉 session route 파일 하나가 사실상 OpenCode product API의 중심이다.</p>
+<h3 id="라우트는-단순-crud가-아니라-운영-액션까지-노출한다">라우트는 단순 CRUD가 아니라 운영 액션까지 노출한다</h3>
+<p>이 파일에서 흥미로운 점은 단순 <code>create/get/delete</code>만 있는 것이 아니라, <code>fork</code>, <code>abort</code>, <code>summarize</code>, <code>share</code>, <code>revert</code>, <code>shell</code>, <code>command</code> 같은 운영 액션이 함께 있다는 것이다. 이 말은 곧 세션이 단순 데이터 row가 아니라, 실행 가능한 작업 단위라는 뜻이다.</p>
+<h3 id="helper-경계가-effect-서비스-스타일을-통일한다">helper 경계가 Effect 서비스 스타일을 통일한다</h3>
+<p><code>jsonRequest(...)</code>, <code>runRequest(...)</code> 같은 헬퍼는 라우트가 서비스와 만나는 표준 경계를 제공한다. <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/specs/effect/routes.md"><code>specs/effect/routes.md</code></a>가 강조하듯, 무거운 핸들러는 한 번의 <code>AppRuntime.runPromise(Effect.gen(...))</code>로 묶이고, 서비스는 context에서 yield하는 방향으로 정리되고 있다. 즉 라우트 정리는 단순 Promise 제거가 아니라 서비스 경계 일관성을 맞추는 작업이다.</p>
+<h3 id="세션-라우트가-여러-하위-서비스를-조합한다">세션 라우트가 여러 하위 서비스를 조합한다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session.ts"><code>session.ts</code></a> 상단 import만 봐도 이 파일이 단순 resource controller가 아님을 알 수 있다.</p>
+<ul><li><code>Session</code></li><li><code>MessageV2</code></li><li><code>SessionPrompt</code></li><li><code>SessionRunState</code></li><li><code>SessionCompaction</code></li><li><code>SessionRevert</code></li><li><code>SessionStatus</code></li><li><code>SessionSummary</code></li><li><code>Todo</code></li></ul>
+<p>즉 로컬 제어면은 데이터를 바로 읽는 thin layer가 아니라, 여러 코어 서비스를 orchestration하는 표면이다.</p>
+<h3 id="prompt와-prompt_async는-제품적-차이를-가진다">prompt와 prompt_async는 제품적 차이를 가진다</h3>
+<p>동기 <code>prompt</code>와 비동기 <code>prompt_async</code>를 따로 둔 것은 좋은 제품 감각이다. 어떤 소비자는 스트리밍 응답을 바로 받고 싶고, 어떤 소비자는 작업만 시작하고 나중에 상태를 보러 오고 싶다. OpenCode는 이 둘을 제어면에서 명시적으로 분리한다.</p>
+<h3 id="share-summarize-revert가-같은-api-표면에-있다">share, summarize, revert가 같은 API 표면에 있다</h3>
+<p>이 세 기능이 같은 session route 파일 안에 있다는 사실도 중요하다. 이는 OpenCode가 세션을 단순 채팅 단위가 아니라, 공유되고 요약되고 되돌릴 수 있는 작업 단위로 본다는 뜻이다. 즉 control plane 설계가 storage와 recovery 철학을 그대로 드러낸다.</p>
+<h2 id="로컬-제어면의-가치">로컬 제어면의 가치</h2>
+<p>로컬 제어면이 있으면 좋은 점은 단순하다.</p>
+<ul><li>TUI가 코어 함수를 직접 알 필요가 없다.</li><li>앱과 데스크톱이 같은 계약을 재사용할 수 있다.</li><li>SDK가 안정적인 자동화 표면을 얻는다.</li><li>향후 표면이 늘어나도 코어 로직을 다시 복제하지 않아도 된다.</li></ul>
+<p>반대로 이 계층이 없으면 UI가 늘어날수록 코어 함수 호출 경로가 표면별로 찢어진다.</p>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>여러 UI를 가질 생각이 있다면 로컬 control plane을 초기에 분리하는 편이 좋다.</li><li>세션은 CRUD 리소스가 아니라 운영 액션을 함께 가진 작업 단위로 보는 편이 맞다.</li><li>라우트 계층은 REST 미학보다 서비스 경계 일관성을 유지하는 도구로 봐야 한다.</li></ul>
+<p>다음 장에서는 웹, 앱, 데스크톱이 이런 코어와 제어면을 어떻게 서로 다르게 소비하는지 본다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>OpenCode server는 단순 REST API가 아니라 로컬 런타임 제어면이다. Claude 책의 remote bridge 관점을 가져오면 route graph와 workspace middleware가 더 잘 보인다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;Hono app&quot;]
+  N2[&quot;global middleware&quot;]
+  N1 --&gt; N2
+  N3[&quot;control-plane 또는 workspace instance 분기&quot;]
+  N2 --&gt; N3
+  N4[&quot;WorkspaceRouterMiddleware&quot;]
+  N3 --&gt; N4
+  N5[&quot;InstanceRoutes&quot;]
+  N4 --&gt; N5
+  N6[&quot;event/trace/fence&quot;]
+  N5 --&gt; N6</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/server.ts"><code>packages/opencode/src/server/server.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/server.ts"><code>packages/opencode/src/server/routes/instance/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/global.ts"><code>packages/opencode/src/server/routes/global.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/workspace.ts"><code>packages/opencode/src/server/workspace.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/shared/fence.ts"><code>packages/opencode/src/server/fence.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/event.ts"><code>packages/opencode/src/server/routes/instance/trace.ts</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>OPENCODE_WORKSPACE_ID 존재 여부에 따라 single instance mode와 control-plane mode가 갈린다.</li><li>Auth, Logger, Compression, CORS, Error middleware가 route보다 넓은 정책 표면을 만든다.</li><li>OpenAPI 생성은 SDK의 빌드 입력이므로 route metadata는 자동화 계약이다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>server를 localhost API로만 보면 workspace routing과 instance lifecycle을 놓친다.</li><li>route마다 auth/sync 로직을 반복하면 클라이언트별 차이가 생긴다.</li><li>OpenAPI metadata가 깨지면 SDK가 실제 server와 어긋난다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>control plane과 instance data plane을 분리했는가?</li><li>instance context가 필요한 route를 middleware로 강제하는가?</li><li>API route 변경이 SDK 생성과 함께 검증되는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>packages/opencode/src/server/fence.ts</code></td><td><code>packages/opencode/src/server/shared/fence.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/shared/fence.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/server/routes/global.ts</code></td><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/global.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/global.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/file.ts</code></td><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/file.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/file.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/index.ts</code></td><td><code>packages/opencode/src/server/routes/instance/httpapi/server.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/server.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/mcp.ts</code></td><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/mcp.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/mcp.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/permission.ts</code></td><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/permission.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/permission.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/provider.ts</code></td><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/provider.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/provider.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/session.ts</code></td><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/session.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/session.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/trace.ts</code></td><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/event.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/event.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/server/workspace.ts</code></td><td><code>packages/opencode/src/control-plane/workspace.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/workspace.ts">Latest</a></td></tr><tr><td><code>server/routes/instance/session.ts</code></td><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/session.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/session.ts">Latest</a></td></tr><tr><td><code>session.ts</code></td><td><code>packages/core/src/session.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session.ts">Latest</a></td></tr><tr><td><code>specs/effect/routes.md</code></td><td><code>packages/opencode/specs/effect/routes.md</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/specs/effect/routes.md">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/core/src/session.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/session.ts">Edition</a></td></tr><tr><td><code>packages/opencode/specs/effect/routes.md</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/specs/effect/routes.md">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/specs/effect/routes.md">Edition</a></td></tr><tr><td><code>packages/opencode/src/control-plane/workspace.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/control-plane/workspace.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/control-plane/workspace.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/server/routes</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/opencode/src/server/routes">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/server/routes">Edition</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/event.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/event.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/server/routes/instance/httpapi/groups/event.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/file.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/file.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/server/routes/instance/httpapi/groups/file.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/global.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/global.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/server/routes/instance/httpapi/groups/global.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/mcp.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/mcp.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/server/routes/instance/httpapi/groups/mcp.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/permission.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/permission.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/server/routes/instance/httpapi/groups/permission.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/provider.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/provider.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/server/routes/instance/httpapi/groups/provider.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/session.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/session.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/server/routes/instance/httpapi/groups/session.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/httpapi/server.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/server.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/server/routes/instance/httpapi/server.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/server/server.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/server.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/server/server.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/server/shared/fence.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/shared/fence.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/server/shared/fence.ts">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="ch10.html"><span>이전</span><strong>10장: TUI는 어떻게 앱처럼 동작하는가</strong></a><a class="nav-card" href="ch12.html"><span>다음</span><strong>12장: 웹, 앱, 데스크톱의 공유 코어</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

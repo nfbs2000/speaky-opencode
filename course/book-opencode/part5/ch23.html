@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>23장: 공유와 동기화 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part2/index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="../part2/ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="../part2/ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="../part2/ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="../part2/ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="../part2/ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="../part4/index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="../part4/ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="../part4/ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="../part4/ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="../part4/ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="../part4/ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link active" href="ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="../part6/index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="../part6/ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="../part6/ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="../part6/ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="../part6/ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="../part6/ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</p>
+    <h1>23장: 공유와 동기화</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 OpenCode가 세션 공유 링크를 만들고, 이후 세션/메시지/파츠/diff/model 변화를 어떻게 외부로 동기화하는지 분석한다. 대상 독자: 대화형 작업 결과를 외부 뷰어나 협업 표면으로 안전하게 복제하고 싶은 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>대화를 공유하는 기능은 단순히 URL 하나를 만드는 문제가 아니다. 공유 이후에도 세션 정보, 새 메시지, 파트 업데이트, diff 요약, 모델 정보가 계속 변할 수 있다. 즉 공유는 export가 아니라 live sync 문제에 더 가깝다. OpenCode의 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/share/share-next.ts"><code>share-next.ts</code></a>는 이 사실을 꽤 정직하게 드러낸다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/share/session.ts"><code>packages/opencode/src/share/session.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/share/share-next.ts"><code>packages/opencode/src/share/share-next.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session/sql.ts"><code>packages/opencode/src/share/share.sql.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/message-v2.ts"><code>packages/opencode/src/session/message-v2.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/summary.ts"><code>packages/opencode/src/session/summary.ts</code></a></li></ul>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="share와-unshare는-sessionshare-서비스가-감싼다">share와 unshare는 SessionShare 서비스가 감싼다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/share/session.ts"><code>share/session.ts</code></a>는 상위 표면에 보이는 공유 인터페이스를 정리한다.</p>
+<ul><li><code>create(...)</code></li><li><code>share(sessionID)</code></li><li><code>unshare(sessionID)</code></li></ul>
+<p>여기서 중요한 점은 루트 세션 생성 시 자동 공유까지 이 서비스가 맡는다는 점이다. 즉 공유는 세션 서비스 바깥의 부가 유틸이 아니라, 세션 생애주기 옆에 붙은 정식 운영 계층이다.</p>
+<h3 id="실제-sync-엔진은-share-next-ts에-있다">실제 sync 엔진은 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/share/share-next.ts"><code>share-next.ts</code></a>에 있다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/share/share-next.ts"><code>share-next.ts</code></a>를 보면 공유는 아래 데이터 타입들을 개별 항목으로 다룬다.</p>
+<ul><li><code>session</code></li><li><code>message</code></li><li><code>part</code></li><li><code>session_diff</code></li><li><code>model</code></li></ul>
+<p>이 설계가 중요한 이유는 공유가 &quot;렌더된 HTML 한 장&quot;이 아니라, 세션을 구성하는 여러 종류의 상태를 스트리밍 가능한 데이터 조각으로 본다는 뜻이기 때문이다.</p>
+<h3 id="변경은-queue에-모였다가-flush된다">변경은 queue에 모였다가 flush된다</h3>
+<p><code>State</code> 안에는 <code>queue: Map&lt;SessionID, Map&lt;string, Data&gt;&gt;</code>가 있다. <code>sync(sessionID, data)</code>는 공유된 세션에 변화가 생길 때 즉시 전송하지 않고, 키별로 dedupe된 큐에 모아 둔 뒤 <code>flush(sessionID)</code>를 지연 실행한다. 이건 운영적으로 매우 현실적인 선택이다. 메시지/파츠 이벤트를 그대로 매번 밀어 보내면 네트워크와 원격 뷰가 너무 시끄러워진다.</p>
+<h3 id="bus-구독이-공유-동기화의-중심이다">bus 구독이 공유 동기화의 중심이다</h3>
+<p>상태 생성 시 <code>watch(...)</code>를 통해 아래 이벤트들을 구독한다.</p>
+<ul><li><code>Session.Event.Updated</code></li><li><code>MessageV2.Event.Updated</code></li><li><code>MessageV2.Event.PartUpdated</code></li><li><code>Session.Event.Diff</code></li><li><code>Session.Event.Deleted</code></li></ul>
+<p>즉 공유 시스템은 세션을 직접 폴링하지 않는다. 내부 event bus를 subscribe해서 외부 동기화로 번역한다. 이 점은 22장과 강하게 연결된다.</p>
+<h3 id="모델-정보도-공유한다">모델 정보도 공유한다</h3>
+<p>사용자 메시지가 업데이트될 때, 관련 model 정보를 provider에서 가져와 함께 sync한다. 이 설계는 보기보다 중요하다. 공유 뷰어가 &quot;어떤 모델이 이 메시지를 처리했는가&quot; 같은 문맥까지 재현할 수 있게 해 주기 때문이다.</p>
+<h3 id="share-row는-별도-테이블에-남는다">share row는 별도 테이블에 남는다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session/sql.ts"><code>share.sql.ts</code></a>의 <code>SessionShareTable</code>은 <code>session_id</code>, <code>id</code>, <code>secret</code>, <code>url</code>을 별도 테이블로 유지한다. 세션 본문에 공유 정보를 모두 박아 넣지 않고, 공유 자체를 별도 정체성으로 본다는 뜻이다. 공개 URL과 비밀값이 이런 식으로 분리되는 편이 운영상 더 명확하다.</p>
+<h2 id="auto-share의-의미">auto share의 의미</h2>
+<p><code>SessionShare.create(...)</code>는 루트 세션 생성 뒤 <code>conf.share === &quot;auto&quot;</code> 혹은 플래그가 켜져 있으면 공유를 백그라운드로 시작한다. 이 설계는 공유를 사용자가 수동으로 누를 기능이 아니라, 환경에 따라 기본 동작으로 승격할 수 있게 한다.</p>
+<p>즉 OpenCode는 공유를 &quot;있으면 좋은 export&quot;가 아니라 협업 표면으로 볼 준비가 되어 있다.</p>
+<h2 id="트레이드오프">트레이드오프</h2>
+<ul><li>장점: 세션 공유가 정적 내보내기보다 살아 있는 뷰에 가깝다.</li><li>단점: 이벤트 구독, 큐, 원격 API, 인증까지 관리해야 해 구현이 두꺼워진다.</li><li>장점: message/part/diff/model을 분리해 동기화하므로 유연하다.</li><li>단점: 공유 뷰도 내부 데이터 모델 변화를 따라가야 한다.</li></ul>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>공유는 대개 export가 아니라 sync 문제다.</li><li>내부 이벤트 버스를 외부 동기화 엔진의 입력으로 쓰면 구조가 깔끔해진다.</li><li>공유 데이터를 큰 blob 하나로 보내기보다, 세션을 구성하는 타입별 조각으로 나누는 편이 확장에 강하다.</li></ul>
+<p>다음 부에서는 LSP, patch, worktree, snapshot, provider transform처럼 OpenCode의 고급 서브시스템을 본다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>OpenCode의 기본 진실은 로컬 세션이다. Claude 책의 공유/remote 관점을 가져오면 공유는 원천이 아니라 로컬 상태의 외부 투사라는 점이 중요하다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;local session state&quot;]
+  N2[&quot;share policy&quot;]
+  N1 --&gt; N2
+  N3[&quot;ShareNext&quot;]
+  N2 --&gt; N3
+  N4[&quot;sync route&quot;]
+  N3 --&gt; N4
+  N5[&quot;event replay&quot;]
+  N4 --&gt; N5
+  N6[&quot;shared URL&quot;]
+  N5 --&gt; N6</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/share/session.ts"><code>packages/opencode/src/share/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/share/session.ts"><code>packages/opencode/src/share/session.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/share/share-next.ts"><code>packages/opencode/src/share/share-next.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session/sql.ts"><code>packages/opencode/src/share/share.sql.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/sync/README.md"><code>packages/opencode/src/sync/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/sync.ts"><code>packages/opencode/src/server/routes/instance/sync.ts</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>config의 share는 manual, auto, disabled 정책을 가진다.</li><li>공유 품질은 transcript뿐 아니라 SessionSummary diff와 파일 변경 요약에 달려 있다.</li><li>sync route는 클라이언트 재접속 후 event replay와 현재 상태 동기화를 담당한다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>자동 공유 기본값을 잘못 두면 로컬 작업물이 의도치 않게 외부화된다.</li><li>sync replay가 없으면 중간 tool 상태가 사라진다.</li><li>diff 없이 공유하면 코딩 세션의 핵심 결과가 설명되지 않는다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>공유 정책이 config schema에 명시되어 있는가?</li><li>공유 payload에 diff/summary가 들어가는가?</li><li>sync는 stream과 replay를 모두 고려하는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>packages/opencode/src/server/routes/instance/sync.ts</code></td><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/sync.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/sync.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/share/index.ts</code></td><td><code>packages/opencode/src/share/session.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/share/session.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/share/share.sql.ts</code></td><td><code>packages/core/src/session/sql.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session/sql.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/sync/index.ts</code></td><td><code>packages/opencode/src/sync/README.md</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/sync/README.md">Latest</a></td></tr><tr><td><code>share-next.ts</code></td><td><code>packages/opencode/src/share/share-next.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/share/share-next.ts">Latest</a></td></tr><tr><td><code>share.sql.ts</code></td><td><code>packages/core/src/session/sql.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session/sql.ts">Latest</a></td></tr><tr><td><code>share/session.ts</code></td><td><code>packages/opencode/src/share/session.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/share/session.ts">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/core/src/session/sql.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session/sql.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/session/sql.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/sync.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/sync.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/server/routes/instance/httpapi/groups/sync.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/message-v2.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/message-v2.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/message-v2.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/summary.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/summary.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/summary.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/share/session.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/share/session.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/share/session.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/share/share-next.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/share/share-next.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/share/share-next.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/sync/README.md</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/sync/README.md">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/sync/README.md">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="ch22.html"><span>이전</span><strong>22장: 이벤트, trace, 운영 가시성</strong></a><a class="nav-card" href="../part6/index.html"><span>다음</span><strong>부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>
