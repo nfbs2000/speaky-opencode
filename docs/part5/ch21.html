@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>21장: 저장소, 세션 지속성, 복구 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part2/index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="../part2/ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="../part2/ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="../part2/ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="../part2/ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="../part2/ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="../part4/index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="../part4/ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="../part4/ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="../part4/ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="../part4/ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="../part4/ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link active" href="ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="../part6/index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="../part6/ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="../part6/ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="../part6/ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="../part6/ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="../part6/ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</p>
+    <h1>21장: 저장소, 세션 지속성, 복구</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 OpenCode의 세션과 관련 상태가 어떤 저장층에 남고, 어떻게 되돌리기와 복구 흐름으로 이어지는지 설명한다. 대상 독자: 긴 대화형 작업을 디스크에 안전하게 남기고 되돌릴 수 있어야 하는 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>에이전트가 진짜 생산 도구가 되려면 두 가지가 필요하다. 대화를 저장해야 하고, 잘못된 변경을 되돌릴 수 있어야 한다. 이 둘 중 하나라도 빠지면 시스템은 데모로는 그럴듯해도 실전에서는 오래 못 버틴다. OpenCode는 DB, 파일 저장층, snapshot, revert 서비스, run-state를 조합해 이 문제를 푼다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/database/database.ts"><code>packages/opencode/src/storage/db.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/storage/storage.ts"><code>packages/opencode/src/storage/storage.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/storage/schema.ts"><code>packages/opencode/src/storage/schema.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/session.ts"><code>packages/opencode/src/session/session.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/revert.ts"><code>packages/opencode/src/session/revert.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/run-state.ts"><code>packages/opencode/src/session/run-state.ts</code></a></li></ul>
+<h2 id="핵심-코드">핵심 코드</h2>
+<p>세션 row가 단순 chat title만 갖고 있지 않다는 점을 먼저 봐야 한다. summary, share, revert, permission이 같은 세션 정체성 안에 들어간다.</p>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/session/session.sql.ts
+export const SessionTable = sqliteTable(
+  &quot;session&quot;,
+  {
+    id: text().$type&lt;SessionID&gt;().primaryKey(),
+    project_id: text()
+      .$type&lt;ProjectID&gt;()
+      .notNull()
+      .references(() =&gt; ProjectTable.id, { onDelete: &quot;cascade&quot; }),
+    workspace_id: text().$type&lt;WorkspaceID&gt;(),
+    parent_id: text().$type&lt;SessionID&gt;(),
+    slug: text().notNull(),
+    directory: text().notNull(),
+    title: text().notNull(),
+    version: text().notNull(),
+    share_url: text(),
+    summary_additions: integer(),
+    summary_deletions: integer(),
+    summary_files: integer(),
+    summary_diffs: text({ mode: &quot;json&quot; }).$type&lt;Snapshot.FileDiff[]&gt;(),
+    revert: text({ mode: &quot;json&quot; }).$type&lt;{ messageID: MessageID; partID?: PartID; snapshot?: string; diff?: string }&gt;(),
+    permission: text({ mode: &quot;json&quot; }).$type&lt;Permission.Ruleset&gt;(),
+    ...Timestamps,
+    time_compacting: integer(),
+    time_archived: integer(),
+  },
+  (table) =&gt; [
+    index(&quot;session_project_idx&quot;).on(table.project_id),
+    index(&quot;session_workspace_idx&quot;).on(table.workspace_id),
+    index(&quot;session_parent_idx&quot;).on(table.parent_id),
+  ],
+)</code></pre>
+<p>메시지와 part는 JSON data를 가지지만 id, session, message 관계는 테이블로 고정한다. 이게 &quot;구조화된 대화 타임라인&quot;의 저장 형태다.</p>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/session/session.sql.ts
+export const MessageTable = sqliteTable(
+  &quot;message&quot;,
+  {
+    id: text().$type&lt;MessageID&gt;().primaryKey(),
+    session_id: text()
+      .$type&lt;SessionID&gt;()
+      .notNull()
+      .references(() =&gt; SessionTable.id, { onDelete: &quot;cascade&quot; }),
+    ...Timestamps,
+    data: text({ mode: &quot;json&quot; }).notNull().$type&lt;InfoData&gt;(),
+  },
+  (table) =&gt; [index(&quot;message_session_time_created_id_idx&quot;).on(table.session_id, table.time_created, table.id)],
+)
+
+export const PartTable = sqliteTable(
+  &quot;part&quot;,
+  {
+    id: text().$type&lt;PartID&gt;().primaryKey(),
+    message_id: text()
+      .$type&lt;MessageID&gt;()
+      .notNull()
+      .references(() =&gt; MessageTable.id, { onDelete: &quot;cascade&quot; }),
+    session_id: text().$type&lt;SessionID&gt;().notNull(),
+    ...Timestamps,
+    data: text({ mode: &quot;json&quot; }).notNull().$type&lt;PartData&gt;(),
+  },
+  (table) =&gt; [
+    index(&quot;part_message_id_id_idx&quot;).on(table.message_id, table.id),
+    index(&quot;part_session_idx&quot;).on(table.session_id),
+  ],
+)</code></pre>
+<p>되돌리기는 파일만 되돌리지 않는다. busy 상태를 확인하고, timeline에서 되돌릴 지점을 찾고, snapshot patch를 되감고, diff와 session revert 상태를 다시 저장한다.</p>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/session/revert.ts
+const revert = Effect.fn(&quot;SessionRevert.revert&quot;)(function* (input: RevertInput) {
+  yield* state.assertNotBusy(input.sessionID)
+  const all = yield* sessions.messages({ sessionID: input.sessionID })
+  let lastUser: MessageV2.User | undefined
+  const session = yield* sessions.get(input.sessionID)
+
+  let rev: Session.Info[&quot;revert&quot;]
+  const patches: Snapshot.Patch[] = []
+  for (const msg of all) {
+    if (msg.info.role === &quot;user&quot;) lastUser = msg.info
+    const remaining = []
+    for (const part of msg.parts) {
+      if (rev) {
+        if (part.type === &quot;patch&quot;) patches.push(part)
+        continue
+      }
+
+      if (!rev) {
+        if ((msg.info.id === input.messageID &amp;&amp; !input.partID) || part.id === input.partID) {
+          const partID = remaining.some((item) =&gt; [&quot;text&quot;, &quot;tool&quot;].includes(item.type)) ? input.partID : undefined
+          rev = {
+            messageID: !partID &amp;&amp; lastUser ? lastUser.id : msg.info.id,
+            partID,
+          }
+        }
+        remaining.push(part)
+      }
+    }
+  }
+
+  if (!rev) return session
+
+  rev.snapshot = session.revert?.snapshot ?? (yield* snap.track())
+  if (session.revert?.snapshot) yield* snap.restore(session.revert.snapshot)
+  yield* snap.revert(patches)
+  if (rev.snapshot) rev.diff = yield* snap.diff(rev.snapshot as string)
+  const range = all.filter((msg) =&gt; msg.info.id &gt;= rev!.messageID)
+  const diffs = yield* summary.computeDiff({ messages: range })
+  yield* storage.write([&quot;session_diff&quot;, input.sessionID], diffs).pipe(Effect.ignore)
+  yield* bus.publish(Session.Event.Diff, { sessionID: input.sessionID, diff: diffs })
+  yield* sessions.setRevert({
+    sessionID: input.sessionID,
+    revert: rev,
+    summary: {
+      additions: diffs.reduce((sum, x) =&gt; sum + x.additions, 0),
+      deletions: diffs.reduce((sum, x) =&gt; sum + x.deletions, 0),
+      files: diffs.length,
+    },
+  })
+  return yield* sessions.get(input.sessionID)
+})</code></pre>
+<h2 id="저장층을-두-겹으로-본다">저장층을 두 겹으로 본다</h2>
+<p>OpenCode를 읽다 보면 저장이 한 군데에만 있지 않다는 점이 보인다.</p>
+<ol><li><strong>SQLite/Drizzle 계층</strong>: 계정, 프로젝트, 세션, 메시지, 파트, permission, workspace, share 같은 정형 상태</li><li><strong>파일 기반 storage 계층</strong>: session diff 같은 JSON 자산, 마이그레이션성 데이터, 보조 저장물</li></ol>
+<p>이 이중 구조는 복잡해 보이지만 현실적이다. 모든 것을 관계형 구조로 밀어 넣지도 않고, 모든 것을 JSON 폴더로 흩뿌리지도 않는다.</p>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="db는-장기-정체성을-맡는다">DB는 장기 정체성을 맡는다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/database/database.ts"><code>storage/db.ts</code></a>를 보면 데이터베이스는 WAL 모드, foreign key, migration journal, 채널별 DB 경로 같은 운영 옵션을 갖는다. 이 파일이 중요한 이유는 단순 연결 코드가 아니라, 제품 전체의 장기 상태를 품는 저장 커널이기 때문이다.</p>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/schema.ts"><code>schema.ts</code></a>가 <code>SessionTable</code>, <code>MessageTable</code>, <code>PartTable</code>, <code>TodoTable</code>, <code>PermissionTable</code>, <code>SessionShareTable</code>, <code>WorkspaceTable</code>을 다시 export하는 것도 같은 맥락이다. 세션과 주변 상태가 이미 일급 데이터 모델로 승격되어 있다.</p>
+<h3 id="파일-storage는-유연한-보조-상태를-맡는다">파일 storage는 유연한 보조 상태를 맡는다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/storage/storage.ts"><code>storage/storage.ts</code></a>는 JSON 파일 기반 저장 서비스를 제공한다. 여기에는 migration 코드도 들어 있고, 키 배열을 파일 경로로 바꾸는 단순하지만 유연한 추상화가 있다. session diff나 일부 보조 메타데이터를 이 층으로 넘기면 DB schema를 지나치게 자주 흔들지 않아도 된다.</p>
+<h3 id="run-state가-지금-복구-가능한가-를-통제한다">run-state가 &quot;지금 복구 가능한가&quot;를 통제한다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/run-state.ts"><code>session/run-state.ts</code></a>는 busy 세션을 추적하고 <code>assertNotBusy</code>, <code>cancel</code>, <code>ensureRunning</code>, <code>startShell</code>을 제공한다. 복구나 삭제 같은 파괴적 작업 전에 이 계층을 확인하는 이유는 명확하다. 실행 중인 세션과 저장 상태를 동시에 건드리면 무결성이 쉽게 깨지기 때문이다.</p>
+<h3 id="revert는-snapshot과-session-timeline을-함께-다룬다">revert는 snapshot과 session timeline을 함께 다룬다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/revert.ts"><code>session/revert.ts</code></a>는 되돌리기를 단순 git reset 같은 작업으로 구현하지 않는다. 메시지와 파트의 timeline을 훑어 되돌릴 지점을 찾고, snapshot을 복원하고, patch 목록을 되돌리고, session diff를 다시 계산한 뒤, session의 <code>revert</code> 상태를 갱신한다.</p>
+<p>즉 revert는 파일 시스템 복구와 대화 기록 복구를 함께 다루는 서비스다.</p>
+<h3 id="cleanup은-되돌림-이후의-대화-정리까지-포함한다">cleanup은 되돌림 이후의 대화 정리까지 포함한다</h3>
+<p><code>cleanup(session)</code>은 이미 revert된 세션에서 뒤쪽 메시지나 파트를 제거하고, 관련 sync event도 함께 발행한다. 이 점이 중요하다. 복구는 파일만 원래대로 돌리는 것으로 끝나지 않는다. 대화 타임라인도 그 복구 사실과 일관되게 다시 정리돼야 한다.</p>
+<h2 id="persistence가-왜-어려운가">persistence가 왜 어려운가</h2>
+<p>세션 저장은 문자열 로그 저장보다 훨씬 어렵다. OpenCode는 아래 상태를 함께 유지해야 한다.</p>
+<ul><li>메시지와 파트</li><li>todo와 status</li><li>permission 승인 상태</li><li>diff 요약</li><li>share 링크</li><li>workspace 연결 상태</li><li>revert/snapshot 기록</li></ul>
+<p>즉 &quot;대화 저장&quot;이 아니라 &quot;작업 상태 저장&quot;을 하고 있기 때문에 저장층이 두꺼워질 수밖에 없다.</p>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>에이전트 시스템의 persistence는 chat history 저장보다 훨씬 넓은 문제다.</li><li>장기 정체성과 보조 산출물을 같은 저장 방식으로 강제할 필요는 없다.</li><li>복구는 파일 복원만이 아니라 대화 timeline 정리까지 포함해야 한다.</li><li>busy 상태를 별도 서비스로 두면 파괴적 조작 전 검증이 쉬워진다.</li></ul>
+<p>다음 장에서는 이런 상태 변화가 시스템 안에서 어떻게 이벤트와 운영 가시성으로 흘러가는지 본다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>Claude의 transcript persistence 관점은 OpenCode에서 SQLite와 snapshot gitdir의 결합으로 나타난다. 대화 복구와 파일 복구는 연결되지만 같은 저장 계층은 아니다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;JSON migration&quot;]
+  N2[&quot;SQLite session/part rows&quot;]
+  N1 --&gt; N2
+  N3[&quot;Storage key-value data&quot;]
+  N2 --&gt; N3
+  N4[&quot;Snapshot gitdir&quot;]
+  N3 --&gt; N4
+  N5[&quot;revert/restore&quot;]
+  N4 --&gt; N5</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/database/database.ts"><code>packages/opencode/src/storage/db.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/database/schema.sql.ts"><code>packages/opencode/src/storage/schema.sql.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session/sql.ts"><code>packages/opencode/src/session/session.sql.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/data-migration.sql.ts"><code>packages/opencode/src/storage/json-migration.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/revert.ts"><code>packages/opencode/src/session/revert.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/snapshot/index.ts"><code>packages/opencode/src/snapshot/index.ts</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>세션 row에는 summary, share, revert, permission이 같이 들어간다.</li><li>message/part row는 streaming 상태와 tool result를 복구 가능한 형태로 보존한다.</li><li>snapshot은 파일 상태를 별도 gitdir에 저장하고 session revert 정보와 연결된다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>채팅 로그만 저장하면 파일 변경을 복구할 수 없다.</li><li>파일 snapshot만 저장하면 어떤 사용자 요청의 결과인지 설명할 수 없다.</li><li>migration UX를 숨기면 오래된 데이터가 깨질 때 원인을 찾기 어렵다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>대화 상태와 파일 상태를 분리 저장하되 연결 id를 남겼는가?</li><li>migration progress와 실패를 설명하는가?</li><li>revert 기능이 schema에 반영되어 있는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>packages/opencode/src/session/session.sql.ts</code></td><td><code>packages/core/src/session/sql.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session/sql.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/storage/db.ts</code></td><td><code>packages/core/src/database/database.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/database/database.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/storage/json-migration.ts</code></td><td><code>packages/core/src/data-migration.sql.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/data-migration.sql.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/storage/schema.sql.ts</code></td><td><code>packages/core/src/database/schema.sql.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/database/schema.sql.ts">Latest</a></td></tr><tr><td><code>schema.ts</code></td><td><code>packages/core/src/schema.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/schema.ts">Latest</a></td></tr><tr><td><code>session/revert.ts</code></td><td><code>packages/opencode/src/session/revert.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/revert.ts">Latest</a></td></tr><tr><td><code>session/run-state.ts</code></td><td><code>packages/opencode/src/session/run-state.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/run-state.ts">Latest</a></td></tr><tr><td><code>storage/db.ts</code></td><td><code>packages/core/src/database/database.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/database/database.ts">Latest</a></td></tr><tr><td><code>storage/storage.ts</code></td><td><code>packages/opencode/src/storage/storage.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/storage/storage.ts">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/core/src/data-migration.sql.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/data-migration.sql.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/data-migration.sql.ts">Edition</a></td></tr><tr><td><code>packages/core/src/database/database.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/database/database.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/database/database.ts">Edition</a></td></tr><tr><td><code>packages/core/src/database/schema.sql.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/database/schema.sql.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/database/schema.sql.ts">Edition</a></td></tr><tr><td><code>packages/core/src/schema.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/schema.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/schema.ts">Edition</a></td></tr><tr><td><code>packages/core/src/session/sql.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/session/sql.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/session/sql.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/revert.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/revert.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/revert.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/run-state.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/run-state.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/run-state.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/session.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/session.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/session.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/snapshot/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/snapshot/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/snapshot/index.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/storage/schema.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/storage/schema.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/storage/schema.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/storage/storage.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/storage/storage.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/storage/storage.ts">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="ch20.html"><span>이전</span><strong>20장: 세분화 규칙, 외부 디렉터리, 브레이크</strong></a><a class="nav-card" href="ch22.html"><span>다음</span><strong>22장: 이벤트, trace, 운영 가시성</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

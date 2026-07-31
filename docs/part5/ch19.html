@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>19장: 권한 시스템 아키텍처 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part2/index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="../part2/ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="../part2/ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="../part2/ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="../part2/ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="../part2/ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="../part4/index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="../part4/ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="../part4/ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="../part4/ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="../part4/ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="../part4/ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link active" href="ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="../part6/index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="../part6/ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="../part6/ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="../part6/ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="../part6/ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="../part6/ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</p>
+    <h1>19장: 권한 시스템 아키텍처</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 OpenCode의 permission 계층을 단순 allow/deny 판정기가 아니라, 세션 중 ask queue와 승인 규칙 누적을 가진 상태 서비스로 해부한다. 대상 독자: 대화형 코딩 에이전트의 권한 모델을 직접 설계하려는 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>에이전트 시스템에서 권한은 보안 기능이면서 동시에 UX 기능이다. 너무 느슨하면 위험하고, 너무 빡빡하면 모델이 매 동작마다 멈춘다. OpenCode는 이 문제를 <code>allow</code>, <code>ask</code>, <code>deny</code>의 세 상태와 <code>once</code>, <code>always</code>, <code>reject</code>의 응답 모델로 푼다. 핵심은 <code>ask</code>를 일급 상태로 두었다는 점이다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/index.ts"><code>packages/opencode/src/permission/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/evaluate.ts"><code>packages/opencode/src/permission/evaluate.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/permission.ts"><code>packages/opencode/src/permission/schema.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts"><code>packages/opencode/src/agent/agent.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/permissions.mdx"><code>packages/web/src/content/docs/permissions.mdx</code></a></li></ul>
+<h2 id="핵심-코드">핵심 코드</h2>
+<p>권한 판정의 핵심은 의외로 작다. 마지막으로 매칭되는 규칙이 이기고, 아무 규칙도 없으면 기본은 <code>ask</code>다.</p>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/permission/evaluate.ts
+export function evaluate(permission: string, pattern: string, ...rulesets: Rule[][]): Rule {
+  const rules = rulesets.flat()
+  const match = rules.findLast(
+    (rule) =&gt; Wildcard.match(permission, rule.permission) &amp;&amp; Wildcard.match(pattern, rule.pattern),
+  )
+  return match ?? { action: &quot;ask&quot;, permission, pattern: &quot;*&quot; }
+}</code></pre>
+<p><code>ask(...)</code>는 단순 boolean 함수가 아니다. pending map에 요청을 넣고, bus event를 발행한 뒤, 사용자의 reply가 Deferred를 풀 때까지 기다린다.</p>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/permission/index.ts
+const ask = Effect.fn(&quot;Permission.ask&quot;)(function* (input: AskInput) {
+  const { approved, pending } = yield* InstanceState.get(state)
+  const { ruleset, ...request } = input
+  let needsAsk = false
+
+  for (const pattern of request.patterns) {
+    const rule = evaluate(request.permission, pattern, ruleset, approved)
+    log.info(&quot;evaluated&quot;, { permission: request.permission, pattern, action: rule })
+    if (rule.action === &quot;deny&quot;) {
+      return yield* new DeniedError({
+        ruleset: ruleset.filter((rule) =&gt; Wildcard.match(request.permission, rule.permission)),
+      })
+    }
+    if (rule.action === &quot;allow&quot;) continue
+    needsAsk = true
+  }
+
+  if (!needsAsk) return
+
+  const id = request.id ?? PermissionID.ascending()
+  const info = Schema.decodeUnknownSync(Request)({
+    id,
+    ...request,
+  })
+  log.info(&quot;asking&quot;, { id, permission: info.permission, patterns: info.patterns })
+
+  const deferred = yield* Deferred.make&lt;void, RejectedError | CorrectedError&gt;()
+  pending.set(id, { info, deferred })
+  yield* bus.publish(Event.Asked, info)
+  return yield* Effect.ensuring(
+    Deferred.await(deferred),
+    Effect.sync(() =&gt; {
+      pending.delete(id)
+    }),
+  )
+})</code></pre>
+<p><code>always</code> 응답은 현재 요청만 통과시키지 않는다. 승인 패턴을 세션 상태에 누적하고, 같은 세션에서 이미 pending 중인 요청도 다시 평가한다.</p>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/permission/index.ts
+yield* Deferred.succeed(existing.deferred, undefined)
+if (input.reply === &quot;once&quot;) return
+
+for (const pattern of existing.info.always) {
+  approved.push({
+    permission: existing.info.permission,
+    pattern,
+    action: &quot;allow&quot;,
+  })
+}
+
+for (const [id, item] of pending.entries()) {
+  if (item.info.sessionID !== existing.info.sessionID) continue
+  const ok = item.info.patterns.every(
+    (pattern) =&gt; evaluate(item.info.permission, pattern, approved).action === &quot;allow&quot;,
+  )
+  if (!ok) continue
+  pending.delete(id)
+  yield* bus.publish(Event.Replied, {
+    sessionID: item.info.sessionID,
+    requestID: item.info.id,
+    reply: &quot;always&quot;,
+  })
+  yield* Deferred.succeed(item.deferred, undefined)
+}</code></pre>
+<h2 id="상태와-타입">상태와 타입</h2>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/index.ts"><code>permission/index.ts</code></a>는 이 계층이 생각보다 풍부한 타입을 가진다는 점을 바로 보여 준다.</p>
+<ul><li><code>Action</code>: <code>allow | deny | ask</code></li><li><code>Rule</code>: <code>permission</code>, <code>pattern</code>, <code>action</code></li><li><code>Request</code>: 실제 승인 요청 객체</li><li><code>Reply</code>: <code>once | always | reject</code></li><li><code>Approval</code>: 승인 이력 표현</li></ul>
+<p>여기서 중요한 것은 규칙과 요청이 분리되어 있다는 점이다. 정적 설정 규칙만으로는 대화형 승인 흐름을 설명할 수 없기 때문이다.</p>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="evaluate는-작지만-시스템의-중심이다">evaluate는 작지만 시스템의 중심이다</h3>
+<p><code>evaluate(permission, pattern, ...rulesets)</code>는 구현만 보면 매우 짧다. <code>Wildcard.match</code>를 사용해 마지막 매칭 규칙을 고르고, 없으면 <code>{ action: &quot;ask&quot; }</code>를 기본으로 돌려준다. 그러나 이 짧은 함수가 중요한 이유는 모든 규칙 해석이 결국 이 한 점으로 수렴하기 때문이다.</p>
+<p>즉 권한 시스템의 대부분은 사실 &quot;어떤 ruleset을 어떤 순서로 evaluate에 넘길 것인가&quot;의 문제다.</p>
+<h3 id="ask는-단순-팝업이-아니라-비동기-상태-머신이다">ask는 단순 팝업이 아니라 비동기 상태 머신이다</h3>
+<p><code>Permission.ask()</code> 흐름을 보면 pending 요청을 <code>Map</code>에 넣고, <code>Deferred</code> 스타일로 응답을 기다리며, 동시에 <code>permission.asked</code> 이벤트를 bus에 발행한다. 사용자의 응답은 <code>reply(...)</code>를 통해 다시 들어오고, <code>always</code>면 승인 규칙이 누적된다.</p>
+<p>이 구조 덕분에 권한 시스템은 UI와 분리되어 있으면서도, UI가 반드시 참여하는 대화형 경로를 가진다.</p>
+<h3 id="always는-세션-중-규칙-누적이다"><code>always</code>는 세션 중 규칙 누적이다</h3>
+<p><code>always</code> 응답이 중요한 이유는 사용자가 &quot;이번만 허용&quot;과 &quot;이 패턴은 앞으로도 허용&quot;을 구분할 수 있기 때문이다. 코드에서는 기존 요청의 <code>always</code> 패턴들을 다시 평가해 approved 규칙 집합에 합친다. 이 말은 곧 권한 시스템이 정적 config만 보는 것이 아니라, 현재 세션이 학습한 임시 규칙도 본다는 뜻이다.</p>
+<h3 id="config-해석도-의도적으로-정렬된다">config 해석도 의도적으로 정렬된다</h3>
+<p><code>fromConfig(...)</code>는 top-level permission key를 정렬해 wildcard 규칙과 구체 규칙의 의미가 직관적으로 유지되도록 한다. 주석이 직접 설명하듯, 이 정렬은 &quot;specific tool rules override <code>*</code> fallback&quot;이라는 사용자 기대를 깨지 않기 위한 것이다.</p>
+<p>즉 설정 파서는 단순 변환기가 아니라 UX 보호층이다.</p>
+<h3 id="agent는-권한-껍질을-통해-서로-달라진다">agent는 권한 껍질을 통해 서로 달라진다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts"><code>agent/agent.ts</code></a>를 보면 <code>build</code>, <code>plan</code>, <code>general</code>, <code>explore</code>의 차이는 프롬프트 문구만이 아니다. <code>Permission.merge(...)</code>로 어떤 규칙이 합쳐지는지가 실제 operating envelope를 만든다. <code>plan</code>이 읽기/분석용 agent처럼 보이는 이유도 결국 permission이 그 역할을 강제하기 때문이다.</p>
+<h2 id="문서와-구현의-차이">문서와 구현의 차이</h2>
+<p>문서 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/permissions.mdx"><code>permissions.mdx</code></a>는 설정 문법, wildcard, external_directory, defaults를 잘 설명한다. 하지만 구현까지 내려오면 더 중요한 사실이 드러난다.</p>
+<ul><li><code>ask</code>는 일급 상태다.</li><li>승인 응답은 <code>once/always/reject</code>의 세 갈래다.</li><li>세션 중 승인된 규칙이 누적된다.</li><li>bus 이벤트를 통해 UI와 운영 계층이 분리된다.</li></ul>
+<p>즉 문서가 &quot;무엇을 설정할 수 있는가&quot;를 설명한다면, 구현은 &quot;어떻게 대화형 권한 UX가 유지되는가&quot;를 보여 준다.</p>
+<h2 id="트레이드오프">트레이드오프</h2>
+<ul><li>장점: 보안과 UX를 둘 다 잡기 쉽다.</li><li>단점: 상태가 있는 만큼 구현이 단순 규칙 엔진보다 훨씬 복잡하다.</li><li>장점: <code>always</code> 덕분에 반복 작업 흐름이 부드럽다.</li><li>단점: 세션 상태와 정적 설정을 함께 추적해야 한다.</li></ul>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>코딩 에이전트의 권한 모델은 <code>allow/deny</code> 이분법만으로는 부족하다.</li><li><code>ask</code>를 일급 상태로 두면 UX와 안전성을 함께 설계할 수 있다.</li><li>설정 파서도 사용자 기대를 지키는 UX 계층으로 봐야 한다.</li><li>agent 역할 차이는 프롬프트보다 permission envelope에서 더 선명하게 드러난다.</li></ul>
+<p>다음 장에서는 이 권한 모델이 세분화 규칙, 외부 디렉터리, 반복 호출 브레이크 같은 안전 브레이크와 어떻게 결합되는지 본다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>Claude 권한 시스템 관점은 OpenCode에서 pending request와 Deferred를 가진 상태 머신으로 구현된다. 핵심은 deny/allow 표가 아니라 tool 실행 중 사용자 결정을 기다리는 방식이다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;Ruleset 생성&quot;]
+  N2[&quot;ctx.ask&quot;]
+  N1 --&gt; N2
+  N3[&quot;evaluate&quot;]
+  N2 --&gt; N3
+  N4[&quot;pending request&quot;]
+  N3 --&gt; N4
+  N5[&quot;permission.asked event&quot;]
+  N4 --&gt; N5
+  N6[&quot;reply once/always/reject&quot;]
+  N5 --&gt; N6
+  N7[&quot;approved ruleset 갱신&quot;]
+  N6 --&gt; N7</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/index.ts"><code>packages/opencode/src/permission/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/evaluate.ts"><code>packages/opencode/src/permission/evaluate.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/arity.ts"><code>packages/opencode/src/permission/arity.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/permission.ts"><code>packages/opencode/src/config/permission.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/permission.ts"><code>packages/opencode/src/server/routes/instance/permission.ts</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>evaluate는 wildcard match와 findLast로 specific rule override 의미를 만든다.</li><li>ask는 pending map에 request/deferred를 넣고 permission.asked event를 발행한다.</li><li>always reply는 approved ruleset에 pattern을 추가하고 같은 세션의 다른 pending request도 해소할 수 있다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>match 순서가 불명확하면 wildcard와 specific rule 우선순위가 예측 불가능하다.</li><li>pending request를 이벤트로 내보내지 않으면 UI가 사용자 결정을 받을 수 없다.</li><li>always 승인 범위를 너무 넓히면 한 번의 클릭이 세션 전체 안전성을 바꾼다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>권한 판정 함수가 작고 테스트 가능한가?</li><li>ask가 비동기 UI 결정을 기다릴 수 있는가?</li><li>once/always/reject 의미가 명확한가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>agent/agent.ts</code></td><td><code>packages/opencode/src/agent/agent.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/config/permission.ts</code></td><td><code>packages/core/src/permission.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/permission.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/permission/schema.ts</code></td><td><code>packages/core/src/permission.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/permission.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/permission.ts</code></td><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/permission.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/permission.ts">Latest</a></td></tr><tr><td><code>permission/index.ts</code></td><td><code>packages/opencode/src/permission/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/index.ts">Latest</a></td></tr><tr><td><code>permissions.mdx</code></td><td><code>packages/web/src/content/docs/permissions.mdx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/permissions.mdx">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/core/src/permission.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/permission.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/permission.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/agent/agent.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/agent/agent.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/permission/arity.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/arity.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/permission/arity.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/permission/evaluate.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/evaluate.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/permission/evaluate.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/permission/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/permission/index.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/permission.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/permission.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/server/routes/instance/httpapi/groups/permission.ts">Edition</a></td></tr><tr><td><code>packages/web/src/content/docs/permissions.mdx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/permissions.mdx">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/web/src/content/docs/permissions.mdx">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="index.html"><span>이전</span><strong>부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</strong></a><a class="nav-card" href="ch20.html"><span>다음</span><strong>20장: 세분화 규칙, 외부 디렉터리, 브레이크</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>7장: Provider 추상화와 모델 라우팅 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link active" href="ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="../part4/index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="../part4/ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="../part4/ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="../part4/ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="../part4/ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="../part4/ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part5/index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="../part5/ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="../part5/ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="../part5/ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="../part5/ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="../part5/ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="../part6/index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="../part6/ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="../part6/ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="../part6/ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="../part6/ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="../part6/ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</p>
+    <h1>7장: Provider 추상화와 모델 라우팅</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 OpenCode의 provider 계층을 &quot;API 키 폼 모음&quot;이 아니라, 모델 카탈로그, 기본 모델 선택, small model 선택, SDK 로딩, closest-match 해석을 한곳에 모은 selection service로 읽는다. 대상 독자: provider-agnostic 에이전트 런타임을 만들고 싶은 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>multi-provider 지원은 종종 UI에서만 설명된다. OpenAI, Anthropic, Copilot, Vertex 같은 항목이 목록으로 보이면 마치 지원이 끝난 것처럼 보인다. 하지만 런타임 입장에서 더 어려운 문제는 그다음이다. 어떤 provider를 autoload할 수 있는지, 어떤 모델을 기본으로 써야 하는지, 가벼운 보조 작업에는 어떤 small model을 써야 하는지, 최근에 쓰던 모델이 아직 유효한지, 모델 ID 일부만 주어졌을 때 어느 실제 모델로 해석할지를 결정해야 한다.</p>
+<p>OpenCode의 provider 서비스는 바로 이 판단들을 맡는다. 그래서 이 계층은 transport wrapper가 아니라 selection + loading + normalization의 앞단이다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/provider.ts"><code>packages/opencode/src/provider/provider.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/model.ts"><code>packages/opencode/src/provider/models.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/provider.ts"><code>packages/opencode/src/provider/schema.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/transform.ts"><code>packages/opencode/src/provider/transform.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/plugin/index.ts"><code>packages/opencode/src/plugin/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts"><code>packages/opencode/src/agent/agent.ts</code></a></li></ul>
+<h2 id="핵심-코드">핵심 코드</h2>
+<p>provider service의 공개 표면부터 보면 이 계층이 단순 API wrapper가 아니라 selection service라는 점이 보인다.</p>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/provider/provider.ts
+export interface Interface {
+  readonly list: () =&gt; Effect.Effect&lt;Record&lt;ProviderID, Info&gt;&gt;
+  readonly getProvider: (providerID: ProviderID) =&gt; Effect.Effect&lt;Info&gt;
+  readonly getModel: (providerID: ProviderID, modelID: ModelID) =&gt; Effect.Effect&lt;Model&gt;
+  readonly getLanguage: (model: Model) =&gt; Effect.Effect&lt;LanguageModelV3&gt;
+  readonly closest: (
+    providerID: ProviderID,
+    query: string[],
+  ) =&gt; Effect.Effect&lt;{ providerID: ProviderID; modelID: string } | undefined&gt;
+  readonly getSmallModel: (providerID: ProviderID) =&gt; Effect.Effect&lt;Model | undefined&gt;
+  readonly defaultModel: () =&gt; Effect.Effect&lt;{ providerID: ProviderID; modelID: ModelID }&gt;
+}</code></pre>
+<p><code>getSmallModel(...)</code>은 hidden agent 비용을 낮추는 정책이다. provider별 우선순위와 Bedrock 지역 prefix까지 여기서 처리한다.</p>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/provider/provider.ts
+const getSmallModel = Effect.fn(&quot;Provider.getSmallModel&quot;)(function* (providerID: ProviderID) {
+  const cfg = yield* config.get()
+
+  if (cfg.small_model) {
+    const parsed = parseModel(cfg.small_model)
+    return yield* getModel(parsed.providerID, parsed.modelID)
+  }
+
+  const s = yield* InstanceState.get(state)
+  const provider = s.providers[providerID]
+  if (!provider) return undefined
+
+  let priority = [
+    &quot;claude-haiku-4-5&quot;,
+    &quot;claude-haiku-4.5&quot;,
+    &quot;3-5-haiku&quot;,
+    &quot;3.5-haiku&quot;,
+    &quot;gemini-3-flash&quot;,
+    &quot;gemini-2.5-flash&quot;,
+    &quot;gpt-5-nano&quot;,
+  ]
+  if (providerID.startsWith(&quot;opencode&quot;)) {
+    priority = [&quot;gpt-5-nano&quot;]
+  }
+  if (providerID.startsWith(&quot;github-copilot&quot;)) {
+    priority = [&quot;gpt-5-mini&quot;, &quot;claude-haiku-4.5&quot;, ...priority]
+  }
+  for (const item of priority) {
+    if (providerID === ProviderID.amazonBedrock) {
+      const crossRegionPrefixes = [&quot;global.&quot;, &quot;us.&quot;, &quot;eu.&quot;]
+      const candidates = Object.keys(provider.models).filter((m) =&gt; m.includes(item))
+
+      const globalMatch = candidates.find((m) =&gt; m.startsWith(&quot;global.&quot;))
+      if (globalMatch) return yield* getModel(providerID, ModelID.make(globalMatch))
+
+      const region = provider.options?.region
+      if (region) {
+        const regionPrefix = region.split(&quot;-&quot;)[0]
+        if (regionPrefix === &quot;us&quot; || regionPrefix === &quot;eu&quot;) {
+          const regionalMatch = candidates.find((m) =&gt; m.startsWith(`${regionPrefix}.`))
+          if (regionalMatch) return yield* getModel(providerID, ModelID.make(regionalMatch))
+        }
+      }
+
+      const unprefixed = candidates.find((m) =&gt; !crossRegionPrefixes.some((p) =&gt; m.startsWith(p)))
+      if (unprefixed) return yield* getModel(providerID, ModelID.make(unprefixed))
+    } else {
+      for (const model of Object.keys(provider.models)) {
+        if (model.includes(item)) return yield* getModel(providerID, ModelID.make(model))
+      }
+    }
+  }
+
+  return undefined
+})</code></pre>
+<p>기본 모델 선택도 config, 최근 모델 기록, 현재 사용 가능한 provider 목록을 순서대로 본다.</p>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/provider/provider.ts
+const defaultModel = Effect.fn(&quot;Provider.defaultModel&quot;)(function* () {
+  const cfg = yield* config.get()
+  if (cfg.model) return parseModel(cfg.model)
+
+  const s = yield* InstanceState.get(state)
+  const recent = yield* fs.readJson(path.join(Global.Path.state, &quot;model.json&quot;)).pipe(
+    Effect.map((x): { providerID: ProviderID; modelID: ModelID }[] =&gt; {
+      if (!isRecord(x) || !Array.isArray(x.recent)) return []
+      return x.recent.flatMap((item) =&gt; {
+        if (!isRecord(item)) return []
+        if (typeof item.providerID !== &quot;string&quot;) return []
+        if (typeof item.modelID !== &quot;string&quot;) return []
+        return [{ providerID: ProviderID.make(item.providerID), modelID: ModelID.make(item.modelID) }]
+      })
+    }),
+    Effect.catch(() =&gt; Effect.succeed([] as { providerID: ProviderID; modelID: ModelID }[])),
+  )
+  for (const entry of recent) {
+    const provider = s.providers[entry.providerID]
+    if (!provider) continue
+    if (!provider.models[entry.modelID]) continue
+    return { providerID: entry.providerID, modelID: entry.modelID }
+  }
+
+  const provider = Object.values(s.providers).find((p) =&gt; !cfg.provider || Object.keys(cfg.provider).includes(p.id))
+  if (!provider) throw new Error(&quot;no providers found&quot;)
+  const [model] = sort(Object.values(provider.models))
+  if (!model) throw new Error(&quot;no models found&quot;)
+  return {
+    providerID: provider.id,
+    modelID: model.id,
+  }
+})</code></pre>
+<h2 id="provider-서비스의-역할">Provider 서비스의 역할</h2>
+<div class="diagram"><pre class="mermaid">graph TD
+    CONFIG[&quot;config + env + auth&quot;]
+    PROVIDERS[&quot;provider registry&quot;]
+    DISCOVERY[&quot;discoverModels / plugin merge&quot;]
+    SELECT[&quot;defaultModel / getSmallModel / closest&quot;]
+    LOAD[&quot;getModel / getLanguage&quot;]
+    SESSION[&quot;agents / session prompt / hidden agents&quot;]
+
+    CONFIG --&gt; PROVIDERS
+    PROVIDERS --&gt; DISCOVERY
+    DISCOVERY --&gt; SELECT
+    SELECT --&gt; LOAD
+    LOAD --&gt; SESSION</pre></div>
+<p>이 그림에서 핵심은 <code>defaultModel()</code>과 <code>getSmallModel()</code>이 provider 서비스의 일부라는 점이다. OpenCode는 모델 선택을 세션 계층이나 에이전트 계층에 흩뿌리지 않는다.</p>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="provider-서비스는-목록-보다-판단-을-더-많이-한다">provider 서비스는 &quot;목록&quot;보다 &quot;판단&quot;을 더 많이 한다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/provider.ts"><code>packages/opencode/src/provider/provider.ts</code></a>의 인터페이스는 아래 메서드들로 드러난다.</p>
+<ul><li><code>list()</code></li><li><code>getProvider()</code></li><li><code>getModel(providerID, modelID)</code></li><li><code>getLanguage(...)</code></li><li><code>closest(providerID, query[])</code></li><li><code>getSmallModel(providerID)</code></li><li><code>defaultModel()</code></li></ul>
+<p>여기서 중요한 것은 <code>getModel</code>이 단순 조회가 아니라, 실제 SDK language model 객체를 lazy-load하는 함수라는 점이다. 반면 <code>defaultModel</code>, <code>getSmallModel</code>, <code>closest</code>는 selection policy를 담당한다. 즉 provider 서비스는 카탈로그와 실행 로더를 동시에 가진다.</p>
+<h3 id="어떤-provider를-켤지부터-이미-정책-문제다">어떤 provider를 켤지부터 이미 정책 문제다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/provider.ts"><code>provider.ts</code></a>의 <code>custom(...)</code> loader들을 보면 각 provider가 같은 방식으로 활성화되지 않는다.</p>
+<ul><li>어떤 provider는 env key가 있어야 autoload된다.</li><li>어떤 provider는 auth 토큰이 있어야 models를 노출한다.</li><li>어떤 provider는 config에 baseURL이 있으면 자동 발견을 끈다.</li><li><code>opencode</code> provider는 인증이 없으면 무료 모델만 남긴다.</li><li>GitLab, Azure, Bedrock 같은 공급자는 별도 env/config 조합을 확인한다.</li></ul>
+<p>즉 OpenCode는 provider 목록을 정적 상수로 보지 않는다. 현재 환경과 설정에 따라 &quot;이 provider를 지금 실제로 쓸 수 있는가&quot;를 다시 계산한다.</p>
+<h3 id="모델-카탈로그는-고정-상수가-아니라-시간에-따라-변하는-데이터다">모델 카탈로그는 고정 상수가 아니라 시간에 따라 변하는 데이터다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/model.ts"><code>packages/opencode/src/provider/models.ts</code></a>와 <code>discoverModels()</code> 경로는 이 시스템이 모델 목록을 하드코딩으로 끝내지 않음을 보여 준다. 일부 provider는 런타임에 모델을 발견하고, 그 결과를 provider registry에 합친다.</p>
+<p>이건 좋은 판단이다. 모델 카탈로그는 시간이 지나면 바뀐다. 릴리스 날짜, reasoning variant, provider-specific alias가 계속 추가된다. 따라서 &quot;코드 안에 적힌 목록&quot;보다는 &quot;발견하고 캐시하고 다시 머지하는 데이터&quot;로 보는 편이 현실적이다.</p>
+<h3 id="plugin도-provider-registry를-바꾼다">plugin도 provider registry를 바꾼다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/provider.ts"><code>provider.ts</code></a> 중간의 plugin merge 경로는 이 장의 중요한 포인트다. provider 지원은 코어 패키지의 닫힌 목록이 아니라 plugin에 의해 확장될 수 있다. 이 말은 provider 서비스가 내부 고정 구현체가 아니라, 외부 확장도 받아들이는 control point라는 뜻이다.</p>
+<p>즉 OpenCode는 provider를 &quot;환경 설정 항목&quot;으로만 보지 않고, 확장 생태계의 일부로 취급한다.</p>
+<h3 id="defaultmodel-은-단순-첫-번째-모델-선택이-아니다"><code>defaultModel()</code>은 단순 첫 번째 모델 선택이 아니다</h3>
+<p><code>defaultModel()</code>의 흐름을 보면 선택 우선순위가 꽤 실전적이다.</p>
+<ol><li><code>cfg.model</code>이 있으면 그것을 사용</li><li>아니면 <code>Global.Path.state/model.json</code>의 recent model 기록을 확인</li><li>recent 목록에서 아직 유효한 provider/model 조합을 찾음</li><li>그래도 없으면 활성 provider 중 하나를 고르고 정렬된 첫 모델을 택함</li></ol>
+<p>이 선택은 중요하다. 사용자가 직전에 쓰던 모델을 기억하는 일은 UX 문제처럼 보이지만, 사실은 런타임 기본값 문제다. OpenCode는 이를 provider 서비스 안에 둔다.</p>
+<h3 id="getsmallmodel-은-보조-작업의-비용-모델을-별도-정책으로-다룬다"><code>getSmallModel()</code>은 보조 작업의 비용 모델을 별도 정책으로 다룬다</h3>
+<p><code>getSmallModel()</code>이 존재하는 이유는 title, summary, compaction 같은 hidden work가 메인 모델과 항상 같은 비용 구조를 가질 필요가 없기 때문이다. 구현을 보면 provider별 우선순위 목록이 있고, 예를 들어 다음 같은 휴리스틱이 보인다.</p>
+<ul><li>Haiku, Gemini Flash, GPT-5 nano 우선</li><li><code>opencode</code> provider는 <code>gpt-5-nano</code>를 우선</li><li><code>github-copilot</code>은 <code>gpt-5-mini</code>, <code>claude-haiku-4.5</code>를 우선</li><li>Bedrock은 <code>global.</code>, <code>us.</code>, <code>eu.</code> 접두 지역 모델까지 고려</li></ul>
+<p>이건 단순 편의 기능이 아니라 중요한 운영 감각이다. 모든 작업에 동일한 주 모델을 쓰면 품질은 단순해질 수 있지만 비용과 지연이 불필요하게 커진다.</p>
+<h3 id="closest-는-모델-문자열을-느슨하게-해석하는-완충-장치다"><code>closest()</code>는 모델 문자열을 느슨하게 해석하는 완충 장치다</h3>
+<p><code>closest(providerID, query[])</code>는 아주 짧지만 의미가 크다. 특정 모델 ID 일부만 들어와도 provider 내부 모델 목록을 훑어 가장 가까운 후보를 찾는다. 이런 완충 장치는 CLI, 설정 마이그레이션, 외부 자동화에서 의외로 자주 필요하다.</p>
+<p>provider 계층이 이런 fuzzy resolution을 제공하면 상위 계층은 모델 naming 변화에 덜 민감해진다.</p>
+<h3 id="실제-model-객체-로딩은-selection-이후에-일어난다">실제 model 객체 로딩은 selection 이후에 일어난다</h3>
+<p><code>getModel(...)</code> 경로를 보면 selection으로 끝나지 않는다. 선택된 <code>Provider.Model</code>을 바탕으로 <code>BUNDLED_PROVIDERS</code>의 SDK 팩토리를 로드하고, 필요하면 custom loader가 <code>sdk.responses(...)</code>, <code>sdk.chat(...)</code>, <code>sdk.languageModel(...)</code> 중 무엇을 쓸지 결정한다.</p>
+<p>즉 OpenCode는 selection과 loading을 같은 서비스 안에 두되, 분리된 단계로 다룬다.</p>
+<ul><li>selection: 어떤 provider/model을 쓸지 고른다</li><li>loading: 그 provider에서 실제 language model 객체를 만든다</li></ul>
+<p>이 분리가 중요하다. 선택 정책을 바꾸는 일과 SDK 적응 코드를 바꾸는 일은 성격이 다르기 때문이다.</p>
+<h3 id="transform-층은-이-장의-바깥이-아니라-일부다">transform 층은 이 장의 바깥이 아니라 일부다</h3>
+<p>28장에서 더 자세히 보겠지만, <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/provider.ts"><code>provider.ts</code></a>가 selection service라면 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/transform.ts"><code>transform.ts</code></a>는 selection 이후의 적응 계층이다. 중요한 점은 둘이 완전히 분리된 세계가 아니라는 것이다. <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/provider.ts"><code>provider.ts</code></a>는 이미 <code>ProviderTransform.variants(...)</code>를 써서 model variant를 합치고, transform 규칙을 model metadata의 일부처럼 다룬다.</p>
+<p>즉 provider 추상화는 &quot;목록&quot;과 &quot;변환&quot;이 만나는 경계다.</p>
+<h2 id="에이전트-계층과의-연결">에이전트 계층과의 연결</h2>
+<p>이 provider 정책이 실제로 어디에 쓰이는지는 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/agent.ts"><code>agent.ts</code></a>와 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts"><code>session/prompt.ts</code></a>를 보면 더 명확해진다. 예를 들어 title agent는 <code>getSmallModel(...)</code>을 우선 쓰고, 없으면 현재 provider/model을 fallback으로 쓴다. 즉 provider 서비스의 결정은 곧 hidden agent 비용 모델과 세션 UX에 مباشرة 영향을 준다.</p>
+<p>이 점이 중요하다. provider selection은 설정 화면에만 보이는 문제가 아니라, 런타임 전체 품질과 비용 모델에 스며 있다.</p>
+<h2 id="트레이드오프">트레이드오프</h2>
+<ul><li>장점: 모델 선택 정책이 상위 세션/에이전트 계층에 흩어지지 않는다.</li><li>장점: recent model, small model, fuzzy match 같은 UX 정책을 한곳에서 다룰 수 있다.</li><li>장점: plugin과 runtime discovery를 통해 provider registry를 확장할 수 있다.</li><li>단점: provider 서비스가 단순 wrapper보다 훨씬 많은 정책을 떠안는다.</li><li>단점: selection과 loading을 한 서비스가 맡기 때문에 파일이 빠르게 커진다.</li></ul>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>multi-provider 시스템의 핵심은 auth UI보다 selection service다.</li><li>default model과 small model은 별도 정책으로 취급하는 편이 낫다.</li><li>모델 카탈로그는 정적 코드 상수보다 런타임 데이터로 보는 편이 현실적이다.</li><li>provider 예외를 상위 계층에 흩뿌리지 말고, selection과 transform 경계에 모아 두는 편이 좋다.</li></ul>
+<p>다음 장에서는 이런 모델 계층을 바탕으로 긴 세션에서 비용과 문맥을 어떻게 제어하는지, 즉 overflow와 compaction을 본다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>Claude의 모델별 튜닝 관점은 OpenCode에서 provider bridge 문제로 나타난다. 여러 provider는 모두 LLM처럼 보이지만 system prompt, tool schema, caching, reasoning, modality 처리가 다르다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;models snapshot&quot;]
+  N2[&quot;config provider merge&quot;]
+  N1 --&gt; N2
+  N3[&quot;default/small/closest model 선택&quot;]
+  N2 --&gt; N3
+  N4[&quot;resolveSDK&quot;]
+  N3 --&gt; N4
+  N5[&quot;ProviderTransform&quot;]
+  N4 --&gt; N5
+  N6[&quot;LLM.stream&quot;]
+  N5 --&gt; N6</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/provider.ts"><code>packages/opencode/src/provider/provider.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/transform.ts"><code>packages/opencode/src/provider/transform.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/model.ts"><code>packages/opencode/src/provider/models.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/auth.ts"><code>packages/opencode/src/provider/auth.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/config/provider.ts"><code>packages/opencode/src/config/provider.ts</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>Provider.Service는 목록 반환보다 default model, small model, closest matching, SDK resolution 같은 판단을 더 많이 한다.</li><li>models.ts는 시간에 따라 변하는 provider/model metadata를 snapshot과 refresh 정책으로 다룬다.</li><li>ProviderTransform은 unsupported modality를 조용히 버리지 않고 설명 가능한 텍스트로 승격한다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>공통화를 과도하게 하면 capability 차이를 잃는다.</li><li>provider별 예외가 session loop로 새면 새 provider를 붙일 때마다 루프가 복잡해진다.</li><li>model id fuzzy matching이 없으면 설정 파일의 작은 차이가 실행 실패가 된다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>registry, catalog, transform, auth를 분리했는가?</li><li>보조 작업용 small model 정책이 있는가?</li><li>공통 API가 아니라 공통 하니스 계약을 목표로 삼고 있는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>agent.ts</code></td><td><code>packages/core/src/agent.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/agent.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/config/provider.ts</code></td><td><code>packages/core/src/config/provider.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/config/provider.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/provider/models.ts</code></td><td><code>packages/core/src/model.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/model.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/provider/schema.ts</code></td><td><code>packages/core/src/provider.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/provider.ts">Latest</a></td></tr><tr><td><code>provider.ts</code></td><td><code>packages/core/src/provider.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/provider.ts">Latest</a></td></tr><tr><td><code>session/prompt.ts</code></td><td><code>packages/opencode/src/session/prompt.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts">Latest</a></td></tr><tr><td><code>transform.ts</code></td><td><code>packages/opencode/src/provider/transform.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/transform.ts">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/core/src/agent.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/agent.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/agent.ts">Edition</a></td></tr><tr><td><code>packages/core/src/config/provider.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/config/provider.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/config/provider.ts">Edition</a></td></tr><tr><td><code>packages/core/src/model.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/model.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/model.ts">Edition</a></td></tr><tr><td><code>packages/core/src/provider.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/provider.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/provider.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/agent/agent.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/agent/agent.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/plugin/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/plugin/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/plugin/index.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/provider/auth.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/auth.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/provider/auth.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/provider/provider.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/provider.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/provider/provider.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/provider/transform.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/transform.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/provider/transform.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/prompt.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/prompt.ts">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<details class="unresolved-refs">
+  <summary>현재 fork에서 찾지 못한 참조 1개</summary>
+  <p>이 경로들은 원고에 있지만 현재 <code>nfbs2000/speaky-opencode</code> snapshot에는 없어서 404 링크를 만들지 않았습니다.</p>
+  <ul><li><code>Global.Path.state/model.json</code></li></ul>
+</details>
+
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="ch06.html"><span>이전</span><strong>6장: 프롬프트 조립과 에이전트별 문맥층</strong></a><a class="nav-card" href="ch08.html"><span>다음</span><strong>8장: 오버플로와 컨텍스트 컴팩션</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

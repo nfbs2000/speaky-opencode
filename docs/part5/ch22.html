@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>22장: 이벤트, trace, 운영 가시성 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part2/index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="../part2/ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="../part2/ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="../part2/ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="../part2/ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="../part2/ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="../part4/index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="../part4/ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="../part4/ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="../part4/ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="../part4/ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="../part4/ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link active" href="ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="../part6/index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="../part6/ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="../part6/ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="../part6/ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="../part6/ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="../part6/ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</p>
+    <h1>22장: 이벤트, trace, 운영 가시성</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 OpenCode가 상태 변화를 typed event bus, global event 복제, session status, 국소적 span과 logger로 어떻게 가시화하는지 읽는다. 대상 독자: 에이전트 런타임을 디버그 가능하고 운영 가능한 시스템으로 만들고 싶은 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>에이전트 시스템은 내부 상태가 많고 비동기 흐름이 길다. 모델 호출, 도구 실행, 세션 상태, worktree, snapshot, plugin, LSP가 동시에 움직이면 &quot;무슨 기능이 있나&quot;보다 &quot;지금 무슨 일이 일어나고 있나&quot;가 더 중요해진다. 운영 가시성이 없으면 시스템은 금방 검은 상자가 된다.</p>
+<p>OpenCode는 이를 거대한 observability 플랫폼으로 풀지 않는다. 대신 typed event bus, GlobalBus 복제, 세션 status 서비스, 서비스별 logger, 일부 핵심 경계의 Effect span을 조합한다. 이 선택은 화려하지 않지만 실전적이다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/bus/global.ts"><code>packages/opencode/src/bus/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/event.ts"><code>packages/opencode/src/bus/bus-event.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/bus/global.ts"><code>packages/opencode/src/bus/global.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/status.ts"><code>packages/opencode/src/session/status.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/run-state.ts"><code>packages/opencode/src/session/run-state.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/project/bootstrap.ts"><code>packages/opencode/src/project/bootstrap.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/worktree/index.ts"><code>packages/opencode/src/worktree/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/plugins.mdx"><code>packages/web/src/content/docs/plugins.mdx</code></a></li></ul>
+<h2 id="관찰-계층의-구조">관찰 계층의 구조</h2>
+<div class="diagram"><pre class="mermaid">graph TD
+    SERVICE[&quot;runtime service&quot;]
+    BUS[&quot;typed Bus&quot;]
+    WILDCARD[&quot;wildcard stream&quot;]
+    GLOBAL[&quot;GlobalBus&quot;]
+    UI[&quot;UI / control plane&quot;]
+    PLUGIN[&quot;plugins&quot;]
+    TRACE[&quot;log + span&quot;]
+
+    SERVICE --&gt; BUS
+    BUS --&gt; WILDCARD
+    BUS --&gt; GLOBAL
+    GLOBAL --&gt; UI
+    WILDCARD --&gt; PLUGIN
+    SERVICE --&gt; TRACE</pre></div>
+<p>이 그림에서 중요한 것은 OpenCode가 관찰을 한 가지 방식으로 통일하지 않는다는 점이다. 이벤트는 event bus로, 긴 경계는 span으로, 개별 서비스 흐름은 logger로 드러낸다.</p>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="bus는-typed-channel과-wildcard-channel을-동시에-가진다">Bus는 typed channel과 wildcard channel을 동시에 가진다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/bus/global.ts"><code>packages/opencode/src/bus/index.ts</code></a>의 상태는 간단하다.</p>
+<ul><li><code>wildcard: PubSub&lt;Payload&gt;</code></li><li><code>typed: Map&lt;string, PubSub&lt;Payload&gt;&gt;</code></li></ul>
+<p>그리고 <code>publish(def, properties)</code>는 특정 이벤트 타입용 pubsub와 wildcard pubsub 양쪽에 payload를 넣는다.</p>
+<p>이 구조가 좋은 이유는 두 가지다.</p>
+<ul><li>특정 이벤트만 듣는 소비자는 type-specific 구독을 쓸 수 있다.</li><li>전체 흐름을 보고 싶은 관찰자는 wildcard 구독을 쓸 수 있다.</li></ul>
+<p>즉 OpenCode는 &quot;모든 이벤트를 한 채널에 쏟아붓는 단순함&quot;과 &quot;타입별 채널만 있는 경직성&quot; 사이에서 중간 지점을 택한다.</p>
+<h3 id="publish는-instance-local-이벤트를-global-관찰-표면으로-복제한다">publish는 instance-local 이벤트를 global 관찰 표면으로 복제한다</h3>
+<p><code>Bus.publish(...)</code>는 local pubsub에 이벤트를 넣는 것으로 끝나지 않는다. 이어서 <code>GlobalBus.emit(&quot;event&quot;, { directory, project, workspace, payload })</code>를 호출한다.</p>
+<p>이건 이 시스템의 중요한 특징이다. 이벤트는 단일 인스턴스 내부 신호일 뿐 아니라, 프로젝트/워크스페이스 문맥을 가진 전역 관찰 데이터가 된다. 그래서 UI, control plane, 외부 표면이 &quot;어느 인스턴스에서 일어난 어떤 사건인가&quot;를 함께 볼 수 있다.</p>
+<p>즉 OpenCode는 이벤트를 함수 호출 체인 안에만 가두지 않는다. 운영 관찰 가능한 사실로 승격한다.</p>
+<h3 id="subscribe-경로는-정리-cleanup-를-런타임이-책임진다">subscribe 경로는 정리(cleanup)를 런타임이 책임진다</h3>
+<p><code>subscribe</code>, <code>subscribeAll</code>, <code>subscribeCallback</code>, <code>subscribeAllCallback</code>을 보면 모두 unsubscribe와 scope 정리를 의식한다. 특히 내부 <code>on(...)</code> 헬퍼는 <code>EffectBridge</code>, <code>Scope</code>, <code>PubSub.subscribe</code>, <code>Stream.runForEach</code>를 묶어 callback 구독을 만들고, 종료 시 scope를 닫는다.</p>
+<p>이게 왜 중요하냐면, 에이전트 런타임은 장수 구독이 많기 때문이다. 구독 수명 관리를 설계하지 않으면 이벤트 시스템은 금방 중복 구독과 누수로 망가진다.</p>
+<h3 id="인스턴스-종료-자체도-이벤트다">인스턴스 종료 자체도 이벤트다</h3>
+<p>버스 초기화 finalizer를 보면 <code>InstanceDisposed</code> 이벤트를 wildcard 채널에 발행한 뒤 pubsub를 shutdown한다. 이 디테일은 좋다. 인스턴스 종료는 &quot;조용한 cleanup&quot;이 아니라, 구독자들이 알아야 하는 상태 변화이기 때문이다.</p>
+<p>OpenCode는 lifecycle 끝점까지 이벤트의 일부로 다룬다.</p>
+<h3 id="session-status는-ui가-소비할-수-있는-운영-상태-모델이다">session status는 UI가 소비할 수 있는 운영 상태 모델이다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/status.ts"><code>packages/opencode/src/session/status.ts</code></a>는 <code>idle</code>, <code>busy</code>, <code>retry</code> 세 상태를 <code>SessionStatus.Info</code>로 정의하고, <code>session.status</code> 이벤트를 발행한다. <code>idle</code>일 때는 예전 호환성을 위한 <code>session.idle</code> 이벤트도 추가로 쏜다.</p>
+<p>여기서 중요한 것은 세션 상태가 단순 boolean이 아니라는 점이다.</p>
+<ul><li><code>busy</code></li><li><code>idle</code></li><li><code>retry { attempt, message, next }</code></li></ul>
+<p>즉 OpenCode는 &quot;돌고 있나/아닌가&quot;를 넘어서 재시도 중인 상태까지 운영 상태로 승격한다. 사용자 경험과 디버깅 모두에 유리한 선택이다.</p>
+<h3 id="run-state가-실제-실행기와-status를-연결한다">run-state가 실제 실행기와 status를 연결한다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/run-state.ts"><code>packages/opencode/src/session/run-state.ts</code></a>를 보면 <code>SessionRunState</code>는 session별 <code>Runner</code>를 보관한다. 새 runner를 만들 때 <code>onBusy</code>, <code>onIdle</code>, <code>onInterrupt</code> 훅을 연결해 <code>SessionStatus.set(...)</code>을 호출한다.</p>
+<p>이 구조의 장점은 분명하다.</p>
+<ul><li>세션 실행 동시성 제어는 <code>Runner</code>가 담당</li><li>UI에 노출할 상태 변화는 <code>SessionStatus</code>가 담당</li><li>둘 사이 연결은 <code>SessionRunState</code>가 담당</li></ul>
+<p>즉 OpenCode는 실행 제어와 상태 가시화를 분리하되, 연결 지점은 명시적으로 둔다.</p>
+<h3 id="부트스트랩-같은-긴-경계는-span으로-드러난다">부트스트랩 같은 긴 경계는 span으로 드러난다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/project/bootstrap.ts"><code>packages/opencode/src/project/bootstrap.ts</code></a>의 <code>InstanceBootstrap</code>를 보면 <code>Effect.withSpan(&quot;InstanceBootstrap&quot;)</code>, <code>Effect.withSpan(&quot;InstanceBootstrap.init&quot;)</code>가 붙어 있다. 이 파일은 config 로드, plugin init, LSP, ShareNext, Format, FileWatcher, Vcs, Snapshot 초기화를 동시에 일으키는 무거운 경계다.</p>
+<p>OpenCode는 모든 함수에 span을 남기지 않는다. 대신 시스템 경계가 선명한 부트스트랩 지점에만 span을 둔다. 이건 좋은 절충이다. 과도한 tracing은 잡음이 되고, 전혀 없으면 경계를 잃는다.</p>
+<h3 id="서비스별-logger가-이벤트-bus를-보완한다">서비스별 logger가 이벤트 bus를 보완한다</h3>
+<p><code>Log.create({ service: &quot;bus&quot; })</code>, <code>service: &quot;lsp&quot;</code>, <code>service: &quot;worktree&quot;</code>, <code>service: &quot;snapshot&quot;</code> 같은 패턴은 OpenCode 관찰 전략의 나머지 절반이다. 이벤트는 &quot;무슨 사건이 일어났나&quot;를 말해 주고, logger는 &quot;왜 여기까지 왔나&quot;를 더 잘 보여 준다.</p>
+<p>예를 들어 worktree reset 실패, snapshot add 실패, LSP initialize error는 모두 bus만으로는 부족하고 서비스별 logger가 필요하다. OpenCode는 두 계층을 함께 쓴다.</p>
+<h3 id="플러그인도-같은-이벤트-backbone을-소비한다">플러그인도 같은 이벤트 backbone을 소비한다</h3>
+<p>문서 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/plugins.mdx"><code>plugins.mdx</code></a>와 bus 구조를 함께 보면 event bus는 내부 디버그 채널만이 아니다. plugin이 permission, session, message, LSP 같은 사건을 읽는 공식 경로이기도 하다. 이 점이 중요하다. 확장을 따로 위해 별도 관찰 인터페이스를 만들지 않고, 내부 가시성과 외부 확장이 같은 backbone을 공유한다.</p>
+<p>이런 설계는 인터페이스 수를 줄여 준다. 물론 이벤트 계약 설계는 더 엄격해져야 한다.</p>
+<h2 id="이-장의-핵심-논지">이 장의 핵심 논지</h2>
+<p>OpenCode의 운영 가시성은 거대한 tracing stack에 있지 않다. 대신 아래 조합에 있다.</p>
+<ul><li>typed event bus</li><li>wildcard/global event 복제</li><li>세션 상태 모델</li><li>서비스별 logger</li><li>핵심 경계에만 둔 span</li></ul>
+<p>즉 이 시스템은 &quot;모든 것을 관찰하자&quot;보다 &quot;어떤 상태가 제품 표면과 운영 표면에 보여야 하는가&quot;를 먼저 고른다.</p>
+<h2 id="트레이드오프">트레이드오프</h2>
+<ul><li>장점: 상태 변화가 UI, plugin, control plane으로 자연스럽게 흐른다.</li><li>장점: typed event 덕분에 이벤트 계약이 비교적 명확하다.</li><li>장점: run-state와 status 분리로 실행 제어와 표시 상태가 정리된다.</li><li>단점: 이벤트 종류가 늘수록 흐름 추적이 어려워질 수 있다.</li><li>단점: 서비스별 logger와 bus와 span을 함께 보려면 관찰 습관이 필요하다.</li></ul>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>에이전트 런타임은 기능만큼 운영 가시성이 중요하다.</li><li>typed event bus 하나를 잘 설계하면 UI, 확장, 관찰을 동시에 떠받칠 수 있다.</li><li>busy/idle 같은 상태도 별도 서비스와 이벤트로 승격하는 편이 낫다.</li><li>tracing은 전면 도입보다 부트스트랩, reset, long-running loop 같은 핵심 경계에만 두는 편이 유지보수에 유리하다.</li></ul>
+<p>다음 장에서는 이런 이벤트와 상태 모델이 외부 공유와 동기화 계층으로 어떻게 확장되는지 본다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>Claude 책의 logEvent 관점은 OpenCode에서 BusEvent, SyncEvent, trace attribute로 구체화된다. 로그 문자열보다 타입 있는 이벤트가 중요하다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;BusEvent define&quot;]
+  N2[&quot;service publish&quot;]
+  N1 --&gt; N2
+  N3[&quot;event route stream&quot;]
+  N2 --&gt; N3
+  N4[&quot;client sync&quot;]
+  N3 --&gt; N4
+  N5[&quot;trace attributes&quot;]
+  N4 --&gt; N5
+  N6[&quot;tests&quot;]
+  N5 --&gt; N6</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/bus/global.ts"><code>packages/opencode/src/bus/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/event.ts"><code>packages/opencode/src/bus/bus-event.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/event.ts"><code>packages/opencode/src/server/routes/instance/event.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/event.ts"><code>packages/opencode/src/server/routes/instance/trace.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/observability.ts"><code>packages/opencode/src/effect/observability.ts</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>BusEvent는 event type과 zod payload schema를 묶는다.</li><li>SyncEvent는 aggregate/version을 가진 재생 가능한 상태 변화에 가깝다.</li><li>trace route와 Effect span은 request, session, model, tool 같은 운영 속성을 붙이는 지점이다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>console log만으로는 UI sync와 replay를 만들 수 없다.</li><li>이벤트 payload schema가 없으면 클라이언트가 암묵적 필드에 의존한다.</li><li>trace에 session/provider/model 속성이 없으면 비용과 실패 원인 분석이 어렵다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>로그, event, sync event, trace span의 역할을 나눴는가?</li><li>이벤트 payload가 schema로 정의되는가?</li><li>tool/LLM 호출에 관측 속성이 붙는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>packages/opencode/src/bus/bus-event.ts</code></td><td><code>packages/core/src/event.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/event.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/bus/index.ts</code></td><td><code>packages/opencode/src/bus/global.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/bus/global.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/effect/observability.ts</code></td><td><code>packages/core/src/observability.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/observability.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/event.ts</code></td><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/event.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/event.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/trace.ts</code></td><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/event.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/event.ts">Latest</a></td></tr><tr><td><code>plugins.mdx</code></td><td><code>packages/web/src/content/docs/plugins.mdx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/plugins.mdx">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/core/src/event.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/event.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/event.ts">Edition</a></td></tr><tr><td><code>packages/core/src/observability.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/observability.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/observability.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/bus/global.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/bus/global.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/bus/global.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/project/bootstrap.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/project/bootstrap.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/project/bootstrap.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/server/routes/instance/httpapi/groups/event.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/server/routes/instance/httpapi/groups/event.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/server/routes/instance/httpapi/groups/event.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/run-state.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/run-state.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/run-state.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/status.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/status.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/status.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/worktree/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/worktree/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/worktree/index.ts">Edition</a></td></tr><tr><td><code>packages/web/src/content/docs/plugins.mdx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/plugins.mdx">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/web/src/content/docs/plugins.mdx">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="ch21.html"><span>이전</span><strong>21장: 저장소, 세션 지속성, 복구</strong></a><a class="nav-card" href="ch23.html"><span>다음</span><strong>23장: 공유와 동기화</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

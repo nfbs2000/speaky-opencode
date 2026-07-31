@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>28장: Provider SDK bridge와 변환 계층 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part2/index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="../part2/ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="../part2/ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="../part2/ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="../part2/ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="../part2/ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="../part4/index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="../part4/ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="../part4/ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="../part4/ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="../part4/ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="../part4/ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part5/index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="../part5/ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="../part5/ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="../part5/ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="../part5/ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="../part5/ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link active" href="ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제6부: 복잡한 서브시스템을 어디에 가두는가</p>
+    <h1>28장: Provider SDK bridge와 변환 계층</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 OpenCode의 multi-provider 구조를 &quot;공통 인터페이스 하나&quot;로 미화하지 않고, provider SDK 로더와 transform 계층과 Copilot 전용 bridge가 어떻게 분업하는지 해부한다. 대상 독자: 여러 모델 공급자를 한 런타임 아래서 운영하면서도 예외를 상위 계층에 흩뿌리고 싶지 않은 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>multi-provider 지원의 어려움은 인증 폼에 있지 않다. 진짜 문제는 더 아래에 있다. 같은 모델 호출이라도 provider마다 메시지 제약이 다르고, 지원 modality가 다르고, cache key 이름이 다르고, reasoning effort 표기가 다르고, SDK가 기대하는 <code>providerOptions</code> 키까지 다르다. 이 차이를 억지 공통분모로 덮으면 기능이 약해지고, 차이를 상위 계층에 퍼뜨리면 런타임 전체가 provider별 분기로 찢어진다.</p>
+<p>OpenCode는 이 문제를 두 층으로 푼다.</p>
+<ol><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/provider.ts"><code>provider/provider.ts</code></a>: 어떤 SDK를 어떻게 로드하고 어떤 모델 객체를 얻을지 결정</li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/transform.ts"><code>provider/transform.ts</code></a>: 메시지, 옵션, 스키마, providerOptions를 각 SDK가 먹을 수 있는 형태로 정규화</li></ol>
+<p>그리고 Copilot처럼 예외가 큰 공급자는 다시 <code>provider/sdk/copilot/*</code> 아래 별도 bridge에 가둔다. 이것이 이 장의 핵심이다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/provider.ts"><code>packages/opencode/src/provider/provider.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/transform.ts"><code>packages/opencode/src/provider/transform.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/model.ts"><code>packages/opencode/src/provider/models.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/provider.ts"><code>packages/opencode/src/provider/schema.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/github-copilot/copilot-provider.ts"><code>packages/opencode/src/provider/sdk/copilot/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/github-copilot/copilot-provider.ts"><code>packages/opencode/src/provider/sdk/copilot/copilot-provider.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/github-copilot/chat/openai-compatible-chat-language-model.ts"><code>packages/opencode/src/provider/sdk/copilot/chat/openai-compatible-chat-language-model.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/github-copilot/responses/openai-responses-language-model.ts"><code>packages/opencode/src/provider/sdk/copilot/responses/openai-responses-language-model.ts</code></a></li></ul>
+<h2 id="계층-분해">계층 분해</h2>
+<div class="diagram"><pre class="mermaid">graph TD
+    MODEL[&quot;internal Provider.Model&quot;]
+    LOAD[&quot;provider.ts&lt;br/&gt;SDK loader + model selection&quot;]
+    TRANSFORM[&quot;transform.ts&lt;br/&gt;message + options normalization&quot;]
+    BRIDGE[&quot;copilot bridge / custom adapters&quot;]
+    SDK[&quot;provider SDK&quot;]
+    CALL[&quot;model call&quot;]
+
+    MODEL --&gt; LOAD
+    LOAD --&gt; TRANSFORM
+    TRANSFORM --&gt; BRIDGE
+    BRIDGE --&gt; SDK
+    SDK --&gt; CALL</pre></div>
+<p>이 구조에서 중요한 것은 예외가 없다는 환상을 버리는 일이다. OpenCode는 차이를 인정하되, 차이가 새는 위치를 제한하려 한다.</p>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="provider-ts는-단순-registry가-아니라-동적-sdk-선택기다"><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/provider.ts"><code>provider.ts</code></a>는 단순 registry가 아니라 동적 SDK 선택기다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/provider.ts"><code>packages/opencode/src/provider/provider.ts</code></a>의 <code>BUNDLED_PROVIDERS</code>는 이 계층의 첫 번째 성격을 보여 준다. OpenAI, Anthropic, Azure, Vertex, OpenRouter, Copilot 등 공급자별 SDK 팩토리를 동적으로 import한다.</p>
+<p>이 파일은 단순히 npm 패키지를 map 하는 데서 끝나지 않는다.</p>
+<ul><li><code>shouldUseCopilotResponsesApi(...)</code>로 Copilot에서 chat/responses API 갈림길 결정</li><li><code>wrapSSE(...)</code>로 SSE read timeout 제어</li><li><code>custom(...)</code> loader로 provider별 auth, autoload, env, baseURL, custom getModel 결정</li><li><code>useLanguageModel(...)</code>로 SDK shape가 <code>languageModel</code> 기반인지 chat/responses 분리형인지 판별</li></ul>
+<p>즉 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/provider.ts"><code>provider.ts</code></a>는 &quot;어느 provider가 있나&quot;를 적는 파일이 아니라 &quot;이 provider는 어떤 방식으로 모델 객체를 만들고 어떤 예외를 갖는가&quot;를 한곳에 모으는 파일이다.</p>
+<h3 id="provider별-예외는-공통분모-제거가-아니라-조건부-적응으로-처리한다">provider별 예외는 공통분모 제거가 아니라 조건부 적응으로 처리한다</h3>
+<p><code>custom(...)</code> 내부를 보면 설계 방향이 분명하다.</p>
+<ul><li><code>openai</code>, <code>xai</code>는 responses API 사용</li><li><code>github-copilot</code>은 모델 ID에 따라 <code>responses()</code>와 <code>chat()</code>를 갈라 씀</li><li><code>azure</code>는 resource name, completion URL 여부에 따라 다른 코드 경로 사용</li><li><code>opencode</code>는 키 유무에 따라 public/free model만 노출</li><li><code>amazon-bedrock</code>은 region/profile/auth 조합을 별도로 처리</li></ul>
+<p>이건 좋은 냄새다. 모든 provider를 하나의 만능 인터페이스로 우겨 넣지 않고, &quot;어디까지 공통화하고 어디서 provider별 적응을 허용할지&quot;를 명시한다.</p>
+<h3 id="transform-ts의-핵심은-공통-입력을-여러-단계로-접는-것이다"><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/transform.ts"><code>transform.ts</code></a>의 핵심은 공통 입력을 여러 단계로 접는 것이다</h3>
+<p><code>message(msgs, model, options)</code>는 OpenCode provider bridge의 실제 입구다. 이 함수는 바로 SDK 호출로 가지 않고 아래 순서로 메시지를 접는다.</p>
+<ol><li><code>unsupportedParts(...)</code></li><li><code>normalizeMessages(...)</code></li><li>필요 시 <code>applyCaching(...)</code></li><li>providerOptions key remap</li></ol>
+<p>이 순서가 중요한 이유는 문제를 한 덩어리로 처리하지 않기 때문이다.</p>
+<ul><li>먼저 모델이 지원하지 않는 입력을 걸러 내고</li><li>그 다음 메시지 배열 모양을 공급자 제약에 맞추고</li><li>그 다음 캐시 힌트를 주고</li><li>마지막에 SDK가 기대하는 키 이름으로 바꾼다</li></ul>
+<p>좋은 normalization layer는 &quot;한 번에 다 고친다&quot;보다 &quot;문제를 층으로 분해한다&quot;에 가깝다.</p>
+<h3 id="미지원-modality는-조용히-버리지-않고-오류-텍스트로-승격한다">미지원 modality는 조용히 버리지 않고 오류 텍스트로 승격한다</h3>
+<p><code>unsupportedParts(...)</code>는 이미지나 파일이 모델 capability에 맞지 않으면 해당 part를 버리지 않고 명시적 오류 텍스트로 바꾼다. 예를 들어 모델이 image/pdf를 지원하지 않으면, 모델에게도 사용자에게도 &quot;이 입력을 읽을 수 없다&quot;는 사실이 전달된다.</p>
+<p>이 설계는 매우 중요하다. 멀티모달 입력이 묵묵히 사라지면 시스템은 조용히 거짓말을 하게 된다. OpenCode는 미지원 상황을 no-op가 아니라 표현 가능한 오류 상태로 바꾼다.</p>
+<h3 id="normalizemessages-는-provider-제약을-실제-메시지-배열까지-내려가-해결한다"><code>normalizeMessages(...)</code>는 provider 제약을 실제 메시지 배열까지 내려가 해결한다</h3>
+<p><code>normalizeMessages(...)</code>가 처리하는 내용은 생각보다 많다.</p>
+<ul><li>Anthropic/Bedrock의 empty content 제거</li><li>Claude 계열의 <code>toolCallId</code> scrub</li><li>Anthropic의 <code>tool_use</code> 뒤에 text가 오면 메시지를 둘로 쪼개 재정렬</li><li>Mistral 계열의 짧은 toolCallId 생성과 user-after-tool 시퀀스 보정</li><li>reasoning part를 interleaved field로 옮기는 provider별 처리</li></ul>
+<p>이것이 중요한 이유는 provider 차이가 옵션 한두 개로 끝나지 않기 때문이다. 어떤 제약은 메시지 배열 shape 자체를 바꿔야만 해결된다. OpenCode는 그 수선을 transform 계층으로 밀어 넣는다.</p>
+<h3 id="캐싱과-reasoning도-provider마다-다른-문법을-가진다">캐싱과 reasoning도 provider마다 다른 문법을 가진다</h3>
+<p><code>applyCaching(...)</code>, <code>variants(...)</code>, <code>options(...)</code>, <code>smallOptions(...)</code>는 &quot;temperature/topP만 바꾸면 된다&quot;는 환상을 깨 준다.</p>
+<ul><li>Anthropic/OpenRouter/Bedrock/Alibaba는 서로 다른 cache hint 문법 사용</li><li>GPT-5 계열은 <code>reasoningEffort</code>, <code>reasoningSummary</code>, <code>textVerbosity</code>를 상황별로 조정</li><li>Gemini는 <code>thinkingConfig</code></li><li>OpenRouter/Gateway는 별도의 reasoning shape</li><li>Kimi/Alibaba-cn은 <code>enable_thinking</code>이나 budget token 류의 별도 옵션 필요</li></ul>
+<p>이 말은 곧 multi-provider 추상화가 공통분모만 제공해서는 실전 품질이 나오지 않는다는 뜻이다. provider별 강점을 살리려면 결국 option transform 층이 두꺼워질 수밖에 없다.</p>
+<h3 id="provideroptions-는-라우팅-규칙까지-담당한다"><code>providerOptions()</code>는 라우팅 규칙까지 담당한다</h3>
+<p><code>providerOptions(model, options)</code>는 SDK마다 서로 다른 namespacing 규칙을 맞춘다.</p>
+<ul><li>Gateway는 <code>gateway</code>와 upstream slug를 분리</li><li>Azure는 <code>openai</code>와 <code>azure</code> 양쪽 키에 동시에 싣는다</li><li>나머지는 <code>sdkKey(...)</code> 혹은 <code>providerID</code> 아래로 내려 보낸다</li></ul>
+<p>이 설계는 중요하다. 상위 계층이 &quot;이 provider는 key를 어디에 넣더라&quot;를 알기 시작하면 추상화가 무너진다. key routing은 transform 계층이 끝까지 떠안아야 한다.</p>
+<h3 id="copilot은-예외가-크기-때문에-아예-별도-bridge-폴더로-격리한다">Copilot은 예외가 크기 때문에 아예 별도 bridge 폴더로 격리한다</h3>
+<p><code>packages/opencode/src/provider/sdk/copilot/*</code>를 보면 OpenCode가 예외를 퍼뜨리지 않으려는 의지가 더 선명하다.</p>
+<ul><li><code>chat/*</code>는 OpenAI-compatible chat language model 적응</li><li><code>responses/*</code>는 Responses API 적응</li><li>finish reason mapping, tool preparation, metadata extraction도 분리</li></ul>
+<p>그리고 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/provider.ts"><code>provider.ts</code></a>의 <code>github-copilot</code> loader는 모델 ID에 따라 <code>responses(modelID)</code> 혹은 <code>chat(modelID)</code>를 고른다. 즉 Copilot은 provider 목록의 한 항목이지만, 내부적으로는 사실상 자체 bridge를 가진 별도 세계다.</p>
+<p>이게 좋은 이유는 명확하다. 예외가 불가피하면 예외를 한곳에 몰아야 한다. 상위 서비스에 얇게 흩뿌리면 나중에는 모든 호출부가 Copilot 사정을 알게 된다.</p>
+<h2 id="이-장의-핵심-논지">이 장의 핵심 논지</h2>
+<p>OpenCode가 하는 일은 provider 차이를 없애는 것이 아니다. 없앨 수 없는 차이를 상위 계층이 덜 알게 만드는 것이다. 이 차이는 크다.</p>
+<ul><li>나쁜 추상화: 공통분모만 남겨 기능을 약하게 만든다</li><li>더 나쁜 추상화: 예외를 상위 계층에 흩뿌린다</li><li>OpenCode의 선택: transform/bridge 계층을 두껍게 만들고 상위 세션/도구 계층은 상대적으로 얇게 유지한다</li></ul>
+<p>이 선택은 파일 하나가 커지는 대가를 치르지만, 전체 런타임이 provider별 분기로 오염되는 것을 막아 준다.</p>
+<h2 id="트레이드오프">트레이드오프</h2>
+<ul><li>장점: 상위 세션/도구 계층은 provider별 메시지 제약을 직접 알 필요가 없다.</li><li>장점: provider 고유 기능을 완전히 버리지 않고도 공통 런타임을 유지할 수 있다.</li><li>장점: Copilot 같은 큰 예외를 별도 bridge로 격리해 누수를 줄인다.</li><li>단점: <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/transform.ts"><code>transform.ts</code></a>와 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/provider.ts"><code>provider.ts</code></a>가 빠르게 두꺼워진다.</li><li>단점: 새 provider를 붙일 때 이해해야 할 규칙이 많다.</li></ul>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>multi-provider 추상화의 핵심은 auth 화면이 아니라 normalization layer다.</li><li>공통분모만 남기면 품질이 약해지고, 예외를 흩뿌리면 시스템이 금방 깨진다.</li><li>메시지 배열 shape, cache key, reasoning 옵션, providerOptions key routing까지 한곳에서 다뤄야 한다.</li><li>큰 예외는 &quot;provider 하나&quot;로 취급하지 말고 전용 bridge 계층으로 가두는 편이 낫다.</li></ul>
+<p>이제 고급 서브시스템 분석을 마친다. 다음 부에서는 이런 구조를 종합해 OpenCode가 어떤 하니스 패턴을 실제로 잘 구현하는지 추출한다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>Claude 책의 API 통신 계층 관점은 OpenCode에서 provider bridge와 transform으로 나타난다. provider별 예외는 사라지지 않으므로 한 계층에 가둬야 한다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;Provider config&quot;]
+  N2[&quot;resolveSDK&quot;]
+  N1 --&gt; N2
+  N3[&quot;message transform&quot;]
+  N2 --&gt; N3
+  N4[&quot;schema/options transform&quot;]
+  N3 --&gt; N4
+  N5[&quot;LLM.stream&quot;]
+  N4 --&gt; N5
+  N6[&quot;compatibility shim&quot;]
+  N5 --&gt; N6
+  N7[&quot;error parse&quot;]
+  N6 --&gt; N7</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/provider.ts"><code>packages/opencode/src/provider/provider.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/transform.ts"><code>packages/opencode/src/provider/transform.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/core/src/github-copilot"><code>packages/opencode/src/provider/sdk/copilot</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/llm.ts"><code>packages/opencode/src/session/llm.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/error.ts"><code>packages/opencode/src/provider/error.ts</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>resolveSDK는 bundled, custom, Copilot, GitLab workflow 같은 SDK 차이를 흡수한다.</li><li>ProviderTransform은 unsupported modality를 조용히 버리지 않고 설명 가능한 텍스트로 바꾼다.</li><li>LLM 계층은 LiteLLM/Bedrock/Copilot proxy tool compatibility 문제를 _noop tool 등으로 처리한다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>provider 예외가 session loop로 새면 새 provider마다 루프가 복잡해진다.</li><li>unsupported modality를 버리면 답변 품질 저하 원인을 설명할 수 없다.</li><li>tool compatibility shim이 없으면 hidden agent 호출도 특정 proxy에서 실패할 수 있다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>provider bridge와 transform 계층이 분리되어 있는가?</li><li>지원하지 않는 입력을 설명 가능한 형태로 처리하는가?</li><li>provider 오류를 하니스 오류 타입으로 정규화하는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>packages/opencode/src/provider/models.ts</code></td><td><code>packages/core/src/model.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/model.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/provider/schema.ts</code></td><td><code>packages/core/src/provider.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/provider.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/provider/sdk/copilot</code></td><td><code>packages/core/src/github-copilot</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/core/src/github-copilot">Latest</a></td></tr><tr><td><code>packages/opencode/src/provider/sdk/copilot/chat/openai-compatible-chat-language-model.ts</code></td><td><code>packages/core/src/github-copilot/chat/openai-compatible-chat-language-model.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/github-copilot/chat/openai-compatible-chat-language-model.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/provider/sdk/copilot/copilot-provider.ts</code></td><td><code>packages/core/src/github-copilot/copilot-provider.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/github-copilot/copilot-provider.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/provider/sdk/copilot/index.ts</code></td><td><code>packages/core/src/github-copilot/copilot-provider.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/github-copilot/copilot-provider.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/provider/sdk/copilot/responses/openai-responses-language-model.ts</code></td><td><code>packages/core/src/github-copilot/responses/openai-responses-language-model.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/github-copilot/responses/openai-responses-language-model.ts">Latest</a></td></tr><tr><td><code>provider.ts</code></td><td><code>packages/core/src/provider.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/provider.ts">Latest</a></td></tr><tr><td><code>provider/provider.ts</code></td><td><code>packages/opencode/src/provider/provider.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/provider.ts">Latest</a></td></tr><tr><td><code>provider/transform.ts</code></td><td><code>packages/opencode/src/provider/transform.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/transform.ts">Latest</a></td></tr><tr><td><code>transform.ts</code></td><td><code>packages/opencode/src/provider/transform.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/transform.ts">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/core/src/github-copilot</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/core/src/github-copilot">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/github-copilot">Edition</a></td></tr><tr><td><code>packages/core/src/github-copilot/chat/openai-compatible-chat-language-model.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/github-copilot/chat/openai-compatible-chat-language-model.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/github-copilot/chat/openai-compatible-chat-language-model.ts">Edition</a></td></tr><tr><td><code>packages/core/src/github-copilot/copilot-provider.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/github-copilot/copilot-provider.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/github-copilot/copilot-provider.ts">Edition</a></td></tr><tr><td><code>packages/core/src/github-copilot/responses/openai-responses-language-model.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/github-copilot/responses/openai-responses-language-model.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/github-copilot/responses/openai-responses-language-model.ts">Edition</a></td></tr><tr><td><code>packages/core/src/model.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/model.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/model.ts">Edition</a></td></tr><tr><td><code>packages/core/src/provider.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/provider.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/provider.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/provider/error.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/error.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/provider/error.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/provider/provider.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/provider.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/provider/provider.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/provider/transform.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/provider/transform.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/provider/transform.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/llm.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/llm.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/llm.ts">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<details class="unresolved-refs">
+  <summary>현재 fork에서 찾지 못한 참조 4개</summary>
+  <p>이 경로들은 원고에 있지만 현재 <code>nfbs2000/speaky-opencode</code> snapshot에는 없어서 404 링크를 만들지 않았습니다.</p>
+  <ul><li><code>chat/*</code></li><li><code>packages/opencode/src/provider/sdk/copilot/*</code></li><li><code>provider/sdk/copilot/*</code></li><li><code>responses/*</code></li></ul>
+</details>
+
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="ch27.html"><span>이전</span><strong>27장: Snapshot과 재현 가능한 상태</strong></a><a class="nav-card" href="../part7/index.html"><span>다음</span><strong>부 도입: 저장소 해설을 설계 청사진으로 바꾸기</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>24장: LSP와 코드 인텔리전스 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part2/index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="../part2/ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="../part2/ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="../part2/ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="../part2/ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="../part2/ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="../part4/index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="../part4/ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="../part4/ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="../part4/ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="../part4/ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="../part4/ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part5/index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="../part5/ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="../part5/ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="../part5/ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="../part5/ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="../part5/ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link active" href="ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제6부: 복잡한 서브시스템을 어디에 가두는가</p>
+    <h1>24장: LSP와 코드 인텔리전스</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 OpenCode의 LSP 계층을 &quot;언어 서버 목록&quot;이 아니라, 파일 터치, 루트 판별, 진단 수집, 심볼 질의를 지속적으로 제공하는 상태 서비스로 읽는다. 대상 독자: 에이전트 런타임에 정의 찾기, 참조 찾기, 진단 정보를 붙이고 싶은 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>코딩 에이전트는 <code>read</code>, <code>grep</code>, <code>glob</code>만으로도 돌아간다. 하지만 실전 생산성은 금방 한계에 부딪힌다. &quot;이 심볼의 정의가 어디인가&quot;, &quot;이 파일이 이미 깨져 있나&quot;, &quot;수정 후 진단이 사라졌나&quot; 같은 질문은 문자열 검색만으로는 안정적으로 답하기 어렵다. 이 지점에서 LSP는 사치가 아니라 품질 계층이 된다.</p>
+<p>OpenCode가 흥미로운 이유는 LSP를 IDE 전체 복제로 만들지 않는다는 점이다. 대신 언어 서버 정의, root 계산, spawn/재시도, diagnostics bus, 질의 fan-out을 묶은 별도 서비스로 만든다. 즉 LSP는 부가 기능이 아니라 코어 런타임 옆에 붙은 코드 인텔리전스 서브시스템이다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/lsp.ts"><code>packages/opencode/src/lsp/lsp.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/client.ts"><code>packages/opencode/src/lsp/client.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/server.ts"><code>packages/opencode/src/lsp/server.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/language.ts"><code>packages/opencode/src/lsp/language.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/launch.ts"><code>packages/opencode/src/lsp/launch.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/diagnostic.ts"><code>packages/opencode/src/lsp/diagnostic.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/lsp.mdx"><code>packages/web/src/content/docs/lsp.mdx</code></a></li></ul>
+<h2 id="lsp-계층의-형태">LSP 계층의 형태</h2>
+<div class="diagram"><pre class="mermaid">graph TD
+    FILE[&quot;file path&quot;]
+    SERVICE[&quot;LSP Service&lt;br/&gt;clients / servers / broken / spawning&quot;]
+    SERVER_DEF[&quot;server definitions&lt;br/&gt;root + spawn&quot;]
+    CLIENT[&quot;jsonrpc client&quot;]
+    BUS[&quot;diagnostics bus&quot;]
+    QUERY[&quot;hover / definition / refs / symbols&quot;]
+
+    FILE --&gt; SERVICE
+    SERVICE --&gt; SERVER_DEF
+    SERVER_DEF --&gt; CLIENT
+    CLIENT --&gt; BUS
+    CLIENT --&gt; QUERY</pre></div>
+<p>핵심은 <code>LSP Service</code>가 &quot;요청이 올 때마다 서버를 하나 띄우는 함수&quot;가 아니라는 점이다. 클라이언트 집합과 실패 상태와 진행 중인 spawn을 함께 가진 장수 서비스다.</p>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="서비스-상태는-네-개의-맵으로-요약된다">서비스 상태는 네 개의 맵으로 요약된다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/lsp.ts"><code>packages/opencode/src/lsp/lsp.ts</code></a>의 <code>State</code>는 이 계층의 성격을 정확히 보여 준다.</p>
+<ul><li><code>clients</code>: 현재 연결된 LSP 클라이언트 목록</li><li><code>servers</code>: 활성화된 서버 정의 레지스트리</li><li><code>broken</code>: 실패한 root/server 조합</li><li><code>spawning</code>: 진행 중인 root/server 조합의 Promise</li></ul>
+<p>이 네 개가 중요한 이유는 LSP 품질의 대부분이 &quot;서버를 잘 띄우는가&quot;보다 &quot;중복 spawn과 실패 재시도를 얼마나 잘 다루는가&quot;에 있기 때문이다. 같은 루트에 같은 서버를 두 번 붙이면 낭비이고, 계속 실패하는 조합을 매번 다시 시도하면 느리다. OpenCode는 이를 명시적 상태로 끌어올린다.</p>
+<h3 id="언어-서버-정의는-선언형-레지스트리다">언어 서버 정의는 선언형 레지스트리다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/server.ts"><code>packages/opencode/src/lsp/server.ts</code></a>는 <code>Deno</code>, <code>Typescript</code>, <code>Vue</code>, <code>ESLint</code>, <code>Oxlint</code> 같은 서버를 <code>Info</code> 객체로 정의한다. 각 항목은 아래를 가진다.</p>
+<ul><li><code>id</code></li><li><code>extensions</code></li><li><code>root(file, ctx)</code> 함수</li><li><code>spawn(root, ctx)</code> 함수</li></ul>
+<p>이 방식의 장점은 크다. 상속 프레임워크 없이도 언어 서버를 계속 추가할 수 있고, 각 서버의 설치/루트/실행 예외를 같은 형태로 수용할 수 있다. LSP를 거대한 IDE 아키텍처로 확장하지 않고도 실전적인 범위를 확보하는 방법이다.</p>
+<h3 id="root-detection이-실제-체감-품질을-결정한다">root detection이 실제 체감 품질을 결정한다</h3>
+<p><code>NearestRoot(...)</code> 헬퍼는 이 장의 중요한 디테일이다. 특정 lockfile이나 설정 파일을 기준으로 가장 가까운 루트를 찾고, 필요하면 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/parsers-config.ts"><code>deno.json</code></a> 같은 exclude 패턴으로 다른 서버를 배제한다.</p>
+<p>이게 중요한 이유는 잘못된 루트가 거의 모든 품질 문제의 출발점이기 때문이다.</p>
+<ul><li>잘못된 diagnostics</li><li>과도한 workspace 범위</li><li>엉뚱한 symbol resolution</li><li>중복 서버 연결</li></ul>
+<p>OpenCode는 root detection을 보조 유틸이 아니라 언어 서버 정의의 핵심으로 둔다. 이 판단은 맞다. 많은 LSP 통합은 query API보다 root detection에서 무너진다.</p>
+<h3 id="런타임은-설치되지-않은-서버-문제도-일부-떠안는다">런타임은 &quot;설치되지 않은 서버&quot; 문제도 일부 떠안는다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/sdk/js/src/server.ts"><code>server.ts</code></a>를 더 읽으면 OpenCode가 단순히 PATH에 있는 바이너리만 쓰지 않는다는 점이 보인다. 예를 들어 ESLint 서버는 없으면 GitHub에서 압축 파일을 받아 <code>Global.Path.bin</code> 아래에 풀고 <code>npm install</code>, <code>npm run compile</code>까지 수행한다. Vue, Oxlint 등도 로컬/상위 디렉터리/node_modules/PATH를 단계적으로 탐색한다.</p>
+<p>즉 OpenCode는 LSP를 &quot;사용자가 이미 완벽하게 설치해 둔 환경에서만 동작하는 선택 기능&quot;으로 취급하지 않는다. 제품 품질을 위해 런타임이 일정 부분 설치/해결 책임을 함께 진다.</p>
+<p>이건 중요하다. 코드 인텔리전스를 제품 기능으로 제공하려면 launch 안정성을 사용자 우연에만 맡길 수 없기 때문이다.</p>
+<h3 id="json-rpc-클라이언트는-진단-스트림을-버스로-승격한다">JSON-RPC 클라이언트는 진단 스트림을 버스로 승격한다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/client.ts"><code>packages/opencode/src/lsp/client.ts</code></a>에서 <code>create(...)</code>는 <code>StreamMessageReader/Writer</code>로 JSON-RPC 연결을 만들고, <code>textDocument/publishDiagnostics</code>를 받아 <code>Map&lt;string, Diagnostic[]&gt;</code>에 저장한 뒤 <code>lsp.client.diagnostics</code> 이벤트를 bus로 발행한다.</p>
+<p>여기서 두 가지가 중요하다.</p>
+<ol><li>diagnostics는 조회 함수의 반환값이 아니라 지속적으로 갱신되는 상태다.</li><li>업데이트는 파일 path와 serverID를 포함한 bus 이벤트로 승격되어 UI나 다른 서비스가 구독할 수 있다.</li></ol>
+<p>특히 <code>waitForDiagnostics(...)</code>의 debounce는 사소해 보이지만 좋다. syntax diagnostics 뒤에 semantic diagnostics가 따라오는 패턴을 고려해 150ms 완충을 둔다. 작은 디테일이지만 사용자 체감 품질은 이런 데서 갈린다.</p>
+<h3 id="touchfile은-파일-변경을-lsp에게-살아-있는-사실-로-알린다"><code>touchFile</code>은 파일 변경을 LSP에게 &quot;살아 있는 사실&quot;로 알린다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/opencode/src/lsp"><code>lsp.ts</code></a>의 <code>touchFile(...)</code>은 이 계층이 단발성 query engine이 아님을 보여 준다. 이 함수는 관련 클라이언트를 찾아 <code>client.notify.open(...)</code>을 호출하고, 필요하면 diagnostics가 다시 올 때까지 기다린다.</p>
+<p><code>client.notify.open(...)</code>은 내부에서 두 갈래로 동작한다.</p>
+<ul><li>이미 열려 있던 파일이면 <code>workspace/didChangeWatchedFiles</code>와 <code>textDocument/didChange</code></li><li>처음 보는 파일이면 <code>workspace/didChangeWatchedFiles</code>와 <code>textDocument/didOpen</code></li></ul>
+<p>즉 OpenCode는 파일 수정 뒤 LSP가 새 상태를 보도록 적극적으로 자극한다. 단순히 나중에 쿼리할 때 결과가 좋아지길 기대하지 않는다.</p>
+<h3 id="질의는-다중-클라이언트-fan-out으로-처리된다">질의는 다중 클라이언트 fan-out으로 처리된다</h3>
+<p><code>hover</code>, <code>definition</code>, <code>references</code>, <code>documentSymbol</code>, <code>workspaceSymbol</code>, <code>incomingCalls</code>, <code>outgoingCalls</code> 등은 모두 <code>run(...)</code> 혹은 <code>runAll(...)</code> 위에 쌓인다. 즉 하나의 파일에 대해 관련 있는 모든 LSP 클라이언트로 요청을 fan-out하고, 결과를 합친다.</p>
+<p>이건 한편으로는 단순하고, 다른 한편으로는 실전적이다. 프로젝트마다 TypeScript와 ESLint, Vue LSP가 동시에 관련될 수 있기 때문이다. OpenCode는 이를 하나의 &quot;최고 권위 서버&quot;로 억지 통일하기보다, 가능한 여러 클라이언트에서 결과를 모으는 전략을 택한다.</p>
+<h3 id="구성-가능성과-실패-격리도-서비스-안에-있다">구성 가능성과 실패 격리도 서비스 안에 있다</h3>
+<p><code>Config.lsp</code>를 읽는 초기화 코드와 <code>filterExperimentalServers(...)</code>는 LSP가 고정 불변 목록이 아니라 사용자/플래그/실험 기능에 따라 조정되는 서비스임을 보여 준다. 반대로 실패한 조합은 <code>broken</code> 집합에 기록해 계속 spawn 시도하지 않는다.</p>
+<p>즉 이 계층은 &quot;가능하면 다 붙인다&quot;가 아니라 &quot;붙일 수 있는 것만 안정적으로 붙인다&quot;에 가깝다. 좋은 런타임 냄새다.</p>
+<h2 id="문서와-구현의-차이">문서와 구현의 차이</h2>
+<p>문서 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/lsp.mdx"><code>lsp.mdx</code></a>는 어떤 서버를 쓸 수 있는지, 어떤 경험이 제공되는지 설명한다. 하지만 구현까지 내려오면 더 중요한 사실이 드러난다.</p>
+<ul><li>LSP는 장수 상태 서비스다.</li><li>diagnostics는 bus 이벤트다.</li><li>root detection이 핵심 품질 포인트다.</li><li>launch 실패와 중복 spawn을 피하기 위한 상태가 따로 있다.</li><li>파일 변경을 LSP에 알리는 <code>touchFile</code> 같은 적극적 동기화 경로가 있다.</li></ul>
+<p>즉 LSP를 제대로 붙이는 일은 &quot;언어 서버 지원&quot;을 선언하는 것보다 훨씬 운영적이다.</p>
+<h2 id="트레이드오프">트레이드오프</h2>
+<ul><li>장점: 언어 서버 정의가 선언형 레지스트리라 확장하기 쉽다.</li><li>장점: root/server 단위의 실패 격리와 spawn dedupe가 있다.</li><li>장점: diagnostics와 심볼 정보가 UI와 다른 서비스로 흘러갈 수 있다.</li><li>단점: 설치/실행 예외를 런타임이 꽤 많이 떠안아야 한다.</li><li>단점: root detection이 틀리면 전체 체감 품질이 한꺼번에 무너진다.</li></ul>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>코드 인텔리전스 계층의 핵심은 query API보다 root detection과 launch 안정성이다.</li><li>LSP는 &quot;도구 하나&quot;가 아니라 상태 서비스로 설계해야 한다.</li><li>diagnostics는 함수 반환값보다 이벤트 스트림으로 다루는 편이 유리하다.</li><li>언어 서버를 붙일 때는 중복 spawn, 실패 재시도, 설치 부재를 먼저 설계해야 한다.</li></ul>
+<p>다음 장에서는 코드 이해와는 다른 문제, 즉 실제 파일 수정이 어떤 편집 의미론 위에서 운영되는지 본다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>Claude의 코드 인텔리전스 관점은 OpenCode에서 LSP service로 구현된다. grep은 텍스트 검색이고 LSP는 정의, 참조, hover, symbol, call hierarchy를 제공한다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;config.lsp&quot;]
+  N2[&quot;server registry&quot;]
+  N1 --&gt; N2
+  N3[&quot;root detection&quot;]
+  N2 --&gt; N3
+  N4[&quot;client spawn&quot;]
+  N3 --&gt; N4
+  N5[&quot;JSON-RPC query&quot;]
+  N4 --&gt; N5
+  N6[&quot;LspTool&quot;]
+  N5 --&gt; N6
+  N7[&quot;diagnostics&quot;]
+  N6 --&gt; N7</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/lsp.ts"><code>packages/opencode/src/lsp/lsp.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/client.ts"><code>packages/opencode/src/lsp/client.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/server.ts"><code>packages/opencode/src/lsp/server.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/diagnostic.ts"><code>packages/opencode/src/lsp/diagnostic.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/lsp.ts"><code>packages/opencode/src/tool/lsp.ts</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>LSP state는 clients, servers, broken, spawning으로 lifecycle을 관리한다.</li><li>root detection과 extension mapping이 실제 응답 품질을 결정한다.</li><li>edit/write 후 touchFile과 diagnostics report가 모델 feedback으로 돌아간다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>spawn 실패를 반복하면 파일 열 때마다 지연이 누적된다.</li><li>파일 수정 후 diagnostics를 갱신하지 않으면 깨진 코드를 성공으로 오판한다.</li><li>LSP tool을 permission 없이 열면 project 밖 구조 질의가 가능해진다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>LSP lifecycle이 별도 service로 격리되어 있는가?</li><li>검색 도구와 구조 질의 도구를 구분하는가?</li><li>파일 mutation 뒤 diagnostics feedback을 제공하는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>deno.json</code></td><td><code>packages/opencode/parsers-config.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/parsers-config.ts">Latest</a></td></tr><tr><td><code>lsp.mdx</code></td><td><code>packages/web/src/content/docs/lsp.mdx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/lsp.mdx">Latest</a></td></tr><tr><td><code>lsp.ts</code></td><td><code>packages/opencode/src/lsp</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/opencode/src/lsp">Latest</a></td></tr><tr><td><code>server.ts</code></td><td><code>packages/sdk/js/src/server.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/sdk/js/src/server.ts">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/opencode/parsers-config.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/parsers-config.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/parsers-config.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/lsp</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/dev/packages/opencode/src/lsp">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/lsp">Edition</a></td></tr><tr><td><code>packages/opencode/src/lsp/client.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/client.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/lsp/client.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/lsp/diagnostic.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/diagnostic.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/lsp/diagnostic.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/lsp/language.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/language.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/lsp/language.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/lsp/launch.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/launch.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/lsp/launch.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/lsp/lsp.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/lsp.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/lsp/lsp.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/lsp/server.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/lsp/server.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/lsp/server.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/lsp.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/lsp.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/lsp.ts">Edition</a></td></tr><tr><td><code>packages/sdk/js/src/server.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/sdk/js/src/server.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/sdk/js/src/server.ts">Edition</a></td></tr><tr><td><code>packages/web/src/content/docs/lsp.mdx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/lsp.mdx">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/web/src/content/docs/lsp.mdx">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="index.html"><span>이전</span><strong>부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</strong></a><a class="nav-card" href="ch25.html"><span>다음</span><strong>25장: Patch, Edit, Write의 파일 수정 의미론</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>9장: 제목, 요약, 보조 시스템 에이전트 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link active" href="ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="../part4/index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="../part4/ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="../part4/ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="../part4/ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="../part4/ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="../part4/ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part5/index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="../part5/ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="../part5/ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="../part5/ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="../part5/ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="../part5/ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="../part6/index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="../part6/ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="../part6/ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="../part6/ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="../part6/ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="../part6/ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</p>
+    <h1>9장: 제목, 요약, 보조 시스템 에이전트</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 title, summary, compaction 같은 hidden agent를 OpenCode의 유지 기능이 아니라, 메인 assistant를 오래 살게 만드는 시스템 에이전트로 읽는다. 대상 독자: 제목 생성, 세션 요약, 문맥 압축 같은 보조 작업을 메인 채팅 루프에서 분리하고 싶은 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>사용자는 보통 build agent나 plan agent만 의식한다. 하지만 긴 세션을 실제로 유지하는 것은 눈에 잘 보이지 않는 시스템 작업들이다. 제목 생성, diff 요약, compaction, 요약 메시지 주입 같은 기능은 화려하지 않지만 세션 품질과 복구 가능성에 직접 닿는다.</p>
+<p>많은 시스템이 이 보조 작업을 helper 함수로 처리한다. OpenCode는 다르게 간다. <code>title</code>, <code>summary</code>, <code>compaction</code>을 정식 agent로 등록하고, 같은 모델 선택 규칙, prompt 자산, permission envelope, 세션 저장 경로를 재사용한다. 이 선택은 중요하다. 유지 기능도 결국 모델 호출과 문맥 관리와 산출물 저장을 필요로 하기 때문이다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts"><code>packages/opencode/src/agent/agent.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/prompt/title.txt"><code>packages/opencode/src/agent/prompt/title.txt</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/prompt/summary.txt"><code>packages/opencode/src/agent/prompt/summary.txt</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/prompt/compaction.txt"><code>packages/opencode/src/agent/prompt/compaction.txt</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts"><code>packages/opencode/src/session/prompt.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/summary.ts"><code>packages/opencode/src/session/summary.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/compaction.ts"><code>packages/opencode/src/session/compaction.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/session.ts"><code>packages/opencode/src/session/session.ts</code></a></li></ul>
+<h2 id="숨은-에이전트의-위치">숨은 에이전트의 위치</h2>
+<div class="diagram"><pre class="mermaid">graph TD
+    SESSION[&quot;session prompt loop&quot;]
+    TITLE[&quot;title agent&quot;]
+    SUMMARY[&quot;summary service + summary agent&quot;]
+    COMPACT[&quot;compaction agent&quot;]
+    SNAP[&quot;snapshot diff&quot;]
+    STORE[&quot;session title / summary fields&quot;]
+
+    SESSION --&gt; TITLE
+    SESSION --&gt; SUMMARY
+    SESSION --&gt; COMPACT
+    SUMMARY --&gt; SNAP
+    TITLE --&gt; STORE
+    SUMMARY --&gt; STORE
+    COMPACT --&gt; STORE</pre></div>
+<p>이 구조에서 핵심은 title/summary/compaction이 &quot;부가기능&quot;이 아니라 세션 루프에 기생하는 시스템 에이전트라는 점이다.</p>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="hidden-agent도-agent-ts의-정식-항목이다">hidden agent도 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/agent.ts"><code>agent.ts</code></a>의 정식 항목이다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts"><code>packages/opencode/src/agent/agent.ts</code></a>를 보면 <code>compaction</code>, <code>title</code>, <code>summary</code>는 모두 <code>hidden: true</code>인 agent로 등록된다. 이 세 에이전트는 이름만 따로 있는 것이 아니라, 일반 agent와 같은 <code>Info</code> 구조를 공유한다.</p>
+<ul><li><code>prompt</code></li><li><code>permission</code></li><li><code>model</code></li><li><code>variant</code></li><li><code>temperature</code></li><li><code>options</code></li></ul>
+<p>이 구조가 중요한 이유는 보조 작업도 결국 모델을 호출하고, 문맥을 만들고, 결과를 파싱하고, 실패를 다뤄야 하기 때문이다. helper 함수로 만들면 나중에 다시 agent abstraction을 재구현하게 된다.</p>
+<h3 id="이-hidden-agent들은-매우-좁은-permission-envelope를-가진다">이 hidden agent들은 매우 좁은 permission envelope를 가진다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/agent.ts"><code>agent.ts</code></a>에서 <code>compaction</code>, <code>title</code>, <code>summary</code>는 모두 <code>Permission.fromConfig({ &quot;*&quot;: &quot;deny&quot; })</code>를 merge한 규칙을 사용한다. 즉 이 agent들은 도구 실행용 assistant가 아니다. 읽고 요약하고 산출물을 만드는 역할만 하도록 의도적으로 좁혀져 있다.</p>
+<p>이건 좋은 설계다. 유지 기능을 메인 assistant와 같은 권한으로 두면, 언젠가 보조 작업이 본래 목적을 넘는 행동을 하기 시작한다. OpenCode는 이를 permission envelope로 먼저 막는다.</p>
+<h3 id="제목-생성도-별도-세션-경로와-small-model-정책을-가진다">제목 생성도 별도 세션 경로와 small model 정책을 가진다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts"><code>packages/opencode/src/session/prompt.ts</code></a>의 <code>ensureTitle(...)</code>는 title 기능이 단순 문자열 절단이 아님을 보여 준다.</p>
+<ul><li>기본 제목인지 검사</li><li>첫 user message만 있는지 확인</li><li><code>agents.get(&quot;title&quot;)</code>로 title agent 조회</li><li>가능하면 <code>provider.getSmallModel(...)</code> 사용</li><li>없으면 현재 provider/model fallback</li><li><code>&quot;Generate a title for this conversation:\n&quot;</code> 프롬프트를 앞에 붙여 <code>llm.stream(...)</code></li><li>첫 번째 유효한 줄만 뽑아 세션 title로 저장</li></ul>
+<p>즉 title은 &quot;세션 메타데이터 필드 하나 채우기&quot;가 아니라, 보조 모델 호출과 세션 저장이 결합된 별도 시스템 작업이다.</p>
+<h3 id="summary는-텍스트-요약만이-아니라-snapshot-diff-요약까지-책임진다">summary는 텍스트 요약만이 아니라 snapshot diff 요약까지 책임진다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/summary.ts"><code>packages/opencode/src/session/summary.ts</code></a>가 중요한 이유는 요약이 단순 문장 생성이 아니라는 점을 보여 주기 때문이다. <code>computeDiff(...)</code>는 메시지 파트 안의 <code>step-start</code>와 <code>step-finish</code> snapshot hash를 읽어 <code>snapshot.diffFull(from, to)</code>를 계산한다. 이후 <code>summarize(...)</code>는 다음을 수행한다.</p>
+<ul><li>additions/deletions/files 집계</li><li>세션 summary 메타데이터 저장</li><li><code>session_diff</code> 스토리지에 diff 기록</li><li><code>Session.Event.Diff</code> 버스 이벤트 발행</li><li>특정 user message의 <code>info.summary.diffs</code>까지 갱신</li></ul>
+<p>즉 summary는 단순 natural language 산출물이 아니라, 세션의 변경 메타데이터와 diff 레코드를 관리하는 운영 계층이다.</p>
+<h3 id="compaction은-overflow-대응을-담당하는-별도-정책-서비스다">compaction은 overflow 대응을 담당하는 별도 정책 서비스다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/compaction.ts"><code>packages/opencode/src/session/compaction.ts</code></a>는 이 책의 중요한 파일 중 하나다. 여기서 compaction은 &quot;길어지면 요약한다&quot; 수준이 아니라 다음 정책들을 가진다.</p>
+<ul><li><code>isOverflow(...)</code>로 모델별 usable context 기준 초과 여부 판단</li><li><code>preserveRecentBudget(...)</code>로 recent turn 보존 토큰 예산 계산</li><li><code>select(...)</code>로 어느 구간을 head/tail로 나눌지 결정</li><li><code>prune(...)</code>로 오래된 tool output을 context에서 압축</li><li><code>process(...)</code>와 <code>create(...)</code>로 실제 compaction 작업 메시지 생성</li></ul>
+<p>즉 compaction은 문맥 압축이라는 이름의 별도 운영 서브시스템이다. 메인 assistant의 일부로 섞어 두면 이 정도 정책을 유지하기 어렵다.</p>
+<h3 id="hidden-agent는-세션-루프-안에서-적절한-때-자동-호출된다">hidden agent는 세션 루프 안에서 &quot;적절한 때&quot; 자동 호출된다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts"><code>session/prompt.ts</code></a>를 보면 이 시스템 에이전트들이 언제 실행되는지 드러난다.</p>
+<ul><li>첫 user message 이후 <code>ensureTitle(...)</code></li><li>assistant step 완료 후 <code>summary.summarize(...)</code></li><li>overflow 감지 시 <code>compaction.create(...)</code></li><li>compaction 파트가 있는 경우 <code>compaction.process(...)</code></li></ul>
+<p>이 흐름의 의미는 분명하다. hidden agent는 사용자가 직접 호출하는 기능이 아니라, 세션 루프가 건강을 유지하기 위해 자동으로 호출하는 maintenance worker다.</p>
+<h3 id="helper-함수-대신-hidden-agent를-택한-이유">helper 함수 대신 hidden agent를 택한 이유</h3>
+<p>이 선택의 장점은 명확하다.</p>
+<ul><li>prompt 자산을 독립 파일로 관리할 수 있다.</li><li>small model 정책을 그대로 재사용할 수 있다.</li><li>permission envelope를 별도로 줄 수 있다.</li><li>같은 LLM 실행기와 스트리밍 경로를 쓸 수 있다.</li><li>세션 저장/이벤트/메타데이터 흐름과 자연스럽게 붙는다.</li></ul>
+<p>반대로 helper 함수로 두면 제목 생성, 요약, compaction마다 모델 선택과 retry와 저장 경로를 다시 구현해야 한다.</p>
+<h2 id="이-장의-핵심-논지">이 장의 핵심 논지</h2>
+<p>OpenCode가 잘한 점은 maintenance work를 &quot;보이지 않는 helper&quot;가 아니라 &quot;보이지 않는 agent&quot;로 다룬다는 데 있다. 보조 기능도 결국 에이전트 시스템의 일부라는 사실을 숨기지 않는다. 그래서 유지 기능이 늘어나도 실행 모델은 상대적으로 일관되게 유지된다.</p>
+<p>이 선택은 특히 세션이 길어질수록 강해진다. title은 검색성을 주고, summary는 변경 메타데이터를 남기고, compaction은 문맥을 되살린다. 셋 다 메인 assistant를 대체하지 않지만, 메인 assistant가 무너지지 않게 만든다.</p>
+<h2 id="트레이드오프">트레이드오프</h2>
+<ul><li>장점: 보조 기능도 같은 에이전트 실행 인프라를 재사용할 수 있다.</li><li>장점: permission, model selection, prompt 자산을 일관되게 관리할 수 있다.</li><li>장점: summary가 diff 메타데이터까지 관리하므로 세션 설명 가능성이 좋아진다.</li><li>단점: 사용자에게 잘 보이지 않는 기능도 런타임 구조상 agent 수를 늘린다.</li><li>단점: 세션 루프와 maintenance work의 결합이 깊어지므로 디버깅 포인트가 늘어난다.</li></ul>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>제목, 요약, compaction 같은 유지 기능은 helper보다 hidden agent로 두는 편이 낫다.</li><li>maintenance work는 메인 assistant와 다른 permission envelope와 small model 정책을 가져야 한다.</li><li>summary를 텍스트만이 아니라 diff 메타데이터와 함께 저장하면 이후 기능 확장이 쉬워진다.</li><li>세션 품질은 눈에 보이는 답변 품질만이 아니라, 이런 보조 시스템 에이전트 품질에도 달려 있다.</li></ul>
+<p>이제 세션과 프롬프트의 중심축이 보였다. 다음 부에서는 사용자가 가장 직접적으로 만나는 인터페이스 계층으로 올라간다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>Claude 하니스 분석에서 중요한 시야는 사용자의 주 호출 밖에도 많은 LLM 호출이 있다는 점이다. OpenCode도 title, summary, compaction을 hidden agent로 모델링한다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;hidden agent 정의&quot;]
+  N2[&quot;ensureTitle gate&quot;]
+  N1 --&gt; N2
+  N3[&quot;small model 선택&quot;]
+  N2 --&gt; N3
+  N4[&quot;SessionSummary.diff&quot;]
+  N3 --&gt; N4
+  N5[&quot;compaction agent&quot;]
+  N4 --&gt; N5
+  N6[&quot;session title/summary 저장&quot;]
+  N5 --&gt; N6</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts"><code>packages/opencode/src/agent/agent.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts"><code>packages/opencode/src/session/prompt.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/summary.ts"><code>packages/opencode/src/session/summary.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/prompt/title.txt"><code>packages/opencode/src/session/prompt/title.txt</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/prompt/summary.txt"><code>packages/opencode/src/session/prompt/summary.txt</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/prompt/compaction.txt"><code>packages/opencode/src/session/prompt/compaction.txt</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>title, summary, compaction은 hidden일 뿐 정식 Agent.Info다.</li><li>ensureTitle은 parent session이 아니고 기본 제목이며 실제 user turn이 하나일 때만 실행된다.</li><li>summary는 텍스트가 아니라 snapshot diff 기반 additions/deletions/files도 계산한다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>자동 제목 생성 조건이 느슨하면 사용자 제목을 덮을 수 있다.</li><li>요약을 문자열만 저장하면 diff 기반 UX와 공유 화면을 만들 수 없다.</li><li>hidden 작업을 trace하지 않으면 비용과 지연 원인이 보이지 않는다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>보조 LLM 작업도 agent 체계에 올렸는가?</li><li>자동 호출 gate가 보수적인가?</li><li>요약 결과가 사람과 기계 모두 읽을 수 있는 형태인가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>agent.ts</code></td><td><code>packages/core/src/agent.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/agent.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/session/prompt/compaction.txt</code></td><td><code>packages/opencode/src/agent/prompt/compaction.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/prompt/compaction.txt">Latest</a></td></tr><tr><td><code>packages/opencode/src/session/prompt/summary.txt</code></td><td><code>packages/opencode/src/agent/prompt/summary.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/prompt/summary.txt">Latest</a></td></tr><tr><td><code>packages/opencode/src/session/prompt/title.txt</code></td><td><code>packages/opencode/src/agent/prompt/title.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/prompt/title.txt">Latest</a></td></tr><tr><td><code>session/prompt.ts</code></td><td><code>packages/opencode/src/session/prompt.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/core/src/agent.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/agent.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/agent.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/agent/agent.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/agent/agent.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/agent/prompt/compaction.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/prompt/compaction.txt">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/agent/prompt/compaction.txt">Edition</a></td></tr><tr><td><code>packages/opencode/src/agent/prompt/summary.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/prompt/summary.txt">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/agent/prompt/summary.txt">Edition</a></td></tr><tr><td><code>packages/opencode/src/agent/prompt/title.txt</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/prompt/title.txt">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/agent/prompt/title.txt">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/compaction.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/compaction.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/compaction.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/prompt.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/prompt.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/session.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/session.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/session.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/summary.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/summary.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/summary.ts">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="ch08.html"><span>이전</span><strong>8장: 오버플로와 컨텍스트 컴팩션</strong></a><a class="nav-card" href="../part3/index.html"><span>다음</span><strong>부 도입: 표면을 늘리고도 코어를 복제하지 않기</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

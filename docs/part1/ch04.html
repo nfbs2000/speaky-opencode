@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>4장: 도구 레지스트리와 실행 파이프라인 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link active" href="ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part2/index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="../part2/ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="../part2/ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="../part2/ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="../part2/ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="../part2/ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="../part4/index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="../part4/ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="../part4/ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="../part4/ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="../part4/ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="../part4/ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part5/index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="../part5/ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link" href="../part5/ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="../part5/ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="../part5/ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="../part5/ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="../part6/index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="../part6/ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="../part6/ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="../part6/ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="../part6/ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="../part6/ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제1부: 어디에 시스템 경계를 두는가</p>
+    <h1>4장: 도구 레지스트리와 실행 파이프라인</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 OpenCode의 tool 계층을 함수 모음이 아니라 초기화, 검증, agent-aware truncation, plugin 주입을 가진 capability surface로 읽는다. 대상 독자: 도구 호출 중심의 에이전트 런타임을 설계하는 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>에이전트 시스템에서 도구는 가장 위험하고 가장 중요한 층이다. 파일을 읽고, 수정하고, 쉘을 실행하고, 서브에이전트를 부르고, 검색과 웹 요청을 날리는 모든 행동이 여기서 나온다. OpenCode는 이 층을 매우 의식적으로 설계한다. 도구는 단순 함수가 아니라 스키마, 실행 컨텍스트, permission ask, metadata, output truncation, plugin hook을 함께 가진다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/tool.ts"><code>packages/opencode/src/tool/tool.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/registry.ts"><code>packages/opencode/src/tool/registry.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/shell.ts"><code>packages/opencode/src/tool/bash.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/read.ts"><code>packages/opencode/src/tool/read.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/edit.ts"><code>packages/opencode/src/tool/edit.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/apply_patch.ts"><code>packages/opencode/src/tool/apply_patch.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/task.ts"><code>packages/opencode/src/tool/task.ts</code></a></li></ul>
+<h2 id="핵심-코드">핵심 코드</h2>
+<p>도구는 함수 하나가 아니라 실행 계약이다. 이 타입들이 있어야 built-in tool, plugin tool, MCP tool을 같은 표면으로 다룰 수 있다.</p>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/tool/tool.ts
+export type Context&lt;M extends Metadata = Metadata&gt; = {
+  sessionID: SessionID
+  messageID: MessageID
+  agent: string
+  abort: AbortSignal
+  callID?: string
+  extra?: { [key: string]: unknown }
+  messages: MessageV2.WithParts[]
+  metadata(input: { title?: string; metadata?: M }): Effect.Effect&lt;void&gt;
+  ask(input: Omit&lt;Permission.Request, &quot;id&quot; | &quot;sessionID&quot; | &quot;tool&quot;&gt;): Effect.Effect&lt;void&gt;
+}
+
+export interface ExecuteResult&lt;M extends Metadata = Metadata&gt; {
+  title: string
+  metadata: M
+  output: string
+  attachments?: Omit&lt;MessageV2.FilePart, &quot;id&quot; | &quot;sessionID&quot; | &quot;messageID&quot;&gt;[]
+}
+
+export interface Def&lt;Parameters extends z.ZodType = z.ZodType, M extends Metadata = Metadata&gt; {
+  id: string
+  description: string
+  parameters: Parameters
+  execute(args: z.infer&lt;Parameters&gt;, ctx: Context): Effect.Effect&lt;ExecuteResult&lt;M&gt;&gt;
+  formatValidationError?(error: z.ZodError): string
+}</code></pre>
+<p><code>wrap(...)</code>는 모든 도구가 통과하는 공통 실행 경계다. 스키마 검증, tracing, agent 기준 truncation이 여기서 걸린다.</p>
+<pre class="code-block"><code class="language-ts">// packages/opencode/src/tool/tool.ts
+toolInfo.execute = (args, ctx) =&gt; {
+  const attrs = {
+    &quot;tool.name&quot;: id,
+    &quot;session.id&quot;: ctx.sessionID,
+    &quot;message.id&quot;: ctx.messageID,
+    ...(ctx.callID ? { &quot;tool.call_id&quot;: ctx.callID } : {}),
+  }
+  return Effect.gen(function* () {
+    yield* Effect.try({
+      try: () =&gt; toolInfo.parameters.parse(args),
+      catch: (error) =&gt; {
+        if (error instanceof z.ZodError &amp;&amp; toolInfo.formatValidationError) {
+          return new Error(toolInfo.formatValidationError(error), { cause: error })
+        }
+        return new Error(
+          `The ${id} tool was called with invalid arguments: ${error}.\nPlease rewrite the input so it satisfies the expected schema.`,
+          { cause: error },
+        )
+      },
+    })
+    const result = yield* execute(args, ctx)
+    if (result.metadata.truncated !== undefined) {
+      return result
+    }
+    const agent = yield* agents.get(ctx.agent)
+    const truncated = yield* truncate.output(result.output, {}, agent)
+    return {
+      ...result,
+      output: truncated.content,
+      metadata: {
+        ...result.metadata,
+        truncated: truncated.truncated,
+        ...(truncated.truncated &amp;&amp; { outputPath: truncated.outputPath }),
+      },
+    }
+  }).pipe(Effect.orDie, Effect.withSpan(&quot;Tool.execute&quot;, { attributes: attrs }))
+}</code></pre>
+<h2 id="파이프라인-개요">파이프라인 개요</h2>
+<div class="diagram"><pre class="mermaid">flowchart TD
+    A[&quot;Tool.define(...)&quot;] --&gt; B[&quot;Info.init()&quot;]
+    B --&gt; C[&quot;registry에서 tool 집합 구성&quot;]
+    C --&gt; D[&quot;zod validation&quot;]
+    D --&gt; E[&quot;execute(args, ctx)&quot;]
+    E --&gt; F[&quot;plugin trigger / metadata / attachments&quot;]
+    F --&gt; G[&quot;truncate.output(agent 기준)&quot;]
+    G --&gt; H[&quot;message part 저장&quot;]</pre></div>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="info와-def를-분리한다"><code>Info</code>와 <code>Def</code>를 분리한다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/tool.ts"><code>tool/tool.ts</code></a>에서 <code>Info</code>는 <code>init()</code>를 통해 실제 실행 가능한 <code>Def</code>를 만드는 초기화 핸들이다. 이 분리가 중요한 이유는 도구가 실행 시점의 서비스, 설정, 현재 agent에 의존할 수 있기 때문이다. 정적인 JSON 사전으로는 이런 의존성을 감당하기 어렵다.</p>
+<p>즉 OpenCode는 도구를 &quot;선언&quot;과 &quot;실행 가능한 실체&quot;로 분리한다.</p>
+<h3 id="실행-전에-항상-검증과-래핑이-들어간다">실행 전에 항상 검증과 래핑이 들어간다</h3>
+<p><code>wrap(...)</code>를 보면 도구 실행은 바로 원본 함수로 가지 않는다. 먼저 zod 스키마 검증을 거치고, 실패하면 모델이 다시 시도할 수 있는 형태의 오류 메시지를 만든다. 그 다음 실제 execute를 호출하고, 결과를 현재 agent 기준으로 truncation한다.</p>
+<p>이것은 아주 중요한 설계다. 잘못된 도구 호출과 과도한 출력은 LLM 시스템에서 가장 흔한 실패 원인이다.</p>
+<h3 id="도구-결과는-텍스트-이상이다">도구 결과는 텍스트 이상이다</h3>
+<p><code>ExecuteResult</code>에는 <code>title</code>, <code>metadata</code>, <code>output</code>, <code>attachments</code>가 있다. 즉 도구 결과는 문자열 하나가 아니라, 이후 세션 타임라인에서 richer part로 재구성될 수 있는 묶음이다. 이 구조가 있기 때문에 파일 첨부나 추가 메타데이터도 자연스럽게 저장 모델로 흘러간다.</p>
+<h3 id="registry는-기능-목록이-아니라-정책-표면이다">registry는 기능 목록이 아니라 정책 표면이다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/registry.ts"><code>tool/registry.ts</code></a>가 중요한 이유는 어떤 도구가 존재하는지보다, 어떤 조건에서 어떤 도구를 현재 모델과 agent에게 보여 줄지를 결정하기 때문이다. 예를 들어:</p>
+<ul><li>provider에 따라 <code>code search</code>나 <code>web search</code> 노출 여부가 바뀐다.</li><li><code>apply_patch</code>와 <code>edit</code>/<code>write</code>는 플래그나 설정에 따라 전환된다.</li><li>experimental LSP tool은 플래그가 켜져야 열린다.</li><li>plan mode 전용 도구도 조건부로 노출된다.</li></ul>
+<p>즉 registry는 단순 사전이 아니라 capability policy surface다.</p>
+<h3 id="plugin-도구도-같은-표면으로-합류한다">plugin 도구도 같은 표면으로 합류한다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/registry.ts"><code>registry.ts</code></a>의 <code>fromPlugin(...)</code> 경로를 보면 플러그인이 제공하는 도구도 최종적으로는 같은 <code>Tool.Def</code> 형식으로 변환된다. 이 구조의 장점은 명확하다. built-in tool과 plugin tool이 상위 계층에서 같은 계약을 공유하게 된다.</p>
+<h3 id="task와-skill-도구는-설명까지-동적으로-바뀐다"><code>task</code>와 <code>skill</code> 도구는 설명까지 동적으로 바뀐다</h3>
+<p><code>describeTask(...)</code>, <code>describeSkill(...)</code>는 agent별 사용 가능한 subagent와 skill 목록을 동적으로 설명에 포함한다. 이건 좋은 냄새다. 도구 설명도 정적 문자열이 아니라 현재 런타임 capability를 반영해야 하기 때문이다.</p>
+<h2 id="내장-도구-표면의-실제-범위">내장 도구 표면의 실제 범위</h2>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/registry.ts"><code>registry.ts</code></a>를 보면 OpenCode가 기본으로 다루는 도구 범위는 꽤 넓다.</p>
+<ul><li><code>bash</code></li><li><code>read</code></li><li><code>glob</code></li><li><code>grep</code></li><li><code>edit</code></li><li><code>write</code></li><li><code>task</code></li><li><code>webfetch</code></li><li><code>websearch</code></li><li><code>codesearch</code></li><li><code>skill</code></li><li><code>apply_patch</code></li><li><code>question</code></li><li><code>todo</code></li><li><code>lsp</code></li><li><code>plan</code></li></ul>
+<p>즉 이 시스템에서 agent capability를 바꾸는 가장 직접적인 방법은 프롬프트가 아니라 registry와 permission이다.</p>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>도구는 함수가 아니라 실행 계약으로 정의해야 한다.</li><li><code>init</code>와 <code>execute</code>를 분리하면 서비스 의존성과 지연 초기화가 쉬워진다.</li><li>registry는 단순 도구 목록이 아니라 capability policy surface여야 한다.</li><li>plugin 도구도 가능하면 같은 실행 계약으로 합류시켜야 한다.</li></ul>
+<p>다음 장에서는 이 도구 호출들이 어떤 세션 데이터 모델 위에 저장되는지 본다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>Claude 책의 도구 프롬프트 분석은 OpenCode의 ToolRegistry에 그대로 적용된다. 도구는 함수가 아니라 schema, description, permission ask, metadata, truncation, plugin hook이 붙은 micro-harness다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;Tool.define&quot;]
+  N2[&quot;ToolRegistry state&quot;]
+  N1 --&gt; N2
+  N3[&quot;built-in/custom/plugin tool 수집&quot;]
+  N2 --&gt; N3
+  N4[&quot;agent/model별 tools 필터링&quot;]
+  N3 --&gt; N4
+  N5[&quot;AI SDK tool 변환&quot;]
+  N4 --&gt; N5
+  N6[&quot;execute 전후 hook과 truncation&quot;]
+  N5 --&gt; N6</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/tool.ts"><code>packages/opencode/src/tool/tool.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/registry.ts"><code>packages/opencode/src/tool/registry.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts"><code>packages/opencode/src/session/prompt.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/mcp/index.ts"><code>packages/opencode/src/mcp/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/plugin/index.ts"><code>packages/opencode/src/plugin/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/truncate.ts"><code>packages/opencode/src/tool/truncate.ts</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>Tool.Info와 Tool.Def가 분리되어 Effect service가 필요한 도구를 lazy init할 수 있다.</li><li>Tool.define wrapper가 zod validation, tracing, output truncation을 공통 처리한다.</li><li>task와 skill tool description은 현재 agent permission과 available skill/agent 목록에 따라 동적으로 바뀐다.</li><li>MCP tool은 별도 출처지만 SessionPrompt.resolveTools에서 permission, hook, attachment 정규화를 공유한다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>도구별로 truncation과 permission을 따로 구현하면 built-in, plugin, MCP 사이 의미가 달라진다.</li><li>정적 tool description은 agent 권한과 실제 가능한 행동 사이를 어긋나게 만든다.</li><li>긴 tool output을 그대로 모델에 돌려주면 compaction 압력이 급격히 커진다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>모든 도구가 같은 execution wrapper를 통과하는가?</li><li>tool description은 runtime state를 반영하는가?</li><li>plugin/MCP tool도 core permission 모델 안에 있는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>packages/opencode/src/tool/bash.ts</code></td><td><code>packages/opencode/src/tool/shell.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/shell.ts">Latest</a></td></tr><tr><td><code>registry.ts</code></td><td><code>packages/opencode/src/tool/registry.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/registry.ts">Latest</a></td></tr><tr><td><code>tool/registry.ts</code></td><td><code>packages/opencode/src/tool/registry.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/registry.ts">Latest</a></td></tr><tr><td><code>tool/tool.ts</code></td><td><code>packages/opencode/src/tool/tool.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/tool.ts">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/opencode/src/mcp/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/mcp/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/mcp/index.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/plugin/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/plugin/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/plugin/index.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/session/prompt.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/session/prompt.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/session/prompt.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/apply_patch.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/apply_patch.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/apply_patch.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/edit.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/edit.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/edit.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/read.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/read.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/read.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/registry.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/registry.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/registry.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/shell.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/shell.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/shell.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/task.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/task.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/task.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/tool.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/tool.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/tool.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/truncate.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/truncate.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/truncate.ts">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="ch03.html"><span>이전</span><strong>3장: 에이전트, 모드, 위임 구조</strong></a><a class="nav-card" href="../part2/index.html"><span>다음</span><strong>부 도입: 채팅을 런타임 상태로 승격하기</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>

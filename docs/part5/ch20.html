@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>20장: 세분화 규칙, 외부 디렉터리, 브레이크 | OpenCode 에이전트 하니스 해부</title>
+    <meta name="description" content="OpenCode 포크를 현재 소스와 함께 읽는 한국어 온라인 책" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+
+<aside class="sidebar" aria-label="책 목차">
+  <div class="brand">
+    <p class="eyebrow">OpenCode Source Book</p>
+    <a class="brand-title" href="../index.html">OpenCode 에이전트 하니스 해부</a>
+    <p class="brand-subtitle">책의 경계·상태·제어면 관점을 유지하되 현재 fork의 실제 소스 참조를 함께 제공합니다.</p>
+  </div>
+  <nav class="toc-nav">
+    <a class="toc-link" href="../index.html">목차</a>
+    <section class="toc-section"><h2>시작</h2><div class="toc-links"><a class="toc-link" href="../preface.html">서문</a></div></section><section class="toc-section"><h2>제1부: 어디에 시스템 경계를 두는가</h2><div class="toc-links"><a class="toc-link" href="../part1/index.html">부 도입: 코어와 표면을 가르는 읽기</a><a class="toc-link" href="../part1/ch01.html">1장: OpenCode의 전체 시스템 토폴로지</a><a class="toc-link" href="../part1/ch02.html">2장: CLI 엔트리포인트와 인스턴스 부트스트랩</a><a class="toc-link" href="../part1/ch03.html">3장: 에이전트, 모드, 위임 구조</a><a class="toc-link" href="../part1/ch04.html">4장: 도구 레지스트리와 실행 파이프라인</a></div></section><section class="toc-section"><h2>제2부: 대화를 어떻게 상태와 문맥으로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="../part2/index.html">부 도입: 채팅을 런타임 상태로 승격하기</a><a class="toc-link" href="../part2/ch05.html">5장: 세션 데이터 모델과 메시지 흐름</a><a class="toc-link" href="../part2/ch06.html">6장: 프롬프트 조립과 에이전트별 문맥층</a><a class="toc-link" href="../part2/ch07.html">7장: Provider 추상화와 모델 라우팅</a><a class="toc-link" href="../part2/ch08.html">8장: 오버플로와 컨텍스트 컴팩션</a><a class="toc-link" href="../part2/ch09.html">9장: 제목, 요약, 보조 시스템 에이전트</a></div></section><section class="toc-section"><h2>제3부: 하나의 코어를 어떻게 여러 표면으로 펼치는가</h2><div class="toc-links"><a class="toc-link" href="../part3/index.html">부 도입: 표면을 늘리고도 코어를 복제하지 않기</a><a class="toc-link" href="../part3/ch10.html">10장: TUI는 어떻게 앱처럼 동작하는가</a><a class="toc-link" href="../part3/ch11.html">11장: 서버 라우트와 로컬 제어면</a><a class="toc-link" href="../part3/ch12.html">12장: 웹, 앱, 데스크톱의 공유 코어</a><a class="toc-link" href="../part3/ch13.html">13장: SDK와 자동화 진입점</a></div></section><section class="toc-section"><h2>제4부: 확장을 어떻게 계약으로 나누는가</h2><div class="toc-links"><a class="toc-link" href="../part4/index.html">부 도입: 플러그인, 스킬, MCP를 한 바구니에 넣지 않기</a><a class="toc-link" href="../part4/ch14.html">14장: 서버 플러그인 런타임</a><a class="toc-link" href="../part4/ch15.html">15장: TUI 플러그인 시스템</a><a class="toc-link" href="../part4/ch16.html">16장: 스킬을 지식 계층으로 다루기</a><a class="toc-link" href="../part4/ch17.html">17장: MCP 서버 통합과 인증 흐름</a><a class="toc-link" href="../part4/ch18.html">18장: 워크스페이스 어댑터와 컨트롤 플레인</a></div></section><section class="toc-section"><h2>제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</h2><div class="toc-links"><a class="toc-link" href="index.html">부 도입: 안전성을 규칙이 아니라 상태 모델로 보기</a><a class="toc-link" href="ch19.html">19장: 권한 시스템 아키텍처</a><a class="toc-link active" href="ch20.html">20장: 세분화 규칙, 외부 디렉터리, 브레이크</a><a class="toc-link" href="ch21.html">21장: 저장소, 세션 지속성, 복구</a><a class="toc-link" href="ch22.html">22장: 이벤트, trace, 운영 가시성</a><a class="toc-link" href="ch23.html">23장: 공유와 동기화</a></div></section><section class="toc-section"><h2>제6부: 복잡한 서브시스템을 어디에 가두는가</h2><div class="toc-links"><a class="toc-link" href="../part6/index.html">부 도입: 예외를 없애지 못할 때 복잡성을 격리하는 법</a><a class="toc-link" href="../part6/ch24.html">24장: LSP와 코드 인텔리전스</a><a class="toc-link" href="../part6/ch25.html">25장: Patch, Edit, Write의 파일 수정 의미론</a><a class="toc-link" href="../part6/ch26.html">26장: Worktree와 프로젝트 격리</a><a class="toc-link" href="../part6/ch27.html">27장: Snapshot과 재현 가능한 상태</a><a class="toc-link" href="../part6/ch28.html">28장: Provider SDK bridge와 변환 계층</a></div></section><section class="toc-section"><h2>제7부: 무엇을 추출해 자기 시스템으로 옮길 것인가</h2><div class="toc-links"><a class="toc-link" href="../part7/index.html">부 도입: 저장소 해설을 설계 청사진으로 바꾸기</a><a class="toc-link" href="../part7/ch29.html">29장: OpenCode가 에이전트 하니스로서 잘하는 것</a><a class="toc-link" href="../part7/ch30.html">30장: OpenCode 패턴으로 나만의 에이전트 설계하기</a></div></section><section class="toc-section"><h2>부록</h2><div class="toc-links"><a class="toc-link" href="../appendix/a-file-index.html">부록 A: 주요 파일 인덱스</a><a class="toc-link" href="../appendix/b-prompt-index.html">부록 B: 프롬프트 파일 인덱스</a><a class="toc-link" href="../appendix/c-config-crosswalk.html">부록 C: 구성과 권한 크로스워크</a><a class="toc-link" href="../appendix/d-reading-order.html">부록 D: 추천 독서 경로</a><a class="toc-link" href="../appendix/e-build-recipes.html">부록 E: 빌드와 검색 명령 모음</a><a class="toc-link" href="../appendix/f-e2e-traces.html">부록 F: 엔드투엔드 사례 추적</a><a class="toc-link" href="../appendix/g-auth-sharing.html">부록 G: 인증, 공유, 외부 서비스</a><a class="toc-link" href="../appendix/h-glossary.html">부록 H: 용어집</a></div></section>
+  </nav>
+  <div class="meta-panel">
+    <p>Fork: <a href="https://github.com/nfbs2000/speaky-opencode">nfbs2000/speaky-opencode</a></p>
+    <p>Latest source: <a href="https://github.com/nfbs2000/speaky-opencode/tree/dev">dev</a></p>
+    <p>Edition snapshot: <a href="https://github.com/nfbs2000/speaky-opencode/tree/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e">4c0af7cf2d</a></p>
+  </div>
+</aside>
+
+      <main class="content">
+<article class="book-page">
+  <header class="chapter-header">
+    <p class="eyebrow">제5부: 위험한 행동을 어떻게 협상 가능한 UX로 바꾸는가</p>
+    <h1>20장: 세분화 규칙, 외부 디렉터리, 브레이크</h1>
+    <p class="chapter-meta">온라인판은 책의 질문과 해석 순서를 유지하면서 현재 fork의 실제 소스 경로와 링크를 함께 제공합니다.</p>
+  </header>
+  
+<section class="fork-note">
+  <h2>현재 fork 기준 보정</h2>
+  <p>이 온라인판은 원고의 관점과 장 구성을 유지하지만, 현재 <code>speaky-opencode</code> 포크의 리팩터링을 기준으로 소스 경로를 보정합니다. 원고의 오래된 <code>src/...</code> 참조는 가능한 경우 <code>packages/opencode/src/...</code>로 해석합니다.</p>
+  <p>현재 fork는 core runtime을 <code>packages/opencode/src/</code>에 두고, TUI는 <code>packages/tui/src/</code>, 웹 앱은 <code>packages/app/src/</code>, 데스크톱은 <code>packages/desktop/src/</code>, HTTP surface는 <code>packages/server/src/</code>와 <code>packages/opencode/src/server/routes/instance/httpapi/</code>에 나누어 둡니다.</p>
+</section>
+
+  <div class="markdown-body"><blockquote><p><strong>포지셔닝</strong>: 이 장은 OpenCode 권한 시스템의 세부 규칙과 <code>external_directory</code>, <code>doom_loop</code>, reject/corrected feedback 같은 안전 브레이크를 분석한다. 대상 독자: 단순 allow/deny를 넘어, &quot;어떤 상황에서 자동 허용이 멈춰야 하는가&quot;를 설계하려는 빌더.</p></blockquote>
+<h2 id="왜-중요한가">왜 중요한가</h2>
+<p>19장에서 본 permission 아키텍처가 권한 시스템의 골격이라면, 이 장은 그 골격 위에 붙는 미세한 안전 seam을 다룬다. 실제 위험은 종종 도구 이름보다 구체적인 패턴에서 발생한다.</p>
+<ul><li>같은 <code>bash</code>라도 어떤 명령인지</li><li>같은 <code>read</code>라도 어디를 읽는지</li><li>같은 <code>edit</code>라도 작업 루트 밖 파일인지</li><li>같은 호출이 계속 반복되는지</li><li>사용자가 &quot;아니오&quot;만 했는지, 아니면 수정 방향까지 줬는지</li></ul>
+<p>OpenCode는 이런 위험 신호를 도구별 세부 패턴과 별도 safety permission으로 끌어올린다. 그래서 이 장은 권한 모델의 세부 구현이 아니라, &quot;위험을 어떤 축으로 분해하는가&quot;에 대한 장이다.</p>
+<h2 id="소스-앵커">소스 앵커</h2>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/index.ts"><code>packages/opencode/src/permission/index.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/evaluate.ts"><code>packages/opencode/src/permission/evaluate.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/external-directory.ts"><code>packages/opencode/src/tool/external-directory.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/shell.ts"><code>packages/opencode/src/tool/bash.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/permissions.mdx"><code>packages/web/src/content/docs/permissions.mdx</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts"><code>packages/opencode/src/agent/agent.ts</code></a></li></ul>
+<h2 id="안전-seam-지도">안전 seam 지도</h2>
+<div class="diagram"><pre class="mermaid">graph TD
+    TOOL[&quot;tool call&quot;]
+    PATTERN[&quot;tool-specific pattern&quot;]
+    EXT[&quot;external_directory&quot;]
+    LOOP[&quot;doom_loop&quot;]
+    ASK[&quot;ask queue&quot;]
+    REPLY[&quot;once / always / reject / corrected&quot;]
+
+    TOOL --&gt; PATTERN
+    TOOL --&gt; EXT
+    TOOL --&gt; LOOP
+    PATTERN --&gt; ASK
+    EXT --&gt; ASK
+    LOOP --&gt; ASK
+    ASK --&gt; REPLY</pre></div>
+<p>이 그림이 말하는 바는 단순하다. OpenCode는 위험을 한 개의 boolean 판정으로 보지 않는다. 서로 다른 원인들이 같은 ask queue로 모이되, 원인은 별도 seam으로 유지한다.</p>
+<h2 id="핵심-메커니즘">핵심 메커니즘</h2>
+<h3 id="pattern의-의미는-도구마다-다르다">pattern의 의미는 도구마다 다르다</h3>
+<p>문서 <a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/permissions.mdx"><code>permissions.mdx</code></a>만 보면 pattern은 단순 wildcard 문자열처럼 보인다. 하지만 구현 관점에서 pattern은 &quot;각 도구가 무엇을 대표 문자열로 permission 엔진에 올리느냐&quot;에 따라 의미가 달라진다.</p>
+<ul><li><code>bash</code>: 명령 문자열</li><li><code>read</code>, <code>edit</code>: 파일 경로 패턴</li><li><code>task</code>: subagent 이름</li><li><code>skill</code>: skill 이름</li></ul>
+<p>즉 permission 엔진은 공통인데, pattern의 실질 의미는 각 도구의 surface area에 종속된다. 이 점을 이해하지 못하면 세분화 규칙이 과하게 단순해 보인다.</p>
+<h3 id="last-match-wins는-세밀한-예외-규칙을-쉽게-만든다">last-match-wins는 세밀한 예외 규칙을 쉽게 만든다</h3>
+<p><code>evaluate(...)</code> 자체는 짧지만, OpenCode의 규칙 해석은 결국 last-match-wins에 기대고 있다. 이 선택 덕분에 다음 같은 구성 패턴이 자연스러워진다.</p>
+<ul><li>먼저 <code>&quot;*&quot;: &quot;ask&quot;</code></li><li>뒤에서 특정 명령/경로만 <code>allow</code></li><li>더 뒤에서 더 위험한 하위 패턴만 다시 <code>deny</code> 혹은 <code>ask</code></li></ul>
+<p>이 방식은 설정 문법을 복잡하게 만들지 않고도 예외를 점진적으로 덧붙일 수 있게 해 준다. 사용자 입장에서도 비교적 직관적이다.</p>
+<h3 id="external_directory는-도구-규칙-바깥의-별도-안전-경계다"><code>external_directory</code>는 도구 규칙 바깥의 별도 안전 경계다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/external-directory.ts"><code>packages/opencode/src/tool/external-directory.ts</code></a>는 이 장의 핵심 파일이다. <code>assertExternalDirectoryEffect(...)</code>는 특정 target path가 현재 인스턴스의 작업 범위 바깥이면, 해당 파일이나 부모 디렉터리를 기준으로 glob을 만들고 <code>ctx.ask({ permission: &quot;external_directory&quot;, ... })</code>를 호출한다.</p>
+<p>이 설계가 좋은 이유는 명확하다.</p>
+<ul><li>읽기/쓰기/명령 실행 도중 발생하는 &quot;작업 루트 밖 접근&quot;을 같은 의미로 묶을 수 있다.</li><li>각 도구가 따로 외부 경로 정책을 재구현하지 않아도 된다.</li><li>사용자는 &quot;이 도구를 쓰면 위험&quot;이 아니라 &quot;작업 루트 밖으로 나가면 위험&quot;이라는 더 정확한 모델을 얻게 된다.</li></ul>
+<p>즉 <code>external_directory</code>는 특정 도구의 세부 규칙이 아니라, 시스템 전체가 공유하는 안전 seam이다.</p>
+<h3 id="bash는-외부-디렉터리-ask를-별도-경로로-올린다"><code>bash</code>는 외부 디렉터리 ask를 별도 경로로 올린다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/shell.ts"><code>packages/opencode/src/tool/bash.ts</code></a>의 <code>ctx.ask({ permission: &quot;external_directory&quot;, ... })</code> 호출은 이 seam이 추상 규칙이 아니라 실제 도구 구현에서 살아 있음을 보여 준다. bash는 명령 자체 permission과 별도로, 명령이 작업 루트 밖 파일 시스템을 건드리는 순간 추가 ask를 걸 수 있다.</p>
+<p>즉 OpenCode는 &quot;명령이 허용되었으니 됐다&quot;로 끝내지 않는다. 같은 bash라도 경로 맥락이 바뀌면 위험도가 달라진다고 본다.</p>
+<h3 id="doom_loop는-호출-패턴-자체를-위험-신호로-본다"><code>doom_loop</code>는 호출 패턴 자체를 위험 신호로 본다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/agent.ts"><code>agent.ts</code></a> 기본 permission에도 <code>doom_loop: &quot;ask&quot;</code>가 들어 있다. 이 키의 존재는 OpenCode가 위험을 파일 경로나 명령 종류뿐 아니라, 실행 패턴에서도 찾는다는 뜻이다. 같은 호출이 비슷한 입력으로 반복되면, 그것만으로도 모델이 실패 상태에 갇혔을 가능성이 크다.</p>
+<p>이건 LLM 시스템에서 매우 현실적인 판단이다. 모델은 실패한 접근을 집요하게 반복하는 경향이 있기 때문이다. OpenCode는 이를 permission vocabulary 안으로 끌어들인다.</p>
+<h3 id="reject와-corrected-feedback를-분리한-것은-ux-결정이다">reject와 corrected feedback를 분리한 것은 UX 결정이다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/index.ts"><code>packages/opencode/src/permission/index.ts</code></a>에는 <code>RejectedError</code>, <code>CorrectedError</code>, <code>DeniedError</code>가 따로 있다.</p>
+<ul><li><code>DeniedError</code>: 규칙상 금지</li><li><code>RejectedError</code>: 사용자가 거부</li><li><code>CorrectedError</code>: 사용자가 거부하면서 수정 방향을 제공</li></ul>
+<p>이 차이는 중요하다. 모든 거절을 같은 실패로 보면 런타임은 &quot;멈춘다&quot;밖에 할 수 없다. 하지만 corrected feedback가 있으면 모델은 수정된 방향으로 다시 시도할 수 있다. 즉 OpenCode는 권한 거절을 단순 차단 장치가 아니라, 대화형 교정 인터페이스로 본다.</p>
+<h3 id="permission-asked-이벤트는-브레이크를-ui로-승격한다"><code>permission.asked</code> 이벤트는 브레이크를 UI로 승격한다</h3>
+<p>19장에서 본 ask queue와 연결해서 보면, <code>permission.asked</code> 이벤트의 의미가 더 커진다. 브레이크는 내부 if문으로 끝나지 않고, UI와 운영 표면이 이해할 수 있는 이벤트가 된다. 그래서 사용자는 &quot;무엇이, 왜, 어떤 패턴 때문에 멈췄는지&quot;를 볼 수 있다.</p>
+<p>즉 브레이크도 하나의 제품 surface다.</p>
+<h3 id="agent-envelope와-safety-seam은-별개지만-결합된다">agent envelope와 safety seam은 별개지만 결합된다</h3>
+<p><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/agent.ts"><code>agent.ts</code></a>를 보면 plan/build/general/explore는 각자 다른 permission envelope를 가진다. 하지만 <code>external_directory</code>, <code>doom_loop</code>, <code>.env</code> read ask 같은 seam은 그 위에 겹쳐진다. 이 구조는 중요하다.</p>
+<ul><li>agent envelope: 역할에 따라 달라지는 운영 범위</li><li>safety seam: 역할과 상관없이 공통으로 지켜야 하는 위험 경계</li></ul>
+<p>OpenCode는 둘을 섞지 않는다. 그래서 역할 정책과 안전 정책을 따로 진화시킬 수 있다.</p>
+<h2 id="이-장의-핵심-논지">이 장의 핵심 논지</h2>
+<p>OpenCode의 안전성은 &quot;툴별 on/off&quot;가 아니다. 더 정확히는, 도구 규칙을 넘는 몇 가지 공통 위험 seam을 세우고, 그것을 ask queue와 correction UX로 연결하는 구조다.</p>
+<p>이게 중요한 이유는 단순하다. 실제 위험은 도구 이름보다 경로, 반복 패턴, 사용자 피드백에서 더 자주 발생하기 때문이다.</p>
+<h2 id="트레이드오프">트레이드오프</h2>
+<ul><li>장점: 위험 신호를 도구 이름 밖까지 넓게 포착할 수 있다.</li><li>장점: 외부 경로 접근과 반복 실패를 별도 안전 seam으로 설명하기 쉽다.</li><li>장점: corrected feedback 덕분에 브레이크가 대화형 교정 UX가 될 수 있다.</li><li>단점: 사용자가 이해해야 할 permission key와 패턴 수가 늘어난다.</li><li>단점: pattern 의미가 도구별 대표 문자열에 의존하므로 문서화가 중요해진다.</li></ul>
+<h2 id="빌더에게-남는-것">빌더에게 남는 것</h2>
+<ul><li>권한 모델은 도구 이름만 보기 시작하는 순간 곧 한계에 부딪힌다.</li><li>외부 디렉터리, 반복 호출, 사용자 교정 같은 축은 별도 safety seam으로 세우는 편이 낫다.</li><li>거절은 단순 차단보다, 수정 방향까지 담을 수 있는 UX가 되어야 한다.</li><li>역할 정책과 안전 seam을 분리하면 시스템을 훨씬 오래 진화시킬 수 있다.</li></ul>
+<p>다음 장에서는 이런 안전 경계들이 실제 저장과 복구 시스템 안에서 어떻게 지속되는지 본다.</p>
+<p>&lt;!-- opencode-book-expansion --&gt;</p>
+<h2 id="소스-그라운딩-확장">소스 그라운딩 확장</h2>
+<h3 id="참조-강좌에서-가져올-렌즈">참조 강좌에서 가져올 렌즈</h3>
+<p>OpenCode는 OS sandbox보다 제품 레벨 협상에 더 많이 의존한다. Claude 책의 sandbox/permission 관점을 가져오면 external_directory permission의 의미가 뚜렷해진다.</p>
+<p>이 관점은 Claude 하니스의 구현을 그대로 복사하자는 뜻이 아니다. 같은 시스템 질문을 OpenCode 소스에 던지고, 다른 답이 나오는 지점을 분명히 하자는 뜻이다. 따라서 아래 흐름은 OpenCode의 실제 파일, 서비스, 상태 객체를 기준으로 다시 세운 읽기 지도다.</p>
+<h3 id="실제-opencode-흐름">실제 OpenCode 흐름</h3>
+<div class="diagram"><pre class="mermaid">flowchart TD
+  N1[&quot;target path resolve&quot;]
+  N2[&quot;Instance.containsPath&quot;]
+  N1 --&gt; N2
+  N3[&quot;external_directory check&quot;]
+  N2 --&gt; N3
+  N4[&quot;tool permission&quot;]
+  N3 --&gt; N4
+  N5[&quot;metadata diff&quot;]
+  N4 --&gt; N5
+  N6[&quot;agent/session ruleset&quot;]
+  N5 --&gt; N6</pre></div>
+<h3 id="확인해야-할-소스">확인해야 할 소스</h3>
+<ul><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/external-directory.ts"><code>packages/opencode/src/tool/external-directory.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/project/instance-runtime.ts"><code>packages/opencode/src/project/instance.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/shell.ts"><code>packages/opencode/src/tool/bash.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/read.ts"><code>packages/opencode/src/tool/read.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/edit.ts"><code>packages/opencode/src/tool/edit.ts</code></a></li><li><a class="source-code" href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts"><code>packages/opencode/src/agent/agent.ts</code></a></li></ul>
+<h3 id="구현에서-읽어야-할-메커니즘">구현에서 읽어야 할 메커니즘</h3>
+<ul><li>Instance.containsPath는 directory와 worktree를 모두 보되 non-git worktree &#x27;/&#x27; 예외를 처리한다.</li><li>파일 read/edit permission과 external_directory permission은 다른 위험 차원이다.</li><li>edit/write/apply_patch는 diff와 filepath metadata를 permission request에 넣어 사용자가 실제 변경을 보고 판단하게 한다.</li></ul>
+<h3 id="실패-모드와-설계-압력">실패 모드와 설계 압력</h3>
+<ul><li>외부 디렉터리를 read/edit permission에만 묶으면 project 밖 파일이 조용히 접근될 수 있다.</li><li>diff metadata 없이 edit 허용을 묻는 UX는 판단 불가능하다.</li><li>agent별 permission 차이를 UI가 설명하지 않으면 plan/explore 기대가 깨진다.</li></ul>
+<h3 id="빌더에게-남는-질문">빌더에게 남는 질문</h3>
+<ul><li>경로 경계 permission과 도구 종류 permission이 분리되어 있는가?</li><li>위험한 변경은 적용 전 diff로 설명되는가?</li><li>agent mode별 안전성 차이가 코드와 UX에 함께 반영되는가?</li></ul>
+<p>이 장의 핵심은 파일 이름을 외우는 것이 아니라 경계를 읽는 것이다. 어떤 상태가 어느 계층에서 만들어지고, 어떤 계약을 통과하며, 실패했을 때 어디서 관측되는지까지 따라가야 실제 하니스 설계로 옮길 수 있다.</p></div>
+  
+<section class="source-references" id="source-references">
+  <h2>이 장의 실제 소스 참조</h2>
+  <p>본문의 코드 경로 중 현재 fork에 존재하는 항목만 실제 GitHub 소스로 연결했습니다. <code>Latest</code>는 <code>dev</code>, <code>Edition</code>은 이 온라인판 생성 시점의 snapshot입니다.</p>
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>원고 경로</th><th>현재 fork 경로</th><th>링크</th></tr></thead>
+    <tbody><tr><td><code>agent.ts</code></td><td><code>packages/core/src/agent.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/agent.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/project/instance.ts</code></td><td><code>packages/opencode/src/project/instance-runtime.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/project/instance-runtime.ts">Latest</a></td></tr><tr><td><code>packages/opencode/src/tool/bash.ts</code></td><td><code>packages/opencode/src/tool/shell.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/shell.ts">Latest</a></td></tr><tr><td><code>permissions.mdx</code></td><td><code>packages/web/src/content/docs/permissions.mdx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/permissions.mdx">Latest</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+<div class="table-wrap source-table">
+  <table>
+    <thead><tr><th>경로</th><th>Latest</th><th>Edition</th></tr></thead>
+    <tbody><tr><td><code>packages/core/src/agent.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/core/src/agent.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/core/src/agent.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/agent/agent.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/agent/agent.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/agent/agent.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/permission/evaluate.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/evaluate.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/permission/evaluate.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/permission/index.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/permission/index.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/permission/index.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/project/instance-runtime.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/project/instance-runtime.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/project/instance-runtime.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/edit.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/edit.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/edit.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/external-directory.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/external-directory.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/external-directory.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/read.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/read.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/read.ts">Edition</a></td></tr><tr><td><code>packages/opencode/src/tool/shell.ts</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/opencode/src/tool/shell.ts">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/opencode/src/tool/shell.ts">Edition</a></td></tr><tr><td><code>packages/web/src/content/docs/permissions.mdx</code></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/dev/packages/web/src/content/docs/permissions.mdx">Latest</a></td><td><a href="https://github.com/nfbs2000/speaky-opencode/blob/4c0af7cf2dbf93a7a04067a2e0a9deffe755cd4e/packages/web/src/content/docs/permissions.mdx">Edition</a></td></tr></tbody>
+  </table>
+</div>
+
+  
+</section>
+
+  <nav class="chapter-nav" aria-label="장 이동"><a class="nav-card" href="ch19.html"><span>이전</span><strong>19장: 권한 시스템 아키텍처</strong></a><a class="nav-card" href="ch21.html"><span>다음</span><strong>21장: 저장소, 세션 지속성, 복구</strong></a></nav>
+</article>
+</main>
+    </div>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+          background: "#fffefa",
+          primaryColor: "#eef1ee",
+          primaryTextColor: "#191817",
+          primaryBorderColor: "#d9d1c3",
+          lineColor: "#1f6f8b",
+          secondaryColor: "#e9f1ee",
+          tertiaryColor: "#f7efe5",
+          fontFamily: "Inter, system-ui, sans-serif"
+        }
+      });
+    </script>
+  </body>
+</html>
